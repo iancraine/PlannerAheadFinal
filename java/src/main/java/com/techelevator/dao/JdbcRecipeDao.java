@@ -46,11 +46,11 @@ public class JdbcRecipeDao implements RecipeDao{
     @Override
     public Recipe addNewRecipe(Recipe newRecipe, int userId) {
         Recipe addedRecipe = null;
-        String sql = "INSERT INTO recipes (recipe_name, directions, tags, prep_time, food_pic, is_public) " +
-                 "VALUES(?, ?, ?, ?, ?, ?) RETURNING recipe_id;";
+        String sql = "INSERT INTO recipes (recipe_name, directions, tags, prep_time, food_pic, is_public, created_by) " +
+                 "VALUES(?, ?, ?, ?, ?, ?, ?) RETURNING recipe_id;";
 
         int newRecipeId = jdbcTemplate.queryForObject(sql, int.class, newRecipe.getRecipeName(), newRecipe.getDirections(),
-                                                        newRecipe.getTags(), newRecipe.getPrepTime(), newRecipe.getFoodPic(), newRecipe.isPublic());
+                                                        newRecipe.getTags(), newRecipe.getPrepTime(), newRecipe.getFoodPic(), newRecipe.isPublic(), userId);
         addedRecipe = getRecipeById(newRecipeId);
 
         String insertToUsersRecipe = "INSERT INTO users_recipes (user_id, recipe_id) " +
@@ -61,9 +61,19 @@ public class JdbcRecipeDao implements RecipeDao{
     }
 
     @Override
-    public void deleteRecipe(int recipeId) {
-        String sql = "DELETE FROM recipes WHERE recipe_id=?;";
-        jdbcTemplate.update(sql, recipeId);
+    public void deleteRecipe(int recipeId, int userId) {
+        String sql = "SELECT created_by FROM recipes WHERE recipe_id = ?;";
+        int createdByUserId = jdbcTemplate.queryForObject(sql, Integer.class, recipeId);
+
+        if(createdByUserId == userId){
+            sql = "DELETE FROM users_recipes WHERE recipe_id = ?;";
+            jdbcTemplate.update(sql, recipeId);
+            sql = "DELETE FROM recipes WHERE recipe_id=?;";
+            jdbcTemplate.update(sql, recipeId);
+        } else {
+            sql = "DELETE FROM users_recipes WHERE recipe_id = ? AND user_id = ?;";
+            jdbcTemplate.update(sql, recipeId, userId);
+        }
 
     }
 
@@ -87,8 +97,8 @@ public class JdbcRecipeDao implements RecipeDao{
 
         recipe.setRecipeId(row.getInt("recipe_id"));
         recipe.setRecipeName(row.getString("recipe_name"));
-        //recipe.setDirections(row.getString("directions"));
-        //recipe.setTags(row.getObject("tags"));
+        recipe.setDirections(row.getString("directions"));
+        recipe.setTags(row.getString("tags"));
         recipe.setPrepTime(row.getInt("prep_time"));
         recipe.setFoodPic(row.getString("food_pic"));
         recipe.setPublic(row.getBoolean("is_public"));

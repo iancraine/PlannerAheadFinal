@@ -35,10 +35,10 @@ public class RecipeController {
         return recipeDao.addNewRecipe(recipe, userId);
     }
 
-    //TODO: make sure to not let them delete public recipes
-    @RequestMapping(path="/{recipeId}", method=RequestMethod.DELETE)
-    public void deleteRecipe(@PathVariable int recipeId) {
-        recipeDao.deleteRecipe(recipeId);
+    //TODO: make sure to not let them delete public recipes that don't belong to them.
+    @RequestMapping(path="/{recipeId}/{userId}", method=RequestMethod.DELETE)
+    public void deleteRecipe(@PathVariable int recipeId, @PathVariable int userId) {
+        recipeDao.deleteRecipe(recipeId, userId);
     }
 
     @RequestMapping(path="/{recipeId}", method=RequestMethod.PUT)

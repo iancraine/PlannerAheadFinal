@@ -23,7 +23,7 @@ CREATE TABLE users_ingredients (
 	ingredient_id int,
 	user_id int,
 	
-	CONSTRAINT FK_users_ingredients_ingredeient_id FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id),
+	CONSTRAINT FK_users_ingredients_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id),
 	CONSTRAINT FK_users_ingredients_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 CREATE TABLE recipes(
@@ -34,8 +34,10 @@ CREATE TABLE recipes(
 	prep_time int,
 	food_pic varchar(100),
 	is_public boolean,
+	created_by int, 
 	
-	CONSTRAINT PK_recipes PRIMARY KEY (recipe_id)
+	CONSTRAINT PK_recipes PRIMARY KEY (recipe_id),
+	CONSTRAINT FK_recipes_created_by FOREIGN KEY (created_by) REFERENCES users(user_id)
 );
 CREATE TABLE users_recipes(
 	user_id int NOT NULL,

@@ -3,15 +3,17 @@ package com.techelevator.model;
 public class Recipe {
     private int recipeId;
     private String recipeName;
-    private String[] directions;
-    private String[] tags;
+    private String directions;
+    private String tags;
     private int prepTime;
     private String foodPic;
     private boolean isPublic;
+    private int createBy;
 
     public Recipe(){}
 
-    public Recipe(int recipeId, String recipeName, String[] directions, String[] tags, int prepTime, String foodPic, boolean isPublic) {
+    public Recipe(int recipeId, String recipeName, String directions, String tags,
+                  int prepTime, String foodPic, boolean isPublic, int createdBy) {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
         this.directions = directions;
@@ -19,6 +21,7 @@ public class Recipe {
         this.prepTime = prepTime;
         this.foodPic = foodPic;
         this.isPublic = isPublic;
+        this.createBy = createdBy;
     }
 
     public int getRecipeId() {
@@ -37,19 +40,19 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public String[] getDirections() {
+    public String getDirections() {
         return directions;
     }
 
-    public void setDirections(String[] directions) {
+    public void setDirections(String directions) {
         this.directions = directions;
     }
 
-    public String[] getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
@@ -75,5 +78,13 @@ public class Recipe {
 
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
+    }
+
+    public int getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(int createBy) {
+        this.createBy = createBy;
     }
 }

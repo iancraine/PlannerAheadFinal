@@ -13,7 +13,7 @@ public interface RecipeDao {
 
     Recipe addNewRecipe(Recipe newRecipe, int userId);
 
-    void deleteRecipe(int recipeId);
+    void deleteRecipe(int recipeId, int userId);
 
     Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
 
