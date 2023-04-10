@@ -1,15 +1,49 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.RecipeDao;
+import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+//TODO: what to do with authorization?!?!?!?
+@RequestMapping("/recipes")
 @RestController
 public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao;
 
+    /**
+     *
+     * @param recipeId
+     * @return Recipe
+     */
+    @RequestMapping(path = "/{recipeId}", method = RequestMethod.GET)
+    public Recipe getRecipeById(@PathVariable int recipeId) {
+        return recipeDao.getRecipeById(recipeId);
+    }
 
+    @RequestMapping(path="/{userId}", method=RequestMethod.GET)
+    public List<Recipe> getAllRecipes(@PathVariable int userId) {
+        return recipeDao.getAllRecipes(userId);
+    }
+
+    @RequestMapping(path="/{userId}", method=RequestMethod.POST)
+    public Recipe addNewRecipe(@RequestBody Recipe recipe, @PathVariable int userId) {
+        return recipeDao.addNewRecipe(recipe, userId);
+    }
+
+    //TODO: make sure to not let them delete public recipes
+    @RequestMapping(path="/{recipeId}", method=RequestMethod.DELETE)
+    public void deleteRecipe(@PathVariable int recipeId) {
+        recipeDao.deleteRecipe(recipeId);
+    }
+
+    @RequestMapping(path="/{recipeId}", method=RequestMethod.PUT)
+    public Recipe modifyRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
+        return recipeDao.modifyRecipe(recipe, recipeId);
+    }
 
 }

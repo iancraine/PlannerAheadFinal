@@ -11,10 +11,10 @@ public interface RecipeDao {
 
     List<Recipe> getAllRecipes(int userId);
 
-    void addNewRecipe(Recipe newRecipe);
+    Recipe addNewRecipe(Recipe newRecipe, int userId);
 
     void deleteRecipe(int recipeId);
 
-    Recipe modifyRecipe(Recipe modifiedRecipe);
+    Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
 
 }

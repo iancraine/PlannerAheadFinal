@@ -44,21 +44,42 @@ public class JdbcRecipeDao implements RecipeDao{
     }
 
     @Override
-    public void addNewRecipe(Recipe newRecipe) {
-        Recipe newRecipe = new Recipe();
+    public Recipe addNewRecipe(Recipe newRecipe, int userId) {
+        Recipe addedRecipe = null;
+        String sql = "INSERT INTO recipes (recipe_name, directions, tags, prep_time, food_pic, is_public) " +
+                 "VALUES(?, ?, ?, ?, ?, ?) RETURNING recipe_id;";
 
-        String sql = "INSERT INTO recipes (recipe_name, directions, tags, prep_time, food_pic, ) "
+        int newRecipeId = jdbcTemplate.queryForObject(sql, int.class, newRecipe.getRecipeName(), newRecipe.getDirections(),
+                                                        newRecipe.getTags(), newRecipe.getPrepTime(), newRecipe.getFoodPic(), newRecipe.isPublic());
+        addedRecipe = getRecipeById(newRecipeId);
 
+        String insertToUsersRecipe = "INSERT INTO users_recipes (user_id, recipe_id) " +
+                                     "VALUES(?, ?);";
+
+        jdbcTemplate.update(sql, userId, newRecipeId);
+        return addedRecipe;
     }
 
     @Override
     public void deleteRecipe(int recipeId) {
+        String sql = "DELETE FROM recipes WHERE recipe_id=?;";
+        jdbcTemplate.update(sql, recipeId);
 
     }
 
     @Override
-    public Recipe modifyRecipe(Recipe modifiedRecipe) {
-        return null;
+    public Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId) {
+        Recipe changedRecipe = null;
+        String sql = "UPDATE recipe SET recipe_name=?, directions=?, tags=?, prep_time=?, "
+                + "food_pic=?, is_public=? WHERE recipe_id=?;";
+
+        jdbcTemplate.update(sql, modifiedRecipe.getRecipeName(), modifiedRecipe.getDirections(),
+                modifiedRecipe.getTags(), modifiedRecipe.getPrepTime(), modifiedRecipe.getFoodPic(),
+                modifiedRecipe.isPublic(), recipeId);
+
+        changedRecipe = getRecipeById(recipeId);
+
+        return changedRecipe;
     }
 
     public Recipe mapRowsetToRecipe(SqlRowSet row){
