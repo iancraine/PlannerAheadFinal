@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users_ingredients, users_recipes, users, ingredients, recipes, daily_plan, weekly_plan, weekly_daily_plan, users_meal_plan, grocery_list CASCADE;
+DROP TABLE IF EXISTS users_ingredients, users_recipes, users, ingredients, recipes, daily_plan, weekly_plan,
+weekly_daily_plan, users_meal_plan, grocery_list,recipe_ingredients CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -89,5 +90,32 @@ CREATE TABLE grocery_list(
 	CONSTRAINT FK_grocery_list_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
 );
 
+CREATE TABLE recipe_ingredients(
+	recipe_id int NOT NULL,
+	ingredient_id int NOT NULL,
+	amount varchar(30),
+	CONSTRAINT PK_recipe_ingredients_id PRIMARY KEY(recipe_id,ingredient_id),
+	CONSTRAINT FK_recipe_ingredients_recipe FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id),
+	CONSTRAINT FK_recipe_ingredients_ingredient FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
+	
+);
+
+INSERT INTO recipes(recipe_name,directions,tags,prep_time,food_pic,is_public) 
+VALUES('Crock Pot Roast',ARRAY['Place beef roast in crock pot.',
+                'Mix the dried mixes together in a bowl and sprinkle over the roast.',
+                'Pour the water around the roast.',
+                'Cook on low for 7-9 hours.'],ARRAY['gluten free'],10,null,true);
+
+INSERT INTO recipes(recipe_name,directions,tags,prep_time,food_pic,is_public) 
+VALUES('Roasted Asparagus',ARRAY[ 'Preheat oven to 425°F.',
+                'Cut off the woody bottom part of the asparagus spears and discard.',
+                'With a vegetable peeler, peel off the skin on the bottom 2-3 inches of the spears (this keeps the asparagus from being all., and if you eat asparagus you know what I mean by that).',
+                'Place asparagus on foil-lined baking sheet and drizzle with olive oil.',
+                'Sprinkle with salt.',
+                'With your hands, roll the asparagus around until they are evenly coated with oil and salt.',
+                'Roast for 10-15 minutes, depending on the thickness of your stalks and how tender you like them.',
+                'They should be tender when pierced with the tip of a knife.',
+                'The tips of the spears will get very brown but watch them to prevent burning.',
+                'They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal.'],ARRAY['Healthy'],20,null,true);
 
 COMMIT TRANSACTION;
