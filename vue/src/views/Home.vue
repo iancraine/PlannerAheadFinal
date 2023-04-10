@@ -6,7 +6,10 @@
 </template>
 
 <script>
+
 export default {
+  components: { 
+   },
   name: "home"
 };
 </script>

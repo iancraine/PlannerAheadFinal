@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import MyRecipies from '../views/MyRecipies.vue'
 
 Vue.use(Router)
 
@@ -51,6 +52,14 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/myRecipies/:id",
+      name: "myRecipies",
+      component: MyRecipies,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
