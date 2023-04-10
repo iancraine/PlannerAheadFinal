@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MyRecipies from "../components/MyRecipies.vue";
+import MyRecipies from "../components/MyRecipes.vue";
 
 export default {
     name: 'MyRecipies',
