@@ -1,7 +1,6 @@
 <template>
 <div>
     <recipe-list />
-
 </div>
 </template>
 
