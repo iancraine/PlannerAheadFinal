@@ -52,12 +52,11 @@ public class JdbcRecipeDao implements RecipeDao{
         String sql = "INSERT INTO recipes (recipe_name, directions, tags, prep_time, food_pic, is_public, created_by) " +
                  "VALUES(?, ?, ?, ?, ?, ?, ?) RETURNING recipe_id;";
 
-        int newRecipeId = jdbcTemplate.queryForObject(sql, int.class, newRecipe.getRecipeName(), newRecipe.getDirections(),
+        int newRecipeId = jdbcTemplate.queryForObject(sql, Integer.class,newRecipe.getRecipeName(), newRecipe.getDirections(),
                                                         newRecipe.getTags(), newRecipe.getPrepTime(), newRecipe.getFoodPic(), newRecipe.isPublic(), userId);
         addedRecipe = getRecipeById(newRecipeId);
 
-        String insertToUsersRecipe = "INSERT INTO users_recipes (user_id, recipe_id) " +
-                                     "VALUES(?, ?);";
+        sql = "INSERT INTO users_recipes (user_id, recipe_id) VALUES(?, ?);";
 
         jdbcTemplate.update(sql, userId, newRecipeId);
         return addedRecipe;
@@ -69,6 +68,8 @@ public class JdbcRecipeDao implements RecipeDao{
         int createdByUserId = jdbcTemplate.queryForObject(sql, Integer.class, recipeId);
 
         if(createdByUserId == userId){
+            sql = "DELETE FROM recipe_ingredients WHERE recipe_id = ?;";
+            jdbcTemplate.update(sql, recipeId);
             sql = "DELETE FROM users_recipes WHERE recipe_id = ?;";
             jdbcTemplate.update(sql, recipeId);
             sql = "DELETE FROM recipes WHERE recipe_id=?;";
@@ -82,7 +83,7 @@ public class JdbcRecipeDao implements RecipeDao{
     @Override
     public Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId) {
         Recipe changedRecipe = null;
-        String sql = "UPDATE recipe SET recipe_name=?, directions=?, tags=?, prep_time=?, "
+        String sql = "UPDATE recipes SET recipe_name=?, directions=?, tags=?, prep_time=?, "
                 + "food_pic=?, is_public=? WHERE recipe_id=?;";
 
         jdbcTemplate.update(sql, modifiedRecipe.getRecipeName(), modifiedRecipe.getDirections(),
