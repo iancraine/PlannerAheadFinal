@@ -32,9 +32,9 @@
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      /><br>
+      <router-link :to="{ name: 'register' }" class="needacc">Need an account?</router-link>
+      <button class="btn" type="submit">Sign in</button>
     </form>
     </div>
   </div>
@@ -85,6 +85,36 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.btn{
+  padding: 10px;
+  margin: 20px;
+  width:25%;
+  
+}
+.sr-only{
+  padding: 10px;
+  font-weight:bold ;
+  
+}
+input{
+  padding:10px;
+}
+.form-control{
+margin: 2%;
 }
 
 </style>
