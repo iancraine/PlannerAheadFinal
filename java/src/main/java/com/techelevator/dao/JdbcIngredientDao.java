@@ -85,11 +85,6 @@ public class JdbcIngredientDao implements IngredientDao{
         }
     }
 
-    //TODO: deleting an ingredient from the database?
-    // Not sure if this would be necessary though..
-    // it would require removing foreign keys from multiple tables
-
-
     private Ingredient mapRowSetToIngredient(SqlRowSet row) {
         Ingredient ingredient = new Ingredient();
 

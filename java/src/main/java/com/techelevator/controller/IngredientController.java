@@ -5,6 +5,7 @@ import com.techelevator.dao.JdbcIngredientDao;
 import com.techelevator.model.Ingredient;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin
@@ -32,10 +33,9 @@ public class IngredientController {
         ingredientDao.addIngredient(ingredient, userId);
     }
 
-    //TODO: how do we get the amount of ingredients info from front end?
-    @RequestMapping(path="/recipe/{recipeId}", method=RequestMethod.POST)
-    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId) {
-//        ingredientDao.addIngredientToRecipe(ingredient, recipeId, ??? );
+    @RequestMapping(path="/recipe/{recipeId}/{amount}", method=RequestMethod.POST)
+    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId, BigDecimal amount) {
+        ingredientDao.addIngredientToRecipe(ingredient, recipeId, amount);
     }
 
     @RequestMapping(path="/{userId}/{recipeId}", method=RequestMethod.DELETE)
