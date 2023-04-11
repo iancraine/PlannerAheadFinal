@@ -8,7 +8,7 @@
 import MyRecipes from "../components/MyRecipes.vue";
 
 export default {
-    name: 'my-recipes',
+  name: 'MyRecipes',
   components: {
     MyRecipes,
   }
