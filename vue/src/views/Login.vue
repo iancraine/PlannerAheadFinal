@@ -1,5 +1,7 @@
 <template>
   <div id="login" class="text-center">
+    <div class="login1">
+     <about-us class="login2"/>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -34,7 +36,7 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
-    <about-us/>
+    </div>
   </div>
 </template>
 
@@ -76,3 +78,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+.login1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+</style>
