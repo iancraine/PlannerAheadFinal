@@ -102,6 +102,7 @@ CREATE TABLE recipe_ingredients(
 	
 );
 
+
 INSERT INTO recipes(recipe_name,directions,tags,prep_time,food_pic,is_public) 
 VALUES('Crock Pot Roast','Place beef roast in crock pot.  Mix the dried mixes together in a bowl and sprinkle over the roast. Pour the water around the roast. 
 	   Cook on low for 7-9 hours.','gluten-free',10,null,true);
@@ -120,9 +121,6 @@ VALUES('Roasted Asparagus','Preheat oven to 425°F.'
 	   
 	   
 
-INSERT INTO users_recipes (user_id, recipe_id)
-VALUES (1, 1);
-INSERT INTO users_recipes (user_id, recipe_id)
-VALUES (2, 2);
+
 
 COMMIT TRANSACTION;
