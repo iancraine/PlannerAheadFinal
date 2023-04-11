@@ -1,10 +1,7 @@
 <template>
 <div>
     <recipe-list />
-<<<<<<< HEAD
-=======
     
->>>>>>> 8569fa89e588180b7933c658e586bae4a7e43263
 </div>
 </template>
 
