@@ -35,7 +35,7 @@ public class RecipeController {
     public Recipe addNewRecipe(@RequestBody Recipe recipe, @PathVariable int userId) {
         return recipeDao.addNewRecipe(recipe, userId);
     }
-    
+
     @RequestMapping(path="/{recipeId}/{userId}", method=RequestMethod.DELETE)
     public void deleteRecipe(@PathVariable int recipeId, @PathVariable int userId) {
         recipeDao.deleteRecipe(recipeId, userId);
