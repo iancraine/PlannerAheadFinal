@@ -1,16 +1,16 @@
 <template>
 <div>
-    <my-recipes v-bind:userId="this.$route.params.this.userId"/>
+    <recipe-list v-bind:userId="this.$route.params.this.userId"/>
 </div>
 </template>
 
 <script>
-import MyRecipes from "../components/MyRecipes.vue";
+import RecipeList from "../components/RecipeList.vue";
 
 export default {
   name: 'MyRecipes',
   components: {
-    MyRecipes,
+    RecipeList,
   }
 
 }
