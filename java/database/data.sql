@@ -1,4 +1,4 @@
-.BEGIN TRANSACTION;
+BEGIN TRANSACTION;
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
@@ -29,8 +29,8 @@ INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Potato', 'Ve
 INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Paprika', 'Seasoning');
 INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Chicken Broth', 'Liquid');
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (1,1,'2 cups');
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2 cups');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
 
 COMMIT TRANSACTION;
