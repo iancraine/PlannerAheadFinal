@@ -18,7 +18,6 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
-    userId: '', //current user id
     token: currentToken || '',
     user: currentUser || {}
   },
@@ -39,9 +38,5 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_USER_ID(state, userId){ //method to current userId
-      state.userId = userId;
-      localStorage.setItem('userId', JSON.stringify(userId))
-    }
   }
 })
