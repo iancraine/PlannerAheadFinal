@@ -60,7 +60,8 @@ const router = new Router({
       component: MyRecipes,
       meta: {
         requiresAuth: true
-      }
+      },
+      
     }
   ]
 })
