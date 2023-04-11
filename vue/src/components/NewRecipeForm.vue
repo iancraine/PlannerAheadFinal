@@ -3,6 +3,18 @@
         <form action="#">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" />
+            <label for="prep-time" class="prep-time">Prep time: </label>
+            <input type="number" class="prep-time" id="prep-time" size="5" />
+            mins
+            <br>
+
+            <label for="directions">Directions: </label>
+            <br>
+            <textarea name="directions" id="" cols="30" rows="10"></textarea>
+            <br>
+
+            <input class="addTag" type="text" placeholder="Add a tag"/>
+            <button class="addTag">Add</button>
             
             <div  class="ingredients-content">
                 <label for="userInput">Add Ingredients: </label>
@@ -23,11 +35,23 @@
                 </select>
                 <button class="addIngredient">Add</button>
             </div>
+
+            <label for="food-pic">Upload a picture: </label>
+            <input type="file" id="food-pic">
+            <input type="checkbox" id="public">
+            <label for="public">Public?</label>
+
+
+            
+
             <div>
                 <ul v-for="ingredient in ingredients" v-bind:key="ingredient">
-                    <li>{{ingredient.name}} {{ingredient.amount}}</li>
+                    <li>{{ingredient.name}}ingredients list here {{ingredient.amount}}</li>
                 </ul>
             </div>
+
+            <!-- display tags somewhere -->
+
         </form>
     </div>
 </template>
@@ -65,13 +89,22 @@ export default {
     
 }
 li {
-    display: none;
+    list-style-type: none;
 }
 .ingredients-content > input{
     margin-right: 25px;
 }
 form > *{
     margin-bottom: 15px;
+}
+label.prep-time{
+    margin-left: 25px;
+}
+input.prep-time{
+    width: 5em;
+}
+form{
+    background-color: yellowgreen;
 }
 
 </style>
