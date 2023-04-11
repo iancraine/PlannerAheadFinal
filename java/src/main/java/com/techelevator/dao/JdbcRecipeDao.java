@@ -74,7 +74,6 @@ public class JdbcRecipeDao implements RecipeDao{
             sql = "DELETE FROM users_recipes WHERE recipe_id = ? AND user_id = ?;";
             jdbcTemplate.update(sql, recipeId, userId);
         }
-
     }
 
     @Override
