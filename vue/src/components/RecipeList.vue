@@ -2,10 +2,11 @@
   <div >
       <h1 class="title">My Recipes</h1>
       <div class="recipe">
-        <div v-for="recipe in recipes" v-bind:key="recipe.id"> 
-            <h1>{{recipe.recipeName}}:</h1>
-            <h2>Directions:</h2>
-            <p class="direction">{{recipe.directions}}</p>
+        <div v-for="recipe in recipes" v-bind:key="recipe.recipeId"> 
+            <h1><router-link v-bind:to="{ name:'recipesId' ,params:{recipeId:recipe.recipeId}}">{{recipe.recipeName}}</router-link></h1>
+           <div>
+              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+            </div>
             <div class="tag"><h5 class="tag">Tag:</h5>
             <p class="tag">{{recipe.tags}}</p>
             </div>
@@ -13,14 +14,8 @@
               <h5 class="time">Prep Time:</h5>
             <p class="time">{{recipe.prepTime}}</p>
             </div>
-             <div>
-               <label>
-  <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
-</label>
-               </div>
-            <div>
-              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
-            </div>
+             
+            
 
            
 

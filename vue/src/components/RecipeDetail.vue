@@ -1,13 +1,18 @@
 <template>
   <div>
-      <h2>{{recipe.recipe_name}}</h2>
+      <h2>{{recipe.recipeName}}</h2>
+      <div>
+              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+            </div>
       <p>{{recipe.directions}}</p>
       <p>{{recipe.tags}}</p>
       <p>{{recipe.prep_time}}</p>
-  <label>
-  <input type="checkbox" name="is_public" v_if:checked />
-  Is Public
-  </label>
+      <div>
+       <label>
+  <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
+</label>
+               </div>
+ 
   </div>
 </template>
 
@@ -19,7 +24,7 @@ data(){
     return{
         recipe:{
            recipe_id:'', 
-           recipe_name:'',
+           recipeName:'',
            directions:'',
            tags:'',
            prep_time:'',
@@ -28,8 +33,9 @@ data(){
         }
     };
 },
+
 created() {
-    recipeService.getRecipe(this.$route.params.id).then(response => {
+    recipeService.getRecipeById(this.$route.params.recipeId).then(response => {
       this.recipe = response.data;
       
     });

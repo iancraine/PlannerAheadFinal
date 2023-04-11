@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import MyRecipes from '../views/MyRecipes.vue'
+import Recipe from '../views/Recipe.vue'
 
 Vue.use(Router)
 
@@ -60,7 +61,15 @@ const router = new Router({
       component: MyRecipes,
       meta: {
         requiresAuth: true
-      },
+      }
+    },
+      {
+        path: "/recipes/:recipeId",
+        name: "recipesId",
+        component: Recipe,
+        meta: {
+          requiresAuth: true
+        }
       
     }
   ]
