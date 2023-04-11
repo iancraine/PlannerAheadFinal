@@ -14,6 +14,19 @@
 
 
 export default {
+    data(){
+    return{
+        recipe:{
+           recipe_id:'', 
+           recipe_name:'',
+           directions:'',
+           tags:'',
+           prep_time:'',
+           food_pic:'',
+           is_public:''
+        }
+    };
+},
 
 }
 </script>

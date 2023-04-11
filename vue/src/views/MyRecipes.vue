@@ -1,6 +1,7 @@
 <template>
 <div>
-    <recipe-list v-bind:userId="this.$route.params.this.userId"/>
+    <recipe-list />
+    
 </div>
 </template>
 
