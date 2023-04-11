@@ -34,8 +34,8 @@ public class JdbcIngredientDao implements IngredientDao{
     public List<Ingredient> getIngredientsForRecipe(int recipeId) {
         List<Ingredient> recipeIngredients = new ArrayList<>();
 
-        String sql = "SELECT ingredient_id, ingredient_name, ingredient_type "
-                        + "FROM ingredients JOIN recipe_ingredients ri ON ri.recipe_id = ingredients.ingredient_id "
+        String sql = "SELECT DISTINCT ingredients.ingredient_id, ingredients.ingredient_name, ingredients.ingredient_type "
+                        + "FROM ingredients JOIN recipe_ingredients ri ON ri.ingredients_id = ingredients.ingredients_id "
                         + "WHERE recipe_id = ?;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, recipeId);
@@ -52,12 +52,11 @@ public class JdbcIngredientDao implements IngredientDao{
     */
     @Override
     public void addIngredient(Ingredient ingredientToAdd, int userId) {
-        String addIngredients = "INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES (?, ?, ?);";
-        int newIngredientId = jdbcTemplate.queryForObject(addIngredients, int.class, ingredientToAdd.getIngredientName(), ingredientToAdd.getIngredientType(),
-                            ingredientToAdd.getIngredientId());
+        String sql = "INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES (?, ?) RETURNING ingredient_id;";
+        int newIngredientId = jdbcTemplate.queryForObject(sql, Integer.class, ingredientToAdd.getIngredientName(), ingredientToAdd.getIngredientType());
 
-        String addUserIngredient = "INSERT INTO users_ingredients (user_id, ingredient_id) VALUES(?, ?);";
-        jdbcTemplate.update(addUserIngredient, userId, newIngredientId);
+        sql = "INSERT INTO users_ingredients (user_id, ingredient_id) VALUES(?, ?);";
+        jdbcTemplate.update(sql, userId, newIngredientId);
     }
 
     // add ingredients to recipes (linking them in recipe_ingredients)
