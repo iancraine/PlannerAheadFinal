@@ -52,6 +52,7 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        id:null                        //user id
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -67,9 +68,12 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
+              authService.getUserId().then((userIdResponse) => {
+                this.user.id = userIdResponse.data.id;      // call for user id
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
+              });
               });
             }
           })
