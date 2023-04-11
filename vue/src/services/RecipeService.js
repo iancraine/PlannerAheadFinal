@@ -1,10 +1,23 @@
 import axios from 'axios';
 
+const http = axios.create({
+    baseURL: "http://localhost:9000"
+})
+
 export default {
-    getRecipes(){
-        return axios.get(`/recipes/:id`);
+    getRecipes(userId){
+        return http.get(`/recipes/list/${userId}`);
     },
-    getRecipe(recipeId) {
-        return axios.get(`/recipes/${recipeId}`)
+    getRecipeById(recipeId) {
+        return http.get(`/recipes/${recipeId}`)
       },
+    addNewRecipe(userId) {
+        return http.post(`/recipes/${userId}`);
+    },
+    deleteRecipe(recipeId, userId) {
+        return http.delete(`/recipes/${recipeId}/${userId}`);
+    },
+    modifyRecipe(recipeId) {
+        return http.put(`/recipes/${recipeId}`);
+    }
 }
