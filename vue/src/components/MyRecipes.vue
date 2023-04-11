@@ -23,7 +23,7 @@ export default {
 
   //** might not need this*/
   created() {
-    recipeService.getTopics().then((response) => {
+    recipeService.getRecipies().then(response => {
       this.recipies = response.data;
     });
   }
