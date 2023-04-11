@@ -24,7 +24,7 @@ export default {
   //** might not need this*/
   created() {
     recipeService.getRecipies().then(response => {
-      this.recipies = response.data;
+      this.recipes = response.data;
     });
   }
 

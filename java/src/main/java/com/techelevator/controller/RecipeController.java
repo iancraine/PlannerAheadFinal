@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //TODO: what to do with authorization?!?!?!?
+@CrossOrigin
 @RequestMapping("/recipes")
 @RestController
 public class RecipeController {
@@ -34,8 +35,7 @@ public class RecipeController {
     public Recipe addNewRecipe(@RequestBody Recipe recipe, @PathVariable int userId) {
         return recipeDao.addNewRecipe(recipe, userId);
     }
-
-    //TODO: make sure to not let them delete public recipes that don't belong to them.
+    
     @RequestMapping(path="/{recipeId}/{userId}", method=RequestMethod.DELETE)
     public void deleteRecipe(@PathVariable int recipeId, @PathVariable int userId) {
         recipeDao.deleteRecipe(recipeId, userId);
