@@ -10,6 +10,8 @@ export default {
     return axios.post('/register', user)
   }
 
-  
+  getUserId() {
+    return axios.get('/user/id'); //  getting the user ID
+  },
 
 }
