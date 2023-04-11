@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>hello</h1>
-        <div v-for= "recipe in recipes" v-bind:key="recipe.id"> 
+        <div v-for="recipe in recipes" v-bind:key="recipe.id"> 
             <h1>Hello</h1>
             <p>{{recipe.name}}</p>
             <p>{{recipe.directions}}</p>
@@ -23,7 +23,7 @@ export default {
 
   //** might not need this*/
   created() {
-    recipeService.getRecipies().then(response => {
+    recipeService.getRecipes().then(response => {
       this.recipes = response.data;
     });
   }
