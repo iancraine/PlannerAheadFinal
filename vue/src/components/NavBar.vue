@@ -5,6 +5,7 @@
       </div>
       <div id="brandName"> Planner Ahead </div>
       <div id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </div>
+        <div id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></div>
         <div id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></div>
         <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></div>
 
@@ -24,7 +25,7 @@ export default {
         align-items: center;
        margin: 0 auto;
        padding: 0;
-       border-bottom: 3px solid rgb(237, 248, 137);
+       border-bottom: 3px solid rgb(244, 247, 224);
        background-color:rgb(236, 245, 226);
     }
 
@@ -49,7 +50,7 @@ export default {
     }
     
     a:hover{
-        background-color:rgb(194, 241, 172);
+        background-color:rgb(220, 250, 206);
         font-weight: bold;
     }
 
@@ -76,5 +77,10 @@ export default {
     #logout{
         position: absolute;
         right: 50px;
+    }
+
+    #aboutUs{
+        position: absolute;
+        right: 400px;
     }
 </style>

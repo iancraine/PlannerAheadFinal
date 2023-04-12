@@ -47,9 +47,12 @@
             <input type="file" id="food-pic" >
             <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
             <label for="public">Public?</label>
+            <br>
 
-            <input type="submit" v-on:click="addRecipeToDatabse()" value="Submit">
-
+            <div class="btn-align">
+                <input class="submitBtn" type="submit" v-on:click="addRecipeToDatabse()" value="Submit">
+                <button class="cancelBtn" @click.prevent="clear()"> Clear</button>
+            </div>
         </form>
     </div>
 </template>
@@ -78,6 +81,23 @@ export default {
     };
 },
 methods: {
+    clear() {
+        this.inputTag = '',
+        this.inputIngredient= {
+            name: '',
+            amount: ''
+        };
+        this.unit = '';
+        this.recipe ={ 
+           recipe_name:'',
+           directions:'',
+           tags:'',
+           prep_time:'',
+           food_pic:'',
+           is_public: false
+        };
+        this.ingredients= [];
+    },
     concatTag(){
         if(this.recipe.tags === ''){
             this.recipe.tags += this.inputTag
@@ -128,7 +148,8 @@ methods: {
         }else{
           this.errorMsg = "Error submitting new recipe. Request could not be reached.";
         }
-      })
+      });
+       this.clear();
     }
 }
 
@@ -139,8 +160,8 @@ methods: {
 .addIngredient {
     background-color: #AFE1AF;
     color: white;
-    
 }
+
 li {
     list-style-type: none;
 }
@@ -153,11 +174,36 @@ form > *{
 label.prep-time{
     margin-left: 25px;
 }
+
 input.prep-time{
     width: 5em;
 }
 form{
-    background-color: #AFE1AF;
+    background-color: #ebf2ef;
+    font-family: system-ui, sans-serif;
+}
+
+.btn-align{
+    display: flex;
+    justify-content: center;
+
+}
+
+.submitBtn, .cancelBtn{
+    margin: 0 10px;
+    background-color: #e1ecf4;
+    font-family: system-ui, sans-serif;
+    border-radius: 3px;
+     border: 1px solid #adc4d4;
+     padding: .3em;
+
+}
+
+.submitBtn:hover, .cancelBtn:hover{
+    font-weight: 2em;
+    cursor: pointer;
 }
 
 </style>
+
+ 

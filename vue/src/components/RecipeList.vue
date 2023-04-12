@@ -1,15 +1,15 @@
 <template>
   <div >
     <div class="page-title">
-      <h1 class="title">My Recipes</h1>
+      <h2 class="title">My Recipes</h2>
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
     </div>
-    <new-recipe-form  v-if="showForm"/>
-      
+    <new-recipe-form  id="form" v-if="showForm"/>
+      <div class="recipe-container">
       <div class="recipe">
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId"> 
-            <h1><router-link class="h1" v-bind:to="{ name:'recipesId' ,params:{recipeId:recipe.recipeId}}">{{recipe.recipeName}}</router-link></h1>
-           <div>
+            <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
+           <div class="image">
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
             </div>
             <div class="tag"><h5 class="tag">Tag:</h5>
@@ -19,13 +19,9 @@
               <h5 class="time">Prep Time:</h5>
             <p class="time">{{recipe.prepTime}}</p>
             </div>
-             
-            
-
-           
-
         </div>
         </div>
+      </div>
   </div>
 </template>
 
@@ -62,17 +58,23 @@ export default {
 }
 </script>
 <style scooped>
-.page-title{
+
+.recipe-title{
   display: grid;
-  grid-template-areas: "title, button";
+  grid-template-areas: "recipe recipe"
 }
 .title{
-  color:#19ec6a;
-  text-shadow: 2px 2px 4px #000000;
+  color:#0d75134b;
+  text-shadow: 2px 2px 4px #e2ebdc;
   font-size: 42px;
   align-content: center;
   padding: 20px;
   grid-area: "title";
+  text-align: center;
+}
+
+div.page-title h1{
+  text-align: center;
 }
 
 .recipe{
@@ -93,12 +95,24 @@ export default {
   padding: 10px;
 }
 .addNewRecipe {
-  background-color: #AFE1AF;
-  color: black;
-  grid-area: "button";
+  background: #cdeccd;
+  border-radius: 900px;
+  box-shadow: #bdbdfa 0 10px 20px -10px;
+  color: #180d04;
+  cursor: pointer;
+  font-family: Inter, Helvetica;
+  font-weight: 700;
+  line-height: 24px;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  border: 0;
+  margin: 0 auto;
+  display: flex;
 }
 
-
-
-
+#form {
+  display: flex;
+  justify-content: center;
+}
 </style>
+
