@@ -29,8 +29,8 @@ public class IngredientController {
     }
 
     @RequestMapping(path="/user/{userId}", method=RequestMethod.POST)
-    public void addIngredientToDB(@RequestBody Ingredient ingredient, @PathVariable int userId) {
-        ingredientDao.addIngredient(ingredient, userId);
+    public Ingredient addIngredientToDB(@RequestBody Ingredient ingredient, @PathVariable int userId) {
+        return ingredientDao.addIngredient(ingredient, userId);
     }
 
     @RequestMapping(path="/recipe/{recipeId}", method=RequestMethod.POST)

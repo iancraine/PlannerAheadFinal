@@ -52,12 +52,16 @@ public class JdbcIngredientDao implements IngredientDao{
         added it to delete it)
     */
     @Override
-    public void addIngredient(Ingredient ingredientToAdd, int userId) {
-        String sql = "INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES (?, ?) RETURNING ingredient_id;";
-        int newIngredientId = jdbcTemplate.queryForObject(sql, Integer.class, ingredientToAdd.getIngredientName(), ingredientToAdd.getIngredientType());
+    public Ingredient addIngredient(Ingredient ingredientToAdd, int userId) {
+        String sql = "INSERT INTO ingredients (ingredient_name) VALUES (?) RETURNING ingredient_id;";
+        int newIngredientId = jdbcTemplate.queryForObject(sql, Integer.class, ingredientToAdd.getIngredientName());
+
+        ingredientToAdd.setIngredientId(newIngredientId);
 
         sql = "INSERT INTO users_ingredients (user_id, ingredient_id) VALUES(?, ?);";
         jdbcTemplate.update(sql, userId, newIngredientId);
+
+        return ingredientToAdd;
     }
 
     // add ingredients to recipes (linking them in recipe_ingredients)
@@ -91,7 +95,6 @@ public class JdbcIngredientDao implements IngredientDao{
 
         ingredient.setIngredientId(row.getInt("ingredient_id"));
         ingredient.setIngredientName(row.getString("ingredient_name"));
-        //ingredient.setIngredientType(row.getString("ingredient_type"));
         ingredient.setAmount(row.getString("amount"));
 
         return ingredient;
@@ -101,8 +104,6 @@ public class JdbcIngredientDao implements IngredientDao{
 
         ingredient.setIngredientId(row.getInt("ingredient_id"));
         ingredient.setIngredientName(row.getString("ingredient_name"));
-       // ingredient.setIngredientType(row.getString("ingredient_type"));
-
 
         return ingredient;
     }

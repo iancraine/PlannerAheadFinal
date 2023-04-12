@@ -20,13 +20,13 @@ VALUES('Roasted Asparagus','Preheat oven to 425°F.'
 
 INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,1);
 
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Flour', 'Staple');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Sugar', 'Staple');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Eggs', 'Animal Product');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Carrots', 'Vegetable');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Potato', 'Vegetable');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Paprika', 'Seasoning');
-INSERT INTO ingredients (ingredient_name, ingredient_type) VALUES ('Chicken Broth', 'Liquid');
+INSERT INTO ingredients (ingredient_name) VALUES ('Flour');
+INSERT INTO ingredients  (ingredient_name) VALUES ('Sugar');
+INSERT INTO ingredients  (ingredient_name)  VALUES ('Eggs');
+INSERT INTO ingredients  (ingredient_name)  VALUES ('Carrots');
+INSERT INTO ingredients  (ingredient_name)  VALUES ('Potato');
+INSERT INTO ingredients  (ingredient_name)  VALUES ('Paprika');
+INSERT INTO ingredients  (ingredient_name)  VALUES ('Chicken Broth');
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');

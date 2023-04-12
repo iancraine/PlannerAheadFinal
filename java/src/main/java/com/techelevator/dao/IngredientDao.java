@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IngredientDao {
 
-    void addIngredient(Ingredient ingredientToAdd, int userId);
+    Ingredient addIngredient(Ingredient ingredientToAdd, int userId);
 
     void deleteIngredientForRecipe(Ingredient ingredient, int recipeId, int userId);
 

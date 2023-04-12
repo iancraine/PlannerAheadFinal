@@ -7,21 +7,18 @@ public class Ingredient {
     private int ingredientId;
     @JsonProperty("ingredient_name")
     private String ingredientName;
-    private String ingredientType;
     private String amount;
 
     public Ingredient(){}
 
-    public Ingredient(int ingredientId, String ingredientName, String ingredientType) {
+    public Ingredient(int ingredientId, String ingredientName) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
-        this.ingredientType = ingredientType;
     }
 
-    public Ingredient(int ingredientId, String ingredientName, String ingredientType, String amount) {
+    public Ingredient(int ingredientId, String ingredientName, String amount) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
-        this.ingredientType = ingredientType;
         this.amount = amount;
     }
 
@@ -39,14 +36,6 @@ public class Ingredient {
 
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
-    }
-
-    public String getIngredientType() {
-        return ingredientType;
-    }
-
-    public void setIngredientType(String ingredientType) {
-        this.ingredientType = ingredientType;
     }
 
     public String getAmount() {
