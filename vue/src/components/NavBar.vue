@@ -5,12 +5,12 @@
       </div>
       <div id="brandName"> Planner Ahead </div>
 
-      <div class="nav-links">
-      <div id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </div>
-        <div id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></div>
-        <div id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></div>
-        <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></div>
-        </div>
+      <ul class="nav-links">
+        <li id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </li>
+        <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
+        <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
+        <li id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></li>
+        </ul>
   </div>
 </template>
 
@@ -66,12 +66,15 @@ export default {
         left: 200px;
     }
 
+    /* flex nav links to right side */
+
     /* .nav-links{
         display: flex;
-        flex-direction: ;
         justify-content: flex-end;
-        align-content: flex-end;
-        justify-items: flex-end;
+    }
+    ul{
+        display: flex;
+        justify-content: flex-end;
     } */
 
     #home {
