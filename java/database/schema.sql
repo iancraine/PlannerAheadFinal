@@ -14,7 +14,6 @@ CREATE TABLE users (
 CREATE TABLE ingredients (
 	ingredient_id serial,
 	ingredient_name varchar(50) NOT NULL,
-	ingredient_type varchar(50) NULL,
 	
 	CONSTRAINT PK_ingredients PRIMARY KEY (ingredient_id)
 );

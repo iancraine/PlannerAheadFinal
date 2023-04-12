@@ -19,7 +19,7 @@
             
             <div  class="ingredients-content">
                 <label for="userInput">Add Ingredients: </label>
-                <input type="text" id="userInput" v-model="inputIngredient.name">
+                <input type="text" id="userInput" v-model="inputIngredient.ingredient_name">
                 <label for="amount">Amount: </label>
                 <input type="text" id="amount" v-model="inputIngredient.amount">
                 <label for="unit">Unit: </label>
@@ -65,8 +65,9 @@ export default {
     return{
         inputTag: '',
         inputIngredient: {
-            name: '',
-            amount: ''
+            ingredient_name: '',
+            amount: '',
+            ingredientId: 0
         },
         unit: '',
         recipe:{ 
@@ -85,8 +86,9 @@ export default {
     clear() {
         this.inputTag = '';
         this.inputIngredient= {
-            name: '',
-            amount: ''
+            ingredient_name: '',
+            amount: '',
+            ingredientId: 0
         };
         this.unit = '';
         this.recipe ={ 
@@ -116,11 +118,8 @@ export default {
     addRecipeToDatabase(){
         RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
             //if(response.status === 201){
-                console.log("Recipe successful 1");
-                this.recipe_id = response.data.recipe_id;
-                console.log("Recipe successful");
+                this.recipe_id = response.data.recipeId;
                 this.addIngredientToDatabase(); 
-                console.log("This should pop up if recipe is added.");
             //}
         }).catch(error => {
             if(error.response){
@@ -135,15 +134,20 @@ export default {
        
     },
     addIngredientToDatabase(){
-        console.log("if this method is even being called");
         this.ingredients.forEach((ingredient) => {
             IngredientService.addIngredient(this.$store.state.user.id, ingredient)
             .then((response) => {
                 console.log("If request is successful.");
-                if(response.status === 201){
+
+                if(response.status === 201 || response.status===200){
+                   console.log("response status was created 201");
+                   console.log(response.data.ingredient_id);
+
+                    ingredient.ingredientId =  response.data.ingredient_id;
+                    console.log(ingredient);
                     IngredientService.addIngredientForRecipe(this.recipe_id, ingredient)
                     .then((response) => {
-                        if(response.status === 201){
+                        if(response.status === 201 || response.status===200){
                             this.showForm = false;
                             this.clear();
                             this.$router.push(`/recipes/${this.$store.state.user.id}`);
