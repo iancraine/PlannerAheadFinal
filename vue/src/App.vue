@@ -21,29 +21,30 @@ export default {
 <style>
 
 #app {
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: "nav"
                         "view"
-                        "footer"; */
-  position: relative;
+                        "footer";
+  /* position: relative; */
   height: 100vh;
+  gap: 10px;
 }
 #content {
   padding-bottom: 2.5rem;
 }
 nav-bar {
-  /* grid-area: nav; */
+  grid-area: nav;
 }
 router-view {
-  /* grid-area: view; */
+  grid-area: view;
 }
 .footer {
-  /* grid-area: footer; */
-  position: absolute;
+  grid-area: footer;
+  /* position: absolute; */
   bottom: 0;
   /* height: 2.5rem; */
-  margin: 10%;
+  /* margin: 10%; */
 }
 </style>
 

@@ -83,19 +83,22 @@ export default {
   width: 100%;
   height: auto;
   padding: 50px 100px;
-  background: #3044A5;
+  background: #bfcbfa;
+  justify-items: center;
 }
 .container2 {
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   grid-gap: 30px;
+  justify-items: center;
 }
 .header {
   position: relative;
-  color: #fff;
+  color:black;
   font-weight: 500;
   margin-bottom: 15px;
+  padding-left: 15px;
 }
 .header::before {
   content: '';
@@ -105,9 +108,11 @@ export default {
   width: 50px;
   height: 2px;
   background: #FFEB3B;
+  margin-left: 15px;
 }
 .aboutUsText {
-  color: #fff;
+  color: black;
+  padding-left: 15px;
 }
 .social-media {
   margin-top: 20px;
@@ -133,7 +138,7 @@ export default {
   background: #6380FE
 }
 .sm_a .fa {
-  color: #fff;
+  color: black;
   font-size: 20px;
 }
 .quicklinks {
@@ -143,7 +148,7 @@ export default {
   list-style: none;
 }
 .quicklinks li a {
-  color: #F7F7F7;
+  color:black;
   text-decoration: none;
   margin-bottom: 10px;
   display: inline-block;
@@ -160,14 +165,14 @@ export default {
   margin-bottom: 16px;
 }
 .info li span:nth-child(1) {
-  color: #fff;
+  color:black;
   font-size: 20px;
 }
 .info li span {
-  color: #fff;
+  color:black;
 }
 .info a {
-  color: #F7F7F7;
+  color:black;
   text-decoration: none;
 }
 .info a:hover {
@@ -176,7 +181,7 @@ export default {
 .copyright {
   width: 100%;
   background: #1F3389;
-  padding: 8px 100px;
+  padding: 2px 0;
   text-align: center;
   color: #fff;
 }
