@@ -34,7 +34,7 @@ public class JdbcIngredientDao implements IngredientDao{
     public List<Ingredient> getIngredientsForRecipe(int recipeId) {
         List<Ingredient> recipeIngredients = new ArrayList<>();
 
-        String sql = "SELECT DISTINCT ingredients.ingredient_id, ingredients.ingredient_name, ingredients.ingredient_type "
+        String sql = "SELECT DISTINCT ingredients.ingredient_id, ingredients.ingredient_name, ingredients.ingredient_type, amount "
                         + "FROM ingredients JOIN recipe_ingredients ri ON ri.ingredients_id = ingredients.ingredients_id "
                         + "WHERE recipe_id = ?;";
 
@@ -63,7 +63,7 @@ public class JdbcIngredientDao implements IngredientDao{
     // can track what users select/type in for ingredients section (do a for loop in front end and call this method for each ingredient)
     // when making a new recipe and store that info here
     @Override
-    public void addIngredientToRecipe(Ingredient ingredient, int recipeId, BigDecimal amount) {
+    public void addIngredientToRecipe(Ingredient ingredient, int recipeId, String amount) {
         String sql = "INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) "
                     + "VALUES (?, ?, ?);";
 
@@ -91,6 +91,7 @@ public class JdbcIngredientDao implements IngredientDao{
         ingredient.setIngredientId(row.getInt("ingredient_id"));
         ingredient.setIngredientName(row.getString("ingredient_name"));
         ingredient.setIngredientType(row.getString("ingredient_type"));
+        ingredient.setAmount(row.getString("amount"));
 
         return ingredient;
     }

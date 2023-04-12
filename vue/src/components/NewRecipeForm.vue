@@ -2,19 +2,19 @@
     <div>
         <form action="#">
             <label for="recipe-name">Recipe Name: </label>
-            <input type="text" class="recipe-name" id="recipe-name" />
+            <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
-            <input type="number" class="prep-time" id="prep-time" size="5" />
+            <input type="number" class="prep-time" id="prep-time" size="5" v-model="recipe.prep_time"/>
             mins
             <br>
 
             <label for="directions">Directions: </label>
             <br>
-            <textarea name="directions" id="" cols="30" rows="10"></textarea>
+            <textarea name="directions" id="" cols="100" rows="10" v-model="recipe.directions"></textarea>
             <br>
 
-            <input class="addTag" type="text" placeholder="Add a tag"/>
-            <button class="addTag">Add</button>
+            <input class="addTag" type="text" placeholder="Add a tag" v-model="inputTag"/>
+            <button class="addTag" @click="concatTag" >Add</button>
             
             <div  class="ingredients-content">
                 <label for="userInput">Add Ingredients: </label>
@@ -61,8 +61,9 @@
 export default {
     data(){
     return{
-        recipe:{
-           recipe_id:'', 
+        inputTag: '',
+        inputIngredient: '',
+        recipe:{ 
            recipe_name:'',
            directions:'',
            tags:'',
@@ -78,6 +79,17 @@ export default {
         ]
     };
 },
+methods: {
+    concatTag(){
+        this.recipe.tags += ", " + this.inputTag;
+        this.inputTag = '';
+    },
+    concatIngredient(){
+        
+        this.recipe.ingredients += "\n" + this.inputIngredient;
+        this.inputIngredient ='',
+    }
+}
 
 }
 </script>
@@ -104,7 +116,7 @@ input.prep-time{
     width: 5em;
 }
 form{
-    background-color: yellowgreen;
+    background-color: #AFE1AF;
 }
 
 </style>

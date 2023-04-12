@@ -34,7 +34,7 @@ public class IngredientController {
     }
 
     @RequestMapping(path="/recipe/{recipeId}/{amount}", method=RequestMethod.POST)
-    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId, BigDecimal amount) {
+    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId, String amount) {
         ingredientDao.addIngredientToRecipe(ingredient, recipeId, amount);
     }
 

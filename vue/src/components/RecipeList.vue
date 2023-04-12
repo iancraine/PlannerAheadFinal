@@ -1,6 +1,11 @@
 <template>
   <div >
+    <div class="page-title">
       <h1 class="title">My Recipes</h1>
+      <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
+    </div>
+    <new-recipe-form  v-if="showForm"/>
+      
       <div class="recipe">
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId"> 
             <h1><router-link v-bind:to="{ name:'recipesId' ,params:{recipeId:recipe.recipeId}}">{{recipe.recipeName}}</router-link></h1>
@@ -26,13 +31,23 @@
 
 <script>
 import recipeService from "../services/RecipeService.js";
+import NewRecipeForm from './NewRecipeForm.vue';
 
 export default {
+
     name: 'recipes',
   data() {
     return {
       recipes: [],
-      recipeIngredients: []
+      showForm: false
+    }
+  },
+  components: {
+    NewRecipeForm
+  },
+  methods: {
+    toggleShowForm() {
+      this.showForm = !this.showForm;
     }
   },
 
@@ -47,14 +62,19 @@ export default {
 }
 </script>
 <style>
+.page-title{
+  display: grid;
+  grid-template-areas: "title, button";
+}
 .title{
   color:#19ec6a;
   text-shadow: 2px 2px 4px #000000;
   font-size: 42px;
   align-content: center;
   padding: 20px;
-
+  grid-area: "title";
 }
+
 .recipe{
   display: flex;
   justify-content: center;
@@ -70,6 +90,12 @@ h1{
   display: inline-block;
   padding: 10px;
 }
+.addNewRecipe {
+  background-color: #AFE1AF;
+  color: black;
+  grid-area: "button";
+}
+
 
 
 </style>

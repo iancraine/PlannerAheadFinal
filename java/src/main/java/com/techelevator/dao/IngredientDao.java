@@ -10,7 +10,7 @@ public interface IngredientDao {
 
     void deleteIngredientForRecipe(Ingredient ingredient, int recipeId, int userId);
 
-    void addIngredientToRecipe(Ingredient ingredient, int recipeId, BigDecimal amount);
+    void addIngredientToRecipe(Ingredient ingredient, int recipeId, String amount);
 
     List<Ingredient> getAllIngredients();
 
