@@ -8,7 +8,7 @@
       
       <div class="recipe">
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId"> 
-            <h1><router-link v-bind:to="{ name:'recipesId' ,params:{recipeId:recipe.recipeId}}">{{recipe.recipeName}}</router-link></h1>
+            <h1><router-link class="h1" v-bind:to="{ name:'recipesId' ,params:{recipeId:recipe.recipeId}}">{{recipe.recipeName}}</router-link></h1>
            <div>
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
             </div>
@@ -61,7 +61,7 @@ export default {
 
 }
 </script>
-<style>
+<style scooped>
 .page-title{
   display: grid;
   grid-template-areas: "title, button";
@@ -77,10 +77,12 @@ export default {
 
 .recipe{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
-h1{
-  color: rgb(218, 45, 145);
+.h1{
+  color: rgb(20, 73, 187);
+  text-decoration: none;
 }
 .tag{
   display: inline-block;
@@ -95,6 +97,7 @@ h1{
   color: black;
   grid-area: "button";
 }
+
 
 
 

@@ -11,8 +11,8 @@ export default {
     getRecipeById(recipeId) {
         return http.get(`/recipes/${recipeId}`)
       },
-    addNewRecipe(userId) {
-        return http.post(`/recipes/${userId}`);
+    addNewRecipe(userId, recipe) {
+        return http.post(`/recipes/${userId}`, recipe);
     },
     deleteRecipe(recipeId, userId) {
         return http.delete(`/recipes/${recipeId}/${userId}`);
