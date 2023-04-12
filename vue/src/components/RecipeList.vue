@@ -77,6 +77,7 @@ export default {
 
 .recipe{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 h1{
@@ -95,6 +96,7 @@ h1{
   color: black;
   grid-area: "button";
 }
+
 
 
 

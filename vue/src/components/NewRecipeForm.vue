@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="#" v-on:submit="addRecipeToDatabase()">
+        <form action="#" v-on:submit.prevent="">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
@@ -45,10 +45,10 @@
 
             <label for="food-pic">Upload a picture: </label>
             <input type="file" id="food-pic" >
-            <input type="checkbox" id="public" v-model="recipe.is_public">
+            <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
             <label for="public">Public?</label>
 
-            <input type="submit" name="" id="" value="Submit">
+            <input type="submit" v-on:click="addRecipeToDatabse()" value="Submit">
 
         </form>
     </div>
@@ -72,7 +72,7 @@ export default {
            tags:'',
            prep_time:'',
            food_pic:'',
-           is_public:''
+           is_public: false
         },
         ingredients: []
     };
@@ -98,7 +98,8 @@ methods: {
     addRecipeToDatabse(){
         RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
             if(response.status === 201){
-                if (this.ingredients !== ''){
+                // if (this.ingredients !== '')
+                {
                     this.ingredients.forEach((ingredient) => {
                         IngredientService.addIngredientForRecipe(response.body.recipeId, ingredient).then((response) => {
                             if(response.status === 201){
