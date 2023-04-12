@@ -70,8 +70,14 @@ CREATE TABLE weekly_plan(
 	date_created date NOT NULL DEFAULT CURRENT_DATE,
 	
 	CONSTRAINT PK_weekly_plan_id PRIMARY KEY (weekly_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id FOREIGN KEY (monday, tuesday, wednesday, thursday, friday, saturday, sunday) REFERENCES daily_plan(daily_plan_id)
-); 
+	CONSTRAINT FK_weekly_plan_daily_plan_id_monday FOREIGN KEY (monday) REFERENCES daily_plan(daily_plan_id), 
+	CONSTRAINT FK_weekly_plan_daily_plan_id_tuesday FOREIGN KEY (tuesday) REFERENCES daily_plan(daily_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id_wednesday FOREIGN KEY (wednesday) REFERENCES daily_plan(daily_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id_thursday FOREIGN KEY (thursday) REFERENCES daily_plan(daily_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id_friday FOREIGN KEY (friday) REFERENCES daily_plan(daily_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id_saturday FOREIGN KEY (saturday) REFERENCES daily_plan(daily_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id_sunday FOREIGN KEY (sunday) REFERENCES daily_plan(daily_plan_id)
+	);																		 
 -- CREATE TABLE weekly_daily_plan(
 -- 	daily_plan_id int NOT NULL,
 -- 	weekly_plan_id int NOT NULL,
