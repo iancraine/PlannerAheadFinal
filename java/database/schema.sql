@@ -14,6 +14,7 @@ CREATE TABLE users (
 CREATE TABLE ingredients (
 	ingredient_id serial,
 	ingredient_name varchar(50) NOT NULL,
+	ingredient_type varchar(50) NULL,
 	
 	CONSTRAINT PK_ingredients PRIMARY KEY (ingredient_id)
 );
@@ -59,19 +60,27 @@ CREATE TABLE daily_plan(
 CREATE TABLE weekly_plan(
 	weekly_plan_id serial,
 	plan_name varchar(50) NOT NULL,
+	monday int NULL,
+	tuesday int NULL,
+	wednesday int NULL,
+	thursday int NULL,
+	friday int NULL,
+	saturday int NULL,
+	sunday int NULL, 
 	date_created date NOT NULL DEFAULT CURRENT_DATE,
 	
-	CONSTRAINT PK_weekly_plan_id PRIMARY KEY (weekly_plan_id)
+	CONSTRAINT PK_weekly_plan_id PRIMARY KEY (weekly_plan_id),
+	CONSTRAINT FK_weekly_plan_daily_plan_id FOREIGN KEY (monday, tuesday, wednesday, thursday, friday, saturday, sunday) REFERENCES daily_plan(daily_plan_id)
 ); 
-CREATE TABLE weekly_daily_plan(
-	daily_plan_id int NOT NULL,
-	weekly_plan_id int NOT NULL,
-	day_of_week varchar(20) NOT NULL,
+-- CREATE TABLE weekly_daily_plan(
+-- 	daily_plan_id int NOT NULL,
+-- 	weekly_plan_id int NOT NULL,
+-- 	day_of_week varchar(20) NOT NULL,
 	
-	CONSTRAINT PK_weekly_daily_plan PRIMARY KEY (daily_plan_id, weekly_plan_id),
-	CONSTRAINT FK_weekly_daily_plan_daily_plan_id FOREIGN KEY (daily_plan_id) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_daily_plan_weekly_plan_id FOREIGN KEY (weekly_plan_id) REFERENCES weekly_plan(weekly_plan_id)
-);
+-- 	CONSTRAINT PK_weekly_daily_plan PRIMARY KEY (daily_plan_id, weekly_plan_id),
+-- 	CONSTRAINT FK_weekly_daily_plan_daily_plan_id FOREIGN KEY (daily_plan_id) REFERENCES daily_plan(daily_plan_id),
+-- 	CONSTRAINT FK_weekly_daily_plan_weekly_plan_id FOREIGN KEY (weekly_plan_id) REFERENCES weekly_plan(weekly_plan_id)
+-- );
 CREATE TABLE users_meal_plan (
 	weekly_plan_id int NOT NULL,
 	user_id int NOT NULL,
