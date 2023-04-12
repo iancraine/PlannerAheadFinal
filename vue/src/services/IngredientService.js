@@ -14,8 +14,8 @@ export default {
     getIngredientsForRecipe(recipeId) {
         return http.get(`/ingredients/recipe/${recipeId}`);
     },
-    addIngredientForRecipe(recipeId, ingredient, amount) {
-        return http.post(`/ingredients/recipe/${recipeId}/${amount}`, ingredient);
+    addIngredientForRecipe(recipeId, ingredient) {
+        return http.post(`/ingredients/recipe/${recipeId}`, ingredient);
     },
     deleteIngredientForRecipe(userId, recipeId) {
         return http.delete(`/ingredients/${userId}/${recipeId}`);

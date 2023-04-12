@@ -33,9 +33,9 @@ public class IngredientController {
         ingredientDao.addIngredient(ingredient, userId);
     }
 
-    @RequestMapping(path="/recipe/{recipeId}/{amount}", method=RequestMethod.POST)
-    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId, String amount) {
-        ingredientDao.addIngredientToRecipe(ingredient, recipeId, amount);
+    @RequestMapping(path="/recipe/{recipeId}", method=RequestMethod.POST)
+    public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable int recipeId) {
+        ingredientDao.addIngredientToRecipe(ingredient, recipeId, ingredient.getAmount());
     }
 
     @RequestMapping(path="/{userId}/{recipeId}", method=RequestMethod.DELETE)

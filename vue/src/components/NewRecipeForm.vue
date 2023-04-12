@@ -14,15 +14,16 @@
             <br>
 
             <input class="addTag" type="text" placeholder="Add a tag" v-model="inputTag"/>
-            <button class="addTag" @click="concatTag" >Add</button>
+            <button class="addTag" @click.prevent="concatTag()" >Add</button>
+            <p v-bind="recipe.tags">{{recipe.tags}}</p>
             
             <div  class="ingredients-content">
                 <label for="userInput">Add Ingredients: </label>
-                <input type="text" id="userInput">
+                <input type="text" id="userInput" v-model="inputIngredient.name">
                 <label for="amount">Amount: </label>
-                <input type="text" id="amount">
+                <input type="text" id="amount" v-model="inputIngredient.amount">
                 <label for="unit">Unit: </label>
-                <select name="units" id="units">
+                <select name="units" id="units" v-model="unit">
                     <option value="cups">cups</option>
                     <option value="Tbsp">Tbsp</option>
                     <option value="Tsp">Tsp</option>
@@ -33,12 +34,12 @@
                     <option value="pints">pints</option>
                     <option value="gallons">gallons</option>
                 </select>
-                <button class="addIngredient">Add</button>
+                <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
             </div>
 
             <label for="food-pic">Upload a picture: </label>
-            <input type="file" id="food-pic">
-            <input type="checkbox" id="public">
+            <input type="file" id="food-pic" >
+            <input type="checkbox" id="public" v-model="recipe.is_public">
             <label for="public">Public?</label>
 
 
@@ -62,7 +63,11 @@ export default {
     data(){
     return{
         inputTag: '',
-        inputIngredient: '',
+        inputIngredient: {
+            name: '',
+            amount: ''
+        },
+        unit: '',
         recipe:{ 
            recipe_name:'',
            directions:'',
@@ -71,12 +76,7 @@ export default {
            food_pic:'',
            is_public:''
         },
-        ingredients: [
-            {
-                name:'',
-                amount: '',
-            }
-        ]
+        ingredients: []
     };
 },
 methods: {
@@ -85,9 +85,13 @@ methods: {
         this.inputTag = '';
     },
     concatIngredient(){
-        
-        this.recipe.ingredients += "\n" + this.inputIngredient;
-        this.inputIngredient ='',
+        this.inputIngredient.amount += this.unit;
+        this.ingredients.push(this.inputIngredient);
+        this.inputIngredient ={
+            name: '',
+            amount: ''
+        };
+        this.unit=''
     }
 }
 
