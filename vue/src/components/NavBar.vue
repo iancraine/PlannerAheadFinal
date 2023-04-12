@@ -1,7 +1,7 @@
 <template>
   <div id="headerNav">
       <div class="logoImg">
-          <img class="logo" src="../assets/Logo.png" alt="Planner ahead logo"/>
+          <img class="logo" src="..\assets\Orange Minimalist Food Festival Logo.png" alt="Planner ahead logo"/>
       </div>
       <div id="brandName"> Planner Ahead </div>
       <div id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </div>
