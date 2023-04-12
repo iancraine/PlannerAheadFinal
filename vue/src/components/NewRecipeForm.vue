@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="#">
+        <form action="#" v-on:submit="addRecipeToDatabase()">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
@@ -15,7 +15,7 @@
 
             <input class="addTag" type="text" placeholder="Add a tag" v-model="inputTag"/>
             <button class="addTag" @click.prevent="concatTag()" >Add</button>
-            <p v-bind="recipe.tags">{{recipe.tags}}</p>
+            <p v-bind:show="recipe.tags">{{recipe.tags}}</p>
             
             <div  class="ingredients-content">
                 <label for="userInput">Add Ingredients: </label>
@@ -37,27 +37,25 @@
                 <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
             </div>
 
+            <div>
+                <ul v-for="ingredient in ingredients" v-bind:key="ingredient.name">
+                    <li>{{ingredient.amount}} of {{ingredient.name}}</li>
+                </ul>
+            </div>
+
             <label for="food-pic">Upload a picture: </label>
             <input type="file" id="food-pic" >
             <input type="checkbox" id="public" v-model="recipe.is_public">
             <label for="public">Public?</label>
 
-
-            
-
-            <div>
-                <ul v-for="ingredient in ingredients" v-bind:key="ingredient">
-                    <li>{{ingredient.name}}ingredients list here {{ingredient.amount}}</li>
-                </ul>
-            </div>
-
-            <!-- display tags somewhere -->
+            <input type="submit" name="" id="" value="Submit">
 
         </form>
     </div>
 </template>
 <script>
-
+import RecipeService from "../services/RecipeService";
+import IngredientService from "../services/IngredientService";
 
 export default {
     data(){
@@ -81,17 +79,55 @@ export default {
 },
 methods: {
     concatTag(){
-        this.recipe.tags += ", " + this.inputTag;
+        if(this.recipe.tags === ''){
+            this.recipe.tags += this.inputTag
+        }else{
+            this.recipe.tags += ", " + this.inputTag;
+        }
         this.inputTag = '';
     },
     concatIngredient(){
-        this.inputIngredient.amount += this.unit;
+        this.inputIngredient.amount += " " + this.unit;
         this.ingredients.push(this.inputIngredient);
         this.inputIngredient ={
             name: '',
             amount: ''
         };
         this.unit=''
+    },
+    addRecipeToDatabse(){
+        RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
+            if(response.status === 201){
+                if (this.ingredients !== ''){
+                    this.ingredients.forEach((ingredient) => {
+                        IngredientService.addIngredientForRecipe(response.body.recipeId, ingredient).then((response) => {
+                            if(response.status === 201){
+                                this.showForm = false;
+                                this.recipe = '';
+                                this.$router.push(`/recipes/${this.$store.state.user.id}`)
+                            }
+                        }).catch(error => {
+        if(error.response){
+          this.errorMsg = "Error submitting new ingredient. Response recived was '"+ error.response.statusText+"'";
+        }else if(error.request) {
+          this.errorMsg = "Error submitting new ingredient. Server could not be reached.";
+        }else{
+          this.errorMsg = "Error submitting new ingredient. Request could not be reached.";
+        }
+      })
+                    })
+                   
+                }
+            }
+        }).catch(error => {
+        if(error.response){
+          this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
+        }else if(error.request) {
+          this.errorMsg = "Error submitting new recipe. Server could not be reached.";
+        }else{
+          this.errorMsg = "Error submitting new recipe. Request could not be reached.";
+        }
+      })
     }
 }
 
