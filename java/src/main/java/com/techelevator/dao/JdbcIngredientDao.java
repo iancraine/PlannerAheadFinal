@@ -34,8 +34,9 @@ public class JdbcIngredientDao implements IngredientDao{
     public List<Ingredient> getIngredientsForRecipe(int recipeId) {
         List<Ingredient> recipeIngredients = new ArrayList<>();
 
-        String sql = "SELECT DISTINCT ingredients.ingredient_id, ingredients.ingredient_name, ingredients.ingredient_type, amount "
-                        + "FROM ingredients JOIN recipe_ingredients ri ON ri.ingredients_id = ingredients.ingredients_id "
+        String sql = "SELECT DISTINCT ingredients.ingredient_id, ingredients.ingredient_name, ingredients.ingredient_type, ri.amount "
+                        + "FROM ingredients" +
+                " JOIN recipe_ingredients ri ON ri.ingredient_id = ingredients.ingredient_id "
                         + "WHERE recipe_id = ?;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, recipeId);
