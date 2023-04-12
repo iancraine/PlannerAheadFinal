@@ -26,10 +26,10 @@ export default {
 <style scoped>
 body{
 	max-width: 800px;
-			margin: 0 auto;
-			padding: 40px;
-			background-color: #faf7f0 ;
-			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	margin: 0 auto;
+	padding: 40px;
+	background-color: #faf7f0 ;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 		h1{
@@ -49,13 +49,14 @@ body{
 
 	.container{
 		background-color: #faf7f0;
+		margin: 0 auto;
+		padding: 40px;
+		background-color: #faf7f0;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
 	}
 		/* .container {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 40px;
-			background-color: #faf7f0;
-			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			
+			
 		} */
 
 		.title {

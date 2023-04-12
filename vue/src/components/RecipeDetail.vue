@@ -1,7 +1,7 @@
 <template>
   <div class="recipe-detail">
     <div class="right">
-      <h2>{{recipe.recipeName}}</h2>
+      <h2>{{recipe.recipe_name}}</h2>
        <h3>Directions:</h3>
       <p align="justify" class="directions">{{recipe.directions}}</p>
       <div class="tag"><h5 class="tag">Tag:</h5>
