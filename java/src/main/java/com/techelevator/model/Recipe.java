@@ -8,6 +8,7 @@ public class Recipe {
     private String recipeName;
     private String directions;
     private String tags;
+    @JsonProperty("prep_time")
     private int prepTime;
     private String foodPic;
     private boolean isPublic;

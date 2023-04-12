@@ -50,15 +50,15 @@
             <br>
 
             <div class="btn-align">
-                <input class="submitBtn" type="submit" v-on:click="addRecipeToDatabse()" value="Submit">
+                <input class="submitBtn" type="submit" v-on:click="addRecipeToDatabase()" value="Submit">
                 <button class="cancelBtn" @click.prevent="clear()"> Clear</button>
             </div>
         </form>
     </div>
 </template>
 <script>
-import RecipeService from "../services/RecipeService";
-import IngredientService from "../services/IngredientService";
+ import RecipeService from "../services/RecipeService";
+ import IngredientService from "../services/IngredientService";
 
 export default {
     data(){
@@ -77,12 +77,13 @@ export default {
            food_pic:'',
            is_public: false
         },
-        ingredients: []
-    };
-},
-methods: {
+        ingredients: [],
+        recipe_id: ''
+        };
+    },
+ methods: {
     clear() {
-        this.inputTag = '',
+        this.inputTag = '';
         this.inputIngredient= {
             name: '',
             amount: ''
@@ -100,7 +101,7 @@ methods: {
     },
     concatTag(){
         if(this.recipe.tags === ''){
-            this.recipe.tags += this.inputTag
+            this.recipe.tags += this.inputTag;
         }else{
             this.recipe.tags += ", " + this.inputTag;
         }
@@ -109,50 +110,70 @@ methods: {
     concatIngredient(){
         this.inputIngredient.amount += " " + this.unit;
         this.ingredients.push(this.inputIngredient);
-        this.inputIngredient ={
-            name: '',
-            amount: ''
-        };
-        this.unit=''
+        this.inputIngredient ='';
+        this.unit='';
     },
-    addRecipeToDatabse(){
+    addRecipeToDatabase(){
         RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
-            if(response.status === 201){
-                // if (this.ingredients !== '')
-                {
-                    this.ingredients.forEach((ingredient) => {
-                        IngredientService.addIngredientForRecipe(response.body.recipeId, ingredient).then((response) => {
-                            if(response.status === 201){
-                                this.showForm = false;
-                                this.recipe = '';
-                                this.$router.push(`/recipes/${this.$store.state.user.id}`)
-                            }
-                        }).catch(error => {
-        if(error.response){
-          this.errorMsg = "Error submitting new ingredient. Response recived was '"+ error.response.statusText+"'";
-        }else if(error.request) {
-          this.errorMsg = "Error submitting new ingredient. Server could not be reached.";
-        }else{
-          this.errorMsg = "Error submitting new ingredient. Request could not be reached.";
-        }
-      })
-                    })
-                   
-                }
-            }
+            //if(response.status === 201){
+                console.log("Recipe successful 1");
+                this.recipe_id = response.data.recipe_id;
+                console.log("Recipe successful");
+                this.addIngredientToDatabase(); 
+                console.log("This should pop up if recipe is added.");
+            //}
         }).catch(error => {
-        if(error.response){
-          this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
-        }else if(error.request) {
-          this.errorMsg = "Error submitting new recipe. Server could not be reached.";
-        }else{
-          this.errorMsg = "Error submitting new recipe. Request could not be reached.";
-        }
-      });
-       this.clear();
-    }
-}
+            if(error.response){
+                this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
+            }else if(error.request) {
+                this.errorMsg = "Error submitting new recipe. Server could not be reached.";
+            }else{
+                this.errorMsg = "Error submitting new recipe. Request could not be reached.";
+            }
+        });
+       
+       
+    },
+    addIngredientToDatabase(){
+        console.log("if this method is even being called");
+        this.ingredients.forEach((ingredient) => {
+            IngredientService.addIngredient(this.$store.state.user.id, ingredient)
+            .then((response) => {
+                console.log("If request is successful.");
+                if(response.status === 201){
+                    IngredientService.addIngredientForRecipe(this.recipe_id, ingredient)
+                    .then((response) => {
+                        if(response.status === 201){
+                            this.showForm = false;
+                            this.clear();
+                            this.$router.push(`/recipes/${this.$store.state.user.id}`);
+                        }
+                    }).catch(error => {
+                        if(error.response){
+                            console.log("Error submitting new recipe. Response recived was '"+ error.response.statusText+"'")  ;
+                        }else if(error.request) {
+                            console.log("Error submitting new recipe. Server could not be reached.");
+                        }else{
+                            console.log("Error submitting new recipe. Request could not be reached.");
+                        }
+                    });
+                }
+                
+            }).catch(error => {
+                if(error.response){
+                    this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
+                }else if(error.request) {
+                    this.errorMsg = "Error submitting new recipe. Server could not be reached.";
+                }else{
+                    this.errorMsg = "Error submitting new recipe. Request could not be reached.";
+                }
+            });                  
+        });
 
+    }
+
+
+    }
 }
 </script>
 
@@ -205,5 +226,3 @@ form{
 }
 
 </style>
-
- 

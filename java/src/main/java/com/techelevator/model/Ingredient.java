@@ -1,7 +1,11 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Ingredient {
+    @JsonProperty("ingredient_id")
     private int ingredientId;
+    @JsonProperty("ingredient_name")
     private String ingredientName;
     private String ingredientType;
     private String amount;

@@ -42,7 +42,7 @@ public class JdbcIngredientDao implements IngredientDao{
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, recipeId);
 
         while(row.next()) {
-            recipeIngredients.add(mapRowSetToIngredient(row));
+            recipeIngredients.add(mapRowSetToIngredientWithAmount(row));
         }
         return recipeIngredients;
     }
@@ -86,13 +86,23 @@ public class JdbcIngredientDao implements IngredientDao{
         }
     }
 
+    private Ingredient mapRowSetToIngredientWithAmount(SqlRowSet row) {
+        Ingredient ingredient = new Ingredient();
+
+        ingredient.setIngredientId(row.getInt("ingredient_id"));
+        ingredient.setIngredientName(row.getString("ingredient_name"));
+        //ingredient.setIngredientType(row.getString("ingredient_type"));
+        ingredient.setAmount(row.getString("amount"));
+
+        return ingredient;
+    }
     private Ingredient mapRowSetToIngredient(SqlRowSet row) {
         Ingredient ingredient = new Ingredient();
 
         ingredient.setIngredientId(row.getInt("ingredient_id"));
         ingredient.setIngredientName(row.getString("ingredient_name"));
-        ingredient.setIngredientType(row.getString("ingredient_type"));
-        ingredient.setAmount(row.getString("amount"));
+       // ingredient.setIngredientType(row.getString("ingredient_type"));
+
 
         return ingredient;
     }
