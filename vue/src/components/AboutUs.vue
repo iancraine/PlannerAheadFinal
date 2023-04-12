@@ -31,13 +31,13 @@ export default {
 			padding: 0 20px;
 		}
     .aboutUs{
-        color: rgb(221, 107, 31);
+        color: rgb(206, 111, 48);
     }
 		.container {
 			max-width: 800px;
 			margin: 0 auto;
 			padding: 40px;
-			background-color: rgb(187, 241, 151);
+			background-color: rgb(220, 243, 204);
 			box-shadow: 0 0 10px rgba(0,0,0,0.2);
 		}
 </style>

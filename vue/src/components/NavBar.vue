@@ -1,12 +1,13 @@
 <template>
   <div id="headerNav">
       <div class="logoImg">
-          <img class="logo" src="../assets/Logo.png" alt="Planner ahead logo"/>
+          <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <div id="brandName"> Planner Ahead </div>
       <div id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </div>
         <div id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></div>
         <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></div>
+
   </div>
 </template>
 
@@ -33,7 +34,9 @@ export default {
     }
 
     .logoImg{
-        padding: 10px;
+        padding-left: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     a {
@@ -53,7 +56,7 @@ export default {
     #brandName{
         text-decoration: none;
         text-transform: capitalize;
-        font-size: 1.2em;
+        font-size: 1.4em;
         font-family: Arial, Helvetica, sans-serif;
         color: black;
         position: absolute;

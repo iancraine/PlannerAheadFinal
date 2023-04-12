@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import MyRecipes from '../views/MyRecipes.vue'
 import Recipe from '../views/Recipe.vue'
+import AboutUsPage from '../views/AboutUsPage.vue'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ const router = new Router({
           requiresAuth: true
         }
       
+    },
+    {
+      path:"/aboutUs",
+      name: "about-us",
+      component: AboutUsPage
     }
   ]
 })
