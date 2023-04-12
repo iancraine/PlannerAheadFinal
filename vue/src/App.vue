@@ -27,7 +27,7 @@ export default {
                         "view"
                         "footer";
   /* position: relative; */
-  height: 100vh;
+  /* height: 100vh; */
   gap: 10px;
 }
 #content {
