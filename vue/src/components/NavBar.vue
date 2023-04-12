@@ -99,6 +99,6 @@ export default {
     }
     #mealPlans{
         position: absolute;
-        right: 200px;
+        right: 500px;
     }
 </style>
