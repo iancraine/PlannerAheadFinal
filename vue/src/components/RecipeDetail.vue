@@ -1,17 +1,27 @@
 <template>
-  <div>
+  <div class="recipe-detail">
+    <div class="right">
       <h2>{{recipe.recipeName}}</h2>
-      <div>
-              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+       <h3>Directions:</h3>
+      <p align="justify" class="directions">{{recipe.directions}}</p>
+      <div class="tag"><h5 class="tag">Tag:</h5>
+            <p class="tag">{{recipe.tags}}</p>
             </div>
-      <p>{{recipe.directions}}</p>
-      <p>{{recipe.tags}}</p>
-      <p>{{recipe.prep_time}}</p>
+      <div class="time">
+              <h5 class="time">Prep Time:</h5>
+            <p class="time">{{recipe.prepTime}}</p>
+            </div>
       <div>
        <label>
   <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
 </label>
                </div>
+    </div>
+    <div>
+       <div class="left">
+              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+            </div>
+    </div>
  
   </div>
 </template>
@@ -43,6 +53,30 @@ created() {
 }
 </script>
 
-<style>
+<style scoped>
+.recipe-detail{
+  display: flex;
+  padding: 20px;
+   font-size: 18px;
+}
+.directions:hover{
+  color:rgb(15, 194, 30);
+}
+ h2:hover{
+  color:darkblue;
+}
+h2{
+  color: rgb(20, 73, 187);
+}
+.left{
+  float:right;
+clear: both;
+padding:10px;
+}
+.right{
+  float: left;
+  clear: both;
+  padding:10px;
+}
 
 </style>
