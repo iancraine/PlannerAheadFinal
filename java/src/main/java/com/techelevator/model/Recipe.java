@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Recipe {
     private int recipeId;
+    @JsonProperty("recipe_name")
     private String recipeName;
     private String directions;
     private String tags;
