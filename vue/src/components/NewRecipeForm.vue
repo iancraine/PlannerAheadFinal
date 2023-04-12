@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="#" v-on:submit.prevent="">
+        <form action="#" v-on:submit.prevent="" class="recipe-form">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
@@ -193,7 +193,7 @@ li {
 .ingredients-content > input{
     margin-right: 25px;
 }
-form > *{
+form.recipeForm > *{
     margin-bottom: 15px;
 }
 label.prep-time{
@@ -203,7 +203,7 @@ label.prep-time{
 input.prep-time{
     width: 5em;
 }
-form{
+form.recipeForm{
     background-color: #ebf2ef;
     font-family: system-ui, sans-serif;
 }

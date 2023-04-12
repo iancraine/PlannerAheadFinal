@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     // userId: '',
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    recipes:[]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
+    SET_RECIPE(state, recipesArr) {
+      state.recipes = recipesArr;
+    }
     // SET_USER_ID(state, )
   }
 })
