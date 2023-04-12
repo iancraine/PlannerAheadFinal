@@ -4,11 +4,13 @@
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <div id="brandName"> Planner Ahead </div>
+
+      <div class="nav-links">
       <div id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </div>
         <div id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></div>
         <div id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></div>
         <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></div>
-
+        </div>
   </div>
 </template>
 
@@ -23,8 +25,8 @@ export default {
     div#headerNav {
         display: flex;
         align-items: center;
-       margin: 0 auto;
-       padding: 0;
+       /* margin: 0 auto; */
+       padding: 0px;
        border-bottom: 3px solid rgb(244, 247, 224);
        background-color:rgb(236, 245, 226);
     }
@@ -63,6 +65,14 @@ export default {
         position: absolute;
         left: 200px;
     }
+
+    /* .nav-links{
+        display: flex;
+        flex-direction: ;
+        justify-content: flex-end;
+        align-content: flex-end;
+        justify-items: flex-end;
+    } */
 
     #home {
         position: absolute;
