@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2>My MealPlans</h2>
-    <div v-for="mealplan in mealPlans" v-bind:key="mealplan.meal_plan_Id">
+
+    {{mealPlans.plan_name}}
+    <div v-for="mealplan in mealPlans" v-bind:key="mealplan">
           <h1>{{mealplan.plan_name}} {{mealplan.meal_type}}</h1>
 
     </div>

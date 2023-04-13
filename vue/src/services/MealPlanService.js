@@ -6,7 +6,7 @@ const http = axios.create({
 
 export default {
     listAllMealPlans(userId){
-        return http.get(`/mealplans/${userId}`);
+        return http.get(`/mealplans/list/${userId}`);
     },
     getMealPlanById(mealPlanId){
         return http.get(`/mealplans/${mealPlanId}`);
