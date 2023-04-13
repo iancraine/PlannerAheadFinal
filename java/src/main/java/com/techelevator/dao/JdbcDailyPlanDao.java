@@ -17,40 +17,49 @@ public class JdbcDailyPlanDao implements DailyPlanDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    List<DailyPlan> getDailyMealPlansByUserId(int userId){
+   public  List<DailyPlan> getDailyMealPlansByUserId(int userId){
         List<DailyPlan> dailyPlan= new ArrayList<>();
-        String sql = "Select * from daily_plan " +
-                "JOIN recipes r ON r.recipe_id = breakfast_recipe_id"+
-                "JOIN recipes r ON r.recipe_id = lunch_recipe_id "+
-                "JOIN recipes r ON r.recipe_id = dinner_recipe_id " +
-                "JOIN user_recipes ur ON ur.recipe_id = recipe.recipe_id"+
-                "JOIN user_recipes ur ON ur.user_id = user.user_id"+
-                "WHERE user_id=?;";
-        SqlRowSet result= jdbcTemplate.queryForRowSet(sql,)
+        String sql = "SELECT * FROM daily_plan dp" +
+        "JOIN recipes r1 ON r1.recipe_id = dp.breakfast_recipe_id"+
+        "JOIN recipes r2 ON r2.recipe_id = dp.lunch_recipe_id"+
+        "JOIN recipes r3 ON r3.recipe_id = dp.dinner_recipe_id"+
+        "JOIN user_recipes ur1 ON ur1.recipe_id = r1.recipe_id"+
+        "JOIN user_recipes ur2 ON ur2.recipe_id = r2.recipe_id"+
+        "JOIN user_recipes ur3 ON ur3.recipe_id = r3.recipe_id"+
+        "JOIN users u ON u.user_id = ur1.user_id"+
+        "WHERE u.user_id = ?;";
+
+
+
+        SqlRowSet result= jdbcTemplate.queryForRowSet(sql,userId);
+        while(result.next()){
+            dailyPlan.add(mapRowSetToDailyPlan(result));
+        }
         return dailyPlan;
     }
 
-    DailyPlan getDailyPlanById(int dailyPlanId){
+    public DailyPlan getDailyPlanById(int dailyPlanId){
+        DailyPlan dailyPlan=null;
         return dailyPlan;
     }
 
-    DailyPlan createDailyMealPlan(DailyPlan dailyPlan, int userId){
+    public DailyPlan createDailyMealPlan(DailyPlan dailyPlan, int userId){
         return dailyPlan;
     }
 
-    void deleteDailyMealPlan(int dailyPlanId, int userId){
+    public void deleteDailyMealPlan(int dailyPlanId, int userId){
 
     }
 
-    DailyPlan modifyDailyMealPlan(DailyPlan dailyPlan, int userId){
+    public DailyPlan modifyDailyMealPlan(DailyPlan dailyPlan, int userId){
         return dailyPlan;
     }
 
-    public DailyPlan mapRowsetToDailyPlan(SqlRowSet row){
+    public DailyPlan mapRowSetToDailyPlan(SqlRowSet row){
         DailyPlan dailyPlan = new DailyPlan();
 
         dailyPlan.setDaily_plan_id(row.getInt("daily_plan_id"));
-        dailyPlan.setBreakfast_recipe_id(row.getInt("breakfast_recpe_id"));
+        dailyPlan.setBreakfast_recipe_id(row.getInt("breakfast_recipe_id"));
         dailyPlan.setLunch_recipe_id(row.getInt("lunch_recipe_id"));
         dailyPlan.setDinner_recipe_id(row.getInt("dinner_recipe_id"));
 
