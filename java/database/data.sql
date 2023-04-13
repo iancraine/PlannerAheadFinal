@@ -43,5 +43,10 @@ VALUES ('Yummy', 3,2,1,3,2,1,3, CURRENT_DATE);
 INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
 VALUES ('Yummy', 2,1,3,2,1,3,2, CURRENT_DATE);
 
+INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (1, 1);
+INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (2, 1);
+INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (3, 2);
+
+
 
 COMMIT TRANSACTION;
