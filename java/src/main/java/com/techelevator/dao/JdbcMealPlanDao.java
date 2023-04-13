@@ -24,7 +24,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
                 "FROM meal_plan mp " +
                 "JOIN meal_plan_recipes mpr ON mpr.meal_plan_id = mp.meal_plan_id " +
                 "JOIN users_meal_plan ump ON ump.meal_plan_id = mp.meal_plan_id " +
-                "WHERE user_id = ?;";
+                "WHERE user_id = ? ORDER BY plan_name;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
 
@@ -35,9 +35,21 @@ public class JdbcMealPlanDao implements MealPlanDao{
         return mealPlans;
     }
 
+    // gets all the recipe combinations for one meal plan as a list of mealplans
     @Override
-    public MealPlan getMealPlanById(int mealPlanId) {
-        return null;
+    public List<MealPlan> getMealPlansById(int mealPlanId) {
+        List<MealPlan> mealPlans = new ArrayList<>();
+
+        String sql= "SELECT plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
+                    "JOIN meal_plan mp ON mp.meal_plan_id = mpr.meal_plan_id " +
+                    "WHERE mpr.meal_plan_id=? ORDER BY for_date, meal_type;";
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, mealPlanId);
+
+        while(row.next()) {
+            mealPlans.add(mapRowToMealPlan(row));
+        }
+        return mealPlans;
     }
 
     @Override

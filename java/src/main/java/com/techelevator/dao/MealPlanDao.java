@@ -8,7 +8,7 @@ public interface MealPlanDao {
 
      List<MealPlan> listAllMealPlans(int userId);
 
-     MealPlan getMealPlanById(int mealPlanId);
+     List<MealPlan> getMealPlansById(int mealPlanId);
 
      MealPlan addMealPlan(MealPlan newMealPlan, int userId);
 
