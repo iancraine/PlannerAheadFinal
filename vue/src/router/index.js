@@ -10,6 +10,7 @@ import Recipe from '../views/Recipe.vue'
 import AboutUsPage from '../views/AboutUsPage.vue'
 import MealPlanDetails from '../views/MealPlanDetails.vue'
 import AddMealPlan from '../views/AddMealPlan.vue'
+import MyMealPlans from '../views/MyMealPlans.vue'
 
 Vue.use(Router)
 
@@ -95,7 +96,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/mealplans/list/:userId",
+      name: "mealplans",
+      component: MyMealPlans,
+      meta: {
+        requiresAuth: true
     }
+  },
   ]
 })
 
