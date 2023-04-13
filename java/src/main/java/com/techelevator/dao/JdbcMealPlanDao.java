@@ -88,8 +88,17 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public MealPlan updateMealPlan(MealPlan updatedMealPlan) {
-        return null;
+    public List<MealPlan> updateMealPlan(List<MealPlan> updatedMealPlan) {
+        
+        String sql = "UPDATE meal_plan SET plan_name = ? where meal_plan_id =?;";
+        jdbcTemplate.update(sql, updatedMealPlan.get(0).getPlan_name(), updatedMealPlan.get(0).getMeal_plan_id());
+
+        sql = "UPDATE meal_plan_recipes SET recipe_id = ?, for_date = ?, meal_type = ? WHERE meal_plan_id = ?;";
+        for(MealPlan plan : updatedMealPlan){
+            jdbcTemplate.update(sql, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type(), plan.getMeal_plan_id());
+        }
+
+        return getMealPlansById(updatedMealPlan.get(0).getMeal_plan_id());
     }
 
     public MealPlan mapRowToMealPlan(SqlRowSet row){

@@ -38,7 +38,7 @@ public class MealPlanController {
  }
 
  @RequestMapping(path="/{mealPlanId}", method=RequestMethod.PUT)
- public MealPlan updateMealPlan(@PathVariable int mealPlanId,@RequestBody MealPlan mealPlan){
+ public List<MealPlan> updateMealPlan(@PathVariable int mealPlanId,@RequestBody List<MealPlan> mealPlan){
         return mealPlanDao.updateMealPlan(mealPlan);
  }
 

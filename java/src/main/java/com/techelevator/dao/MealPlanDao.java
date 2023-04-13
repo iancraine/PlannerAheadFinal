@@ -14,5 +14,5 @@ public interface MealPlanDao {
 
      void deleteMealPlan(int userId,int mealPlanId);
 
-     MealPlan updateMealPlan(MealPlan updatedMealPlan);
+     List<MealPlan> updateMealPlan(List<MealPlan> updatedMealPlan);
 }
