@@ -67,7 +67,7 @@ export default {
         inputIngredient: {
             ingredient_name: '',
             amount: '',
-            ingredientId: 0
+            ingredient_id: 0
         },
         unit: '',
         recipe:{ 
@@ -88,7 +88,7 @@ export default {
         this.inputIngredient= {
             ingredient_name: '',
             amount: '',
-            ingredientId: 0
+            ingredient_id: 0
         };
         this.unit = '';
         this.recipe ={ 
@@ -143,7 +143,7 @@ export default {
                    console.log("response status was created 201");
                    console.log(response.data.ingredient_id);
 
-                    ingredient.ingredientId =  response.data.ingredient_id;
+                    ingredient.ingredient_id =  response.data.ingredient_id;
                     console.log(ingredient);
                     IngredientService.addIngredientForRecipe(this.recipe_id, ingredient)
                     .then((response) => {

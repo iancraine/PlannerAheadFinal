@@ -32,20 +32,20 @@ INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
 
-INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (1,1,1);
-INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (2,2,2);
-INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (1,2,1);
+INSERT INTO meal_plan (plan_name) VALUES ('Beach Weekend!');
+INSERT INTO meal_plan (plan_name) VALUES ('Christmas Meals');
+INSERT INTO meal_plan (plan_name) VALUES ('My One Healthy Week a Year');
 
-INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
-VALUES ('Yummy', 1,2,3,1,2,3,1, CURRENT_DATE);
-INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
-VALUES ('Yummy', 3,2,1,3,2,1,3, CURRENT_DATE);
-INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
-VALUES ('Yummy', 2,1,3,2,1,3,2, CURRENT_DATE);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 2, '08/10/2023', 2);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 1, '08/11/2023', 1);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 2, '12/25/2023', 3);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 1, '12/24/2023', 5);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 1, '1/3/2023', 2);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 2, '1/4/2023', 3);
 
-INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (1, 1);
-INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (2, 1);
-INSERT INTO users_meal_plan (weekly_plan_id, user_id) VALUES (3, 2);
+INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (1, 1);
+INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (2, 1);
+INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (3, 2);
 
 
 

@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users_ingredients, users_recipes, users, ingredients, recipes, daily_plan, weekly_plan,
-weekly_daily_plan, users_meal_plan, grocery_list,recipe_ingredients CASCADE;
+DROP TABLE IF EXISTS users_ingredients, users_recipes, users, ingredients, recipes, meal_plan, 
+meal_plan_recipes, users_meal_plan, grocery_list,recipe_ingredients CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -46,54 +46,30 @@ CREATE TABLE users_recipes(
 	CONSTRAINT FK_users_recipes_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id),
 	CONSTRAINT FK_users_recipes_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-CREATE TABLE daily_plan(
-	daily_plan_id serial,
-	breakfast_recipe_id int, 
-	lunch_recipe_id int, 
-	dinner_recipe_id int,
-	
-	CONSTRAINT PK_daily_plan PRIMARY KEY (daily_plan_id),
-	CONSTRAINT FK_users_recipes_daily_plan_breakfast FOREIGN KEY (breakfast_recipe_id) REFERENCES recipes(recipe_id),
-	CONSTRAINT FK_users_recipes_daily_plan_lunch FOREIGN KEY (lunch_recipe_id) REFERENCES recipes(recipe_id),
-	CONSTRAINT FK_users_recipes_daily_plan_dinner FOREIGN KEY (dinner_recipe_id) REFERENCES recipes(recipe_id)
-);
-CREATE TABLE weekly_plan(
-	weekly_plan_id serial,
+
+CREATE TABLE meal_plan(
+	meal_plan_id serial,
 	plan_name varchar(50) NOT NULL,
-	monday int NULL,
-	tuesday int NULL,
-	wednesday int NULL,
-	thursday int NULL,
-	friday int NULL,
-	saturday int NULL,
-	sunday int NULL, 
-	date_created date NOT NULL DEFAULT CURRENT_DATE,
-	
-	CONSTRAINT PK_weekly_plan_id PRIMARY KEY (weekly_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_monday FOREIGN KEY (monday) REFERENCES daily_plan(daily_plan_id), 
-	CONSTRAINT FK_weekly_plan_daily_plan_id_tuesday FOREIGN KEY (tuesday) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_wednesday FOREIGN KEY (wednesday) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_thursday FOREIGN KEY (thursday) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_friday FOREIGN KEY (friday) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_saturday FOREIGN KEY (saturday) REFERENCES daily_plan(daily_plan_id),
-	CONSTRAINT FK_weekly_plan_daily_plan_id_sunday FOREIGN KEY (sunday) REFERENCES daily_plan(daily_plan_id)
+	CONSTRAINT PK_meal_plan_id PRIMARY KEY (meal_plan_id)
 	);																		 
--- CREATE TABLE weekly_daily_plan(
--- 	daily_plan_id int NOT NULL,
--- 	weekly_plan_id int NOT NULL,
--- 	day_of_week varchar(20) NOT NULL,
-	
--- 	CONSTRAINT PK_weekly_daily_plan PRIMARY KEY (daily_plan_id, weekly_plan_id),
--- 	CONSTRAINT FK_weekly_daily_plan_daily_plan_id FOREIGN KEY (daily_plan_id) REFERENCES daily_plan(daily_plan_id),
--- 	CONSTRAINT FK_weekly_daily_plan_weekly_plan_id FOREIGN KEY (weekly_plan_id) REFERENCES weekly_plan(weekly_plan_id)
--- );
+
 CREATE TABLE users_meal_plan (
-	weekly_plan_id int NOT NULL,
+	meal_plan_id int NOT NULL,
 	user_id int NOT NULL,
 	
-	CONSTRAINT PK_users_meal_plan PRIMARY KEY (weekly_plan_id, user_id),
-	CONSTRAINT FK_users_meal_plan_weekly_plan_id FOREIGN KEY (weekly_plan_id) REFERENCES weekly_plan(weekly_plan_id),
+	CONSTRAINT PK_users_meal_plan PRIMARY KEY (meal_plan_id, user_id),
+	CONSTRAINT FK_users_meal_plan_meal_plan_id FOREIGN KEY (meal_plan_id) REFERENCES meal_plan(meal_plan_id),
 	CONSTRAINT FK_users_meal_plan_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+CREATE TABLE meal_plan_recipes(
+	meal_plan_id int NOT NULL,
+	recipe_id int NOT NULL,
+	for_date date,
+	meal_type int,
+	
+	CONSTRAINT PK_meal_plan_recipes PRIMARY KEY (meal_plan_id, recipe_id),
+	CONSTRAINT FK_meal_plan_meal_plan_id FOREIGN KEY (meal_plan_id) REFERENCES meal_plan (meal_plan_id),
+	CONSTRAINT FK_meal_plan_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
 );
 CREATE TABLE grocery_list(
 	list_id serial,
