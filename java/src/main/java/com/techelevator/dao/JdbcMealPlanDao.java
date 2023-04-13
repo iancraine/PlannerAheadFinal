@@ -40,7 +40,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
     public List<MealPlan> getMealPlansById(int mealPlanId) {
         List<MealPlan> mealPlans = new ArrayList<>();
 
-        String sql= "SELECT plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
+        String sql= "SELECT mp.meal_plan_id, mp.plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
                     "JOIN meal_plan mp ON mp.meal_plan_id = mpr.meal_plan_id " +
                     "WHERE mpr.meal_plan_id=? ORDER BY for_date, meal_type;";
 
@@ -53,12 +53,22 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public List<MealPlan> addMealPlan(MealPlan newMealPlan, int userId) {
+    public List<MealPlan> addMealPlan(List<MealPlan> newMealPlan, int userId) {
         List<MealPlan> newlyAddedMealPlan = new ArrayList<>();
 
-        String sql = "INSERT INTO meal_plan (plan_name) VALUES (?);";
+        String sql = "INSERT INTO meal_plan (plan_name) VALUES (?) RETURNING meal_plan_id;";
+        int mealPlanId = jdbcTemplate.queryForObject(sql,Integer.class, newMealPlan.get(0).getPlan_name());
 
+        sql = "INSERT INTO meal_plan_recipes(meal_plan_id, recipe_id, for_date, meal_type) " +
+                "VALUES (?, ?, ?, ?);";
+        for(MealPlan plan : newlyAddedMealPlan){
+            jdbcTemplate.update(sql,mealPlanId, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type());
+        }
 
+        sql = "INSERT INTO users_meal_plan(meal_plan_id, user_id) VALUES (?, ?);";
+        jdbcTemplate.update(sql, mealPlanId, userId);
+
+        return getMealPlansById(mealPlanId);
     }
 
     @Override
