@@ -1,8 +1,19 @@
 <template>
   <div class="recipe-detail">
+    
+    
     <div class="right">
       <h2>{{recipe.recipe_name}}</h2>
-       <h3>Directions:</h3>
+
+      <div>
+        <button v-on:click="toggleShowForm()">Edit Recipe</button>
+        <edit-recipe-form v-show="showForm"/>
+      </div>
+
+      <h3>Directions:</h3>
+
+      
+
       <p align="justify" class="directions">{{recipe.directions}}</p>
       <div class="tag"><h5 class="tag">Tag:</h5>
             <p class="tag">{{recipe.tags}}</p>
@@ -27,11 +38,16 @@
 </template>
 
 <script>
+import EditRecipeForm from "./EditRecipeForm.vue";
 import recipeService from "../services/RecipeService.js";
 export default {
 name:'recipe-detail',
+components: {
+  EditRecipeForm
+},
 data(){
     return{
+        showForm: false,
         recipe:{
            recipe_id:'', 
            recipeName:'',
@@ -43,6 +59,12 @@ data(){
         }
     };
 },
+methods: {
+  toggleShowForm() {
+    this.showForm = !this.showForm;
+  }
+},
+
 
 created() {
     recipeService.getRecipeById(this.$route.params.recipeId).then(response => {

@@ -18,7 +18,7 @@ public class MealPlanController {
 
 
     @RequestMapping(path="/list/{userId}",method= RequestMethod.GET)
-    public List<MealPlan> listAllMealPlans(@PathVariable int userId) {
+    public List<List<MealPlan>> listAllMealPlans(@PathVariable int userId) {
        return mealPlanDao.listAllMealPlans (userId);
     }
 

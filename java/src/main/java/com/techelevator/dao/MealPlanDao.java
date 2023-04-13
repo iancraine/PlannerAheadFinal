@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MealPlanDao {
 
-     List<MealPlan> listAllMealPlans(int userId);
+     List<List<MealPlan>> listAllMealPlans(int userId);
 
      List<MealPlan> getMealPlansById(int mealPlanId);
 

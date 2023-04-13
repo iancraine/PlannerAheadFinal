@@ -17,8 +17,9 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public List<MealPlan> listAllMealPlans(int userId) {
+    public List<List<MealPlan>> listAllMealPlans(int userId) {
         List<MealPlan> mealPlans = new ArrayList<>();
+
 
         String sql = "SELECT mp.meal_plan_id, plan_name, mpr.recipe_id, for_date, meal_type " +
                 "FROM meal_plan mp " +
@@ -32,7 +33,35 @@ public class JdbcMealPlanDao implements MealPlanDao{
             mealPlans.add(mapRowToMealPlan(row));
         }
 
-        return mealPlans;
+        List<List<MealPlan>> nestedMealPlans = new ArrayList<>();
+//        List<Integer> list = List.of(1, 2, 3, 4, 5, 7, 8, 9, 10, 11);
+//        int n = 3;
+//        List<List<Integer>> result = new LinkedList<>();
+//        int size = list.size();
+//        for (int i = 0; i <= size; i += n) {
+//            result.add(list.subList(i, Math.min(i + n, size)));
+//        }
+//        System.out.println(result);  // [[1, 2, 3], [4, 5, 7], [8, 9, 10], [11]]
+        int jHolder = 0;
+        for(int i = 0; i < mealPlans.size(); i+=jHolder){
+            int firstIndex = 0;
+            int lastIndex = 0;
+
+            for(int j = i; j < mealPlans.size(); j++){
+                if(mealPlans.get(i).getMeal_plan_id() == mealPlans.get(j).getMeal_plan_id()){
+                    if(j == 0 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j-1).getMeal_plan_id()){
+                        firstIndex = j;
+                    }else if (j == mealPlans.size()-1 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j+1).getMeal_plan_id()){
+                        lastIndex = j+1;
+                    }
+                }else {
+                    nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
+                    jHolder = j;
+                }
+            }
+
+        }
+        return nestedMealPlans;
     }
 
     // gets all the recipe combinations for one meal plan as a list of mealplans
