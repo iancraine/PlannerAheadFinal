@@ -16,7 +16,7 @@ public class MealPlanController {
     @Autowired
     private MealPlanDao mealPlanDao;
 
-<<<<<<< HEAD
+
     @RequestMapping(path="/{userid}",method= RequestMethod.GET)
     public List<MealPlan> listAllMealPlans(@PathVariable int userId) {
 
@@ -43,8 +43,6 @@ public class MealPlanController {
  public MealPlan updateMealPlan(@PathVariable int mealPlanId,@RequestBody MealPlan mealPlan){
         return mealPlanDao.updateMealPlan(mealPlan);
  }
-=======
 
->>>>>>> afe688796c3a8ea900ce5773dd74bc7e4bc10d40
 
 }
