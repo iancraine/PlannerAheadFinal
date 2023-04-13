@@ -62,7 +62,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
         sql = "INSERT INTO meal_plan_recipes(meal_plan_id, recipe_id, for_date, meal_type) " +
                 "VALUES (?, ?, ?, ?);";
-        for(MealPlan plan : newlyAddedMealPlan){
+        for(MealPlan plan : newMealPlan){
             jdbcTemplate.update(sql,mealPlanId, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type());
         }
 
