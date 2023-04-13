@@ -20,7 +20,6 @@ export default {
       this.mealPlan = response.data;
       
     });
-    //todo: make a request to pull ingredients for recipe (from IngredientService)
   }
 
 }
