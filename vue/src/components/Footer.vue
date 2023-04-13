@@ -36,13 +36,13 @@
         </li>
         <li>
           <span><i class="fa-solid fa-phone"></i></span>
-            <p><a href="#">+1(777)-777-7777</a>
-           </p>
+            <span><a href="#">+1(777)-777-7777</a>
+           </span>
            </li>
             <li>
               <span><i class="fa-solid fa-envelope"></i></span>
-                 <p><a href="#">contact@plannerahead.com</a>
-              </p>
+                 <span><a href="#">contact@plannerahead.com</a>
+              </span>
             </li>
             </ul>                                                                                                                                                                                                                                                                >
    </div>
@@ -163,6 +163,7 @@ export default {
   display: grid;
   grid-template-columns: 2;
   margin-bottom: 16px;
+  
 }
 .info li span:nth-child(1) {
   color:black;
