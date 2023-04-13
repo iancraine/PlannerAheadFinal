@@ -32,4 +32,16 @@ INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
 
+INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (1,1,1);
+INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (2,2,2);
+INSERT INTO daily_plan (breakfast_recipe_id, lunch_recipe_id, dinner_recipe_id)VALUES (1,2,1);
+
+INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
+VALUES ('Yummy', 1,2,3,1,2,3,1, CURRENT_DATE);
+INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
+VALUES ('Yummy', 3,2,1,3,2,1,3, CURRENT_DATE);
+INSERT INTO weekly_plan (plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday, date_created)
+VALUES ('Yummy', 2,1,3,2,1,3,2, CURRENT_DATE);
+
+
 COMMIT TRANSACTION;
