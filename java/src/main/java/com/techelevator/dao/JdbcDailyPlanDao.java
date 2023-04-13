@@ -36,11 +36,33 @@ public class JdbcDailyPlanDao implements DailyPlanDao{
             dailyPlan.add(mapRowSetToDailyPlan(result));
         }
         return dailyPlan;
+
+
+       /*
+       Kate:
+       if we add the user_id to the weekly_plan table and a join table daily_weekly_plan:
+
+            String selectDailyPlansForTheWeekSql = "SELECT * FROM daily_plan " +
+                "JOIN daily_weekly_plan dwp ON dp.daily_plan_id = dwp.daily_plan_id" +
+                "JOIN weekly_plan wp ON wp.weekly_plan_id = dwp.weekly_plan_id " +
+                "WHERE user_id = ?;";
+
+        */
     }
 
     public DailyPlan getDailyPlanById(int dailyPlanId){
         DailyPlan dailyPlan=null;
         return dailyPlan;
+
+         /*
+       Kate:
+       if we add the user_id to the weekly_plan table and a join table daily_weekly_plan:
+
+            String selectDailyPlansForTheWeekSql = "SELECT * FROM daily_plan " +
+                "WHERE daily_plan_id = ?;";
+
+        */
+
     }
 
     public DailyPlan createDailyMealPlan(DailyPlan dailyPlan, int userId){

@@ -24,6 +24,11 @@ public class JdbcWeeklyPlanDao implements WeeklyPlanDao{
         return null;
     }
 
+    /*
+    Kate:
+    we would have to add into the weekly_plan table AND the daily_weekly_plan table
+     */
+
     @Override
     public void deleteWeeklyMealPlan(int userId, int weeklyplanId) {
 
