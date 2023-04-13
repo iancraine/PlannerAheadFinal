@@ -41,8 +41,8 @@ public class JdbcMealPlanDao implements MealPlanDao{
         List<MealPlan> mealPlans = new ArrayList<>();
 
         String sql= "SELECT mp.meal_plan_id, mp.plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
-                    "JOIN meal_plan mp ON mp.meal_plan_id = mpr.meal_plan_id " +
-                    "WHERE mpr.meal_plan_id=? ORDER BY for_date, meal_type;";
+                "JOIN meal_plan mp ON mp.meal_plan_id = mpr.meal_plan_id " +
+                "WHERE mpr.meal_plan_id=? ORDER BY for_date, meal_type;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, mealPlanId);
 
@@ -51,6 +51,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
         }
         return mealPlans;
     }
+
 
     @Override
     public List<MealPlan> addMealPlan(List<MealPlan> newMealPlan, int userId) {
@@ -73,7 +74,17 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
     @Override
     public void deleteMealPlan(int mealPlanId, int userId) {
-        
+        //users_meal_plan
+        String deleteSql = "DELETE FROM users_meal_plan WHERE user_id=? AND meal_plan_id=?;";
+        jdbcTemplate.update(deleteSql, userId, mealPlanId);
+
+        //meal_plan_recipes
+        deleteSql = "DELETE FROM meal_plan_recipes WHERE meal_plan_id=?;";
+        jdbcTemplate.update(deleteSql, mealPlanId);
+
+        //meal_plan
+        deleteSql = "DELETE FROM meal_plan WHERE meal_plan_id=?;";
+        jdbcTemplate.update(deleteSql, mealPlanId);
     }
 
     @Override
