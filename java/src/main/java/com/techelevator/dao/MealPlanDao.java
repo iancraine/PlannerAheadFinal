@@ -12,7 +12,7 @@ public interface MealPlanDao {
 
      MealPlan addMealPlan(MealPlan newMealPlan, int userId);
 
-     void deleteMealPlan(int mealPlanId, int userId);
+     void deleteMealPlan(int userId,int mealPlanId);
 
      MealPlan updateMealPlan(MealPlan updatedMealPlan);
 }
