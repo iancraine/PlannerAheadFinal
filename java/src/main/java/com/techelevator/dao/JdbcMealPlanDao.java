@@ -89,7 +89,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
     @Override
     public List<MealPlan> updateMealPlan(List<MealPlan> updatedMealPlan) {
-        
+
         String sql = "UPDATE meal_plan SET plan_name = ? where meal_plan_id =?;";
         jdbcTemplate.update(sql, updatedMealPlan.get(0).getPlan_name(), updatedMealPlan.get(0).getMeal_plan_id());
 
