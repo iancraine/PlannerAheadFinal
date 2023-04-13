@@ -1,5 +1,9 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.MealPlan;
+
+import java.util.List;
+
 public interface MealPlanDao {
 
      List<MealPlan> listAllMealPlans(int userId);
