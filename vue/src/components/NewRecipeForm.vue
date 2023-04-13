@@ -39,7 +39,7 @@
 
             <div>
                 <ul v-for="ingredient in ingredients" v-bind:key="ingredient.name">
-                    <li>{{ingredient.amount}} of {{ingredient.name}}</li>
+                    <li>{{ingredient.amount}} of {{ingredient.ingredient_name}}</li>
                 </ul>
             </div>
 
@@ -112,15 +112,17 @@ export default {
     concatIngredient(){
         this.inputIngredient.amount += " " + this.unit;
         this.ingredients.push(this.inputIngredient);
-        this.inputIngredient ='';
+        this.inputIngredient = {
+            ingredient_name: '',
+            amount: '',
+            ingredient_id: ''
+        };
         this.unit='';
     },
     addRecipeToDatabase(){
         RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
-            //if(response.status === 201){
                 this.recipe_id = response.data.recipeId;
                 this.addIngredientToDatabase(); 
-            //}
         }).catch(error => {
             if(error.response){
                 this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
@@ -136,21 +138,15 @@ export default {
     addIngredientToDatabase(){
         this.ingredients.forEach((ingredient) => {
             IngredientService.addIngredient(this.$store.state.user.id, ingredient)
-            .then((response) => {
-                console.log("If request is successful.");
-
+            .then((response) => {            
                 if(response.status === 201 || response.status===200){
-                   console.log("response status was created 201");
-                   console.log(response.data.ingredient_id);
-
                     ingredient.ingredient_id =  response.data.ingredient_id;
-                    console.log(ingredient);
                     IngredientService.addIngredientForRecipe(this.recipe_id, ingredient)
                     .then((response) => {
                         if(response.status === 201 || response.status===200){
                             this.showForm = false;
                             this.clear();
-                            this.$router.push(`/recipes/${this.$store.state.user.id}`);
+                            this.$router.push(`/recipes/list/${this.$store.state.user.id}`);
                         }
                     }).catch(error => {
                         if(error.response){
