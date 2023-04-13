@@ -5,8 +5,23 @@
 </template>
 
 <script>
+import mealPlanService from "../services/MealPlanService.js";
+
 export default {
-    name: 'mealPlan'
+    name: 'mealPlan',
+    data() {
+      return {
+        mealPlan: []
+      }
+      },
+
+    created() {
+    mealPlanService.listAllMealPlans(this.$route.params.mealPlanId).then(response => {
+      this.mealPlan = response.data;
+      
+    });
+    //todo: make a request to pull ingredients for recipe (from IngredientService)
+  }
 
 }
 </script>
