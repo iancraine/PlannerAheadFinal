@@ -25,12 +25,12 @@ public class MealPlanController {
     }
 
     @RequestMapping(path="/{mealPlanId}", method= RequestMethod.GET)
-    public MealPlan getMealPlanById(@PathVariable int mealPlanId){
-        return mealPlanDao.getMealPlanById(mealPlanId);
+    public List<MealPlan> getMealPlanById(@PathVariable int mealPlanId){
+        return mealPlanDao.getMealPlansById(mealPlanId);
     }
 
  @RequestMapping(path="/add/{userId}", method= RequestMethod.POST)
-   public  MealPlan addMealPlan(@PathVariable int userId, @RequestBody MealPlan mealPlan){
+   public  List<MealPlan> addMealPlan(@PathVariable int userId, @RequestBody MealPlan mealPlan){
         return mealPlanDao.addMealPlan(mealPlan, userId);
  }
 

@@ -53,8 +53,12 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public MealPlan addMealPlan(MealPlan newMealPlan, int userId) {
-        return null;
+    public List<MealPlan> addMealPlan(MealPlan newMealPlan, int userId) {
+        List<MealPlan> newlyAddedMealPlan = new ArrayList<>();
+
+        String sql = "INSERT INTO meal_plan (plan_name) VALUES (?);";
+
+
     }
 
     @Override
