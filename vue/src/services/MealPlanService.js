@@ -12,12 +12,12 @@ export default {
         return http.get(`/mealplans/${mealPlanId}`);
     },
     addMealPlan(userId, mealPlan){
-        return http.post(`/mealplans/add/${userId}`, mealPlan);
+        return http.post(`/mealplans/add/${userId}`, mealPlan); //mealPlan must be an array of objects
     },
     deleteMealPlan(userId, mealPlanId){
         return http.delete(`/mealplans/${userId}/${mealPlanId}`);
     },
-    updateMealPlan(mealPlanId){
-        return http.put(`/mealplans/${mealPlanId}`);
+    updateMealPlan(mealPlanId, mealPlan){
+        return http.put(`/mealplans/${mealPlanId}`, mealPlan);  //mealPlan must be an array of objects
     }
 }

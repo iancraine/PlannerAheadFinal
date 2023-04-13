@@ -29,20 +29,20 @@
       <ul class="info">
         <li>
           <span><i class="fa-solid fa-map"></i></span>
-          <span>Coding Street
+          <p>Coding Street
             <br>
             Code City, TX 77777
-          </span>
+          </p>
         </li>
         <li>
           <span><i class="fa-solid fa-phone"></i></span>
-            <span><a href="#">+1(777)-777-7777</a>
-           </span>
+            <p><a href="#">+1(777)-777-7777</a>
+           </p>
            </li>
             <li>
               <span><i class="fa-solid fa-envelope"></i></span>
-                 <span><a href="#">contact@plannerahead.com</a>
-              </span>
+                 <p><a href="#">contact@plannerahead.com</a>
+              </p>
             </li>
             </ul>                                                                                                                                                                                                                                                                >
    </div>
@@ -161,16 +161,26 @@ export default {
 }
 .info li {
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: "images word";
   margin-bottom: 16px;
   
 }
 .info li span:nth-child(1) {
   color:black;
   font-size: 20px;
+  grid-area: images;
+  
 }
 .info li span {
   color:black;
+  
+ 
+}
+.info li p {
+  grid-area: word;
+  align-items: start;
+  margin-top: 0;
 }
 .info a {
   color:black;
