@@ -10,7 +10,7 @@ public interface MealPlanDao {
 
      List<MealPlan> getMealPlansById(int mealPlanId);
 
-     List<MealPlan> addMealPlan(MealPlan newMealPlan, int userId);
+     List<MealPlan> addMealPlan(List<MealPlan> newMealPlan, int userId);
 
      void deleteMealPlan(int userId,int mealPlanId);
 
