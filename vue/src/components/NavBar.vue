@@ -6,10 +6,10 @@
       <!-- <div id="brandName"> Planner Ahead </div> -->
 
       <ul class="nav-links">
+        <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
+        <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
         <li id="mealPlans"><router-link v-bind:to="{ name: 'mealplans', params: {userId: this.$store.state.user.id}}" v-if="$store.state.token != ''">Meal Plans</router-link></li>
         <li id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </li>
-        <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
-        <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
         <li id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></li>
         </ul>
   </div>
