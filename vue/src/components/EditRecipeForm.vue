@@ -50,7 +50,7 @@
             <br>
 
             <div class="btn-align">
-                <input class="submitBtn" type="submit" v-on:click="addRecipeToDatabase()" value="Submit">
+                <input class="submitBtn" type="submit" v-on:click="editRecipe()" value="Submit">
                 <button class="cancelBtn" @click.prevent="clear()"> Clear</button>
             </div>
         </form>
@@ -62,8 +62,8 @@
 
 export default {
     props: {
-        
-    },
+        "idRecipe": Number
+        },
     data(){
     return{
         inputTag: '',
@@ -86,6 +86,14 @@ export default {
         };
     },
  methods: {
+    getRecipe(){
+        RecipeService.getRecipeById(this.idRecipe).then((response) =>{
+            this.recipe = response.data
+        })
+    },
+    created(){
+        this.getRecipe();
+    },
     clear() {
         this.inputTag = '';
         this.inputIngredient= {
@@ -95,12 +103,7 @@ export default {
         };
         this.unit = '';
         this.recipe ={ 
-           recipe_name:'',
-           directions:'',
-           tags:'',
-           prep_time:'',
-           food_pic:'',
-           is_public: false
+           
         };
         this.ingredients= [];
     },
@@ -122,10 +125,10 @@ export default {
         };
         this.unit='';
     },
-    addRecipeToDatabase(){
-        RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
+    editRecipe(){
+        RecipeService.modifyRecipe(this.$store.state.user.id,this.recipe).then((response) => {
                 this.recipe_id = response.data.recipeId;
-                this.addIngredientToDatabase(); 
+                this.editIngredient(); 
         }).catch(error => {
             if(error.response){
                 this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
@@ -138,7 +141,7 @@ export default {
        
        
     },
-    addIngredientToDatabase(){
+    editIngredient(){
         this.ingredients.forEach((ingredient) => {
             IngredientService.addIngredient(this.$store.state.user.id, ingredient)
             .then((response) => {            
@@ -174,6 +177,7 @@ export default {
         });
 
     }
+
 
 
     }

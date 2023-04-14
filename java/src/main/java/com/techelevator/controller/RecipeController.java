@@ -17,7 +17,7 @@ public class RecipeController {
     private RecipeDao recipeDao;
 
     /**
-     *
+     *Retrieve a single recipe by its recipeId and return it as an object
      * @param recipeId
      * @return Recipe
      */
