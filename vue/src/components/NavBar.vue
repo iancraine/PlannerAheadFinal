@@ -3,7 +3,7 @@
       <div class="logoImg">
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
-      <div id="brandName"> Planner Ahead </div>
+      <!-- <div id="brandName"> Planner Ahead </div> -->
 
       <ul class="nav-links">
         <li id="mealPlans"><router-link v-bind:to="{ name: 'mealplans', params: {userId: this.$store.state.user.id}}" v-if="$store.state.token != ''">Meal Plans</router-link></li>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-    
+     
     div#headerNav {
         display: flex;
         align-items: center;
@@ -101,4 +101,6 @@ export default {
         position: absolute;
         right: 500px;
     }
+   
+
 </style>
