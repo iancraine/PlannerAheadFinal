@@ -61,7 +61,9 @@
  import IngredientService from "../services/IngredientService";
 
 export default {
-       
+    props: {
+        "idRecipe": Number
+        },
     data(){
     return{
         inputTag: '',
@@ -85,7 +87,12 @@ export default {
     },
  methods: {
     getRecipe(){
-        RecipeService.getRecipeById()
+        RecipeService.getRecipeById(this.idRecipe).then((response) =>{
+            this.recipe = response.data
+        })
+    },
+    created(){
+        this.getRecipe();
     },
     clear() {
         this.inputTag = '';
