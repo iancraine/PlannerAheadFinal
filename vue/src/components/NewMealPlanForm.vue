@@ -1,122 +1,115 @@
 <template>
   <div>
     <div class="weekly-plan-name">
-      <label for="meal-plan-name"> <h2>Meal Plan Name: </h2> </label>
+      <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label>
       <div class="title-add-section" v-if="!planNameAdded">
-           <input
-            type="text"
-            class="meal-plan-name"
-            id="meal-plan-name"
-            v-model="weeklyPlan.planName"
-            />
+        <input
+          type="text"
+          class="meal-plan-name"
+          id="meal-plan-name"
+          v-model="mealPlanName"
+        />
         <button class="addBtn">Add</button>
       </div>
-     
+
+      <div class="addedTitleDisplay" v-if="planNameAdded">
+        <h3>{{ mealPlan.plan_name }}</h3>
+        <button class="modifyBtn">Modify</button>
+      </div>
     </div>
 
     <form>
       <div class="options">
-          <div class="daysOptions">
-              <label for="day">Select Day of the Week: </label>
-        <select name="day" id="day" v-model="currentSelectedDay">
-          <option value="monday">Monday</option>
-          <option value="tuesday">Tuesday</option>
-          <option value="wednesday">Wednesday</option>
-          <option value="thursday">Thursday</option>
-          <option value="friday">Friday</option>
-          <option value="saturday">Saturday</option>
-          <option value="sunday">Sunday</option>
-        </select>
-          </div>
-        
-        <div class="recipesOptions">
-             <label for="recipe">Select Recipe: </label>
-        <select name="recipe" id="recipe" v-model="currentSelectedRecipe">
-          <option
-            v-for="recipe in this.$store.state.recipes"
-            v-bind:key="recipe.recipeId"
-            :value="recipe.recipe_name"
-          >
-            {{ recipe.recipe_name }}
-          </option>
-        </select>
+ <div class="dateOptions">
+          <label for="date">Select Date: </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            v-model="mealPlan.for_date"
+          />
         </div>
-       
+
+        <div class="mealTypeOptions">
+          <label for="mealType">Select Meal: </label>
+          <select name="mealType" id="mealType" v-model="mealPlan.meal_type">
+            <option value=1> Breakfast </option>
+            <option value=2> Lunch </option>
+            <option value=3> Dinner </option>
+            <option value=4> Snack </option>
+            <option value=5> Appetizer </option>
+          </select>
+        </div>
+
+        <div class="recipesOptions">
+          <label for="recipe">Select Recipe: </label>
+          <select name="recipe" id="recipe" v-model="currentSelectedRecipe">
+            <option
+              v-for="recipe in this.$store.state.recipes"
+              v-bind:key="recipe.recipe_id"
+              :value="recipe.recipe_name"
+            >
+              {{ recipe.recipe_name }}
+            </option>
+          </select>
+        </div>
+
       </div>
+       
+     <button class="addToPlanBtn" @click.prevent="addMealCombo">Add To Plan </button>
     </form>
 
     <table>
-        <thead>
-          <th>
-            <tr >
-              <div class="container">
-                <td> <img src="../assets/calendar-planner.jpg" class="calendarImg" height=100 width=100></td>
-                  <td>Monday</td>
-                <td> Tuesday </td>
-                <td>Wednesday</td>
-                <td>Thursday</td>
-                <td>Friday</td>
-                <td>Saturday</td>
-                <td>Sunday </td>
-              </div>
-            </tr>
-          </th>
-        </thead>
+      <thead>
+        <th>
+          <tr>
+            <div class="planContainer">
+              <td>
+                <img
+                  src="../assets/calendar-planner.jpg"
+                  class="calendarImg"
+                  height="100"
+                  width="100"
+                />
+              </td>
+              <td>Date</td>
+              <td>Meal</td>
+              <td>Recipe</td>
+            </div>
+          </tr>
+        </th>
+      </thead>
+      <tbody>
+        <tr v-for="plan in listOfPlans" v-bind:key="plan.plan_name">
+          <td></td>
+          <td>{{listOfPlans.for_date}}</td>
+          <td>{{listOfPlans.meal}}</td>
+          <td>{{mealTypeName}}</td>
+        </tr>
 
-        <tbody>
-            <tr class="breakfast">
-              <td> Breakfast</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-
-             <tr class="lunch">
-              <td> Lunch</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-
-             <tr class="dinner">
-              <td> Dinner</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-        </tbody>
+      </tbody>
     </table>
-
   </div>
 </template>
+
 
 <script>
 import recipeService from "../services/RecipeService.js";
 export default {
-  name: "weekly-plan",
+  name: "add-meal-plan",
   data() {
     return {
-      currentSelectedDay: "",
-      currentSelectedRecipe: "",
       planNameAdded: false,
-      weeklyPlan: {
-        planName: "",
-        monday: [0, 0, 0],
-        tuesday: [0, 0, 0],
-        wednesday: [0, 0, 0],
-        thursday: [0, 0, 0],
-        friday: [0, 0, 0],
-        saturday: [0, 0, 0],
-        sunday: [0, 0, 0],
+      mealPlanName: "",
+      currentSelectedRecipe: "recipe",
+      listOfPlans:[],
+      mealPlan: {
+        plan_name: "",
+        // get the recipe Id based on the recipe name when user adds the combo
+        recipe_id: 0,
+        for_date: "",
+      // will have to convert it to a number. It stores as a string when user selects meal type
+        meal_type: 0,
       },
     };
   },
@@ -126,12 +119,65 @@ export default {
       this.$store.commit("SET_RECIPE", response.data.sort());
     });
   },
+
+  computed: {
+    mealTypeName() {
+      if (this.mealPlan.meal_type === "1") {
+        return "Breakfast";
+      }
+      else if (this.mealPlan.meal_type === "2") {
+        return "Lunch";
+      }
+      else if(this.mealPlan.meal_type === "3") {
+        return "Dinner";
+      }
+      else if(this.mealPlan.meal_type === "4") {
+        return "Snack";
+      }
+      else {
+        return "Appetizer"
+      }
+    },
+
+    recipeId() {
+      let recipeObj =  this.$store.state.recipes.find((recipe) => 
+         recipe.recipe_name = this.currentSelectedRecipe
+      );
+      return recipeObj.recipeId;
+    }
+  },
+
+// List<MealPlan>
+// each MealPlan object should have: plan_name, recipe_id, for_date, meal_type int 
+
+  methods: {
+    clear() {
+       this.mealPlan =  {
+        plan_name: "",
+        recipe_id: 0,
+        for_date: "",
+        meal_type: 0
+      };
+
+      this.currentSelectedRecipe = "";
+    },
+    addMealCombo() {
+         this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
+         this.mealPlan.plan_name = this.mealPlanName;
+         this.mealPlan.recipe_id = this.recipeId;
+
+         this.listOfPlans.push(this.mealPlan);
+
+        this.clear();
+    },
+  },
 };
 </script>
 
 <style scoped>
 .addBtn,
-.modifyBtn {
+.modifyBtn, 
+.addToPlanBtn {
   margin: 0 10px;
   background-color: #e1ecf4;
   font-family: system-ui, sans-serif;
@@ -141,37 +187,54 @@ export default {
 }
 
 .addBtn:hover,
-.modifyBtn:hover {
+.modifyBtn:hover, 
+.addToPlanBtn {
   font-weight: 2em;
   cursor: pointer;
+}
+
+.addToPlanBtn {
+  position: absolute;
+  left: 50%;
 }
 .weekly-plan-name {
   text-align: center;
   padding: 30px;
 }
 
-.options{
-    display: flex;
-    justify-content: center;
+.options {
+  display: flex;
+  justify-content: center;
+  background-color:rgb(241, 249, 253);
+  margin: 0 auto;
+  max-width: 50%;
 }
 
-.calendarImg{
-   border-radius: 25px;
+.calendarImg {
+  border-radius: 25px;
 }
 
-table{
-    background-color: #ECF2F0;
-    margin: 50px auto;
-    border-radius: 25px;
+table {
+  background-color: #ecf2f0;
+  margin: 50px auto;
+  border-radius: 25px;
 }
 
-tr, td {
+tr,
+td {
   padding: 1.2em;
 }
 
-.container {
+.planContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
+
+.dateOptions, .mealTypeOptions, .recipesOptions {
+  display: inline-block;
+  margin: 50px;
+}
+
+
 </style>

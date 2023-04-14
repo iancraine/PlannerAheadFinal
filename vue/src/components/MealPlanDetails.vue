@@ -76,7 +76,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .addBtn,
 .modifyBtn {
   margin: 0 10px;

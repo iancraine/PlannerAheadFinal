@@ -177,7 +177,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .addIngredient {
     background-color: #AFE1AF;
     color: white;
