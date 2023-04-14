@@ -6,22 +6,25 @@
   <div class="container2">
     <div class="aboutus">
       <h2 class="header">About Us</h2>
-      <p class="aboutUsText">Lorem ipsum dolor sit amet, consectetur, blah blah adhbcjbsjabsadjcbdsjkcdbckjsddscdscdcdcdscdscsdcdscdscdscdscdcsdcdscdscdcdscdcdsccdshcbdhcbdhbdsbc djsbcsdjhcbsdcjhbsdjh jhvhvhjvjkjn kbkhbyvjhbk</p>
+      <div class="aboutUsText">
+      <p> Your one-stop solution for planning, cooking, and enjoying delicious and healthy meals every day! We are a team of passionate food lovers, nutrition experts, and tech enthusiasts who came together to make meal planning and cooking easier and more enjoyable for everyone.</p>
+      <p> At Meal Planner, we believe that eating healthy and delicious meals should be effortless, fun, and affordable for everyone. That's why we created a simple and intuitive meal planning platform that helps you plan your meals for the week, create a shopping list, and cook delicious and healthy meals in no time.</p>
+      </div>
       <ul class="social-media">
         <li class="sm_list"><a href="#" class="sm_a"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
         <li class="sm_list"><a href="#" class="sm_a"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
         <li class="sm_list"><a href="#" class="sm_a"><i class="fa-brands fa-instagram"></i></a></li>
-          <li class="sm_list"><a href="#" class="sm_a"><i class="fa-brands fa-linkedin"></i></a></li>
+        <li class="sm_list"><a href="#" class="sm_a"><i class="fa-brands fa-linkedin"></i></a></li>
       </ul>
     </div>
     <div class="quicklinks">
       <h2 class="header">Quick Links</h2>
       <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">My Meal Plans</a></li>
-        <li><a href="#">New Recipe Form </a></li>
-        <li><a href="#">Recipe Detail</a></li>
-        <li><a href="#">Recipe List</a></li>
+        <li><a href="AboutUs">About Us</a></li>
+        <li><a href="MealPlanDetails">My Meal Plans</a></li>
+        <li><a href="NewRecipeForm">New Recipe Form </a></li>
+        <li><a href="RecipeDetail">Recipe Detail</a></li>
+        <li><a href="RecipeList">Recipe List</a></li>
       </ul>
     </div>
     <div class ="contact">
@@ -98,7 +101,8 @@ export default {
   color:black;
   font-weight: 500;
   margin-bottom: 15px;
-  padding-left: 15px;
+  padding-left: 35px;
+  padding-top: 30px;
 }
 .header::before {
   content: '';
@@ -108,17 +112,20 @@ export default {
   width: 50px;
   height: 2px;
   background: #FFEB3B;
-  margin-left: 15px;
+  margin-left: 35px;
+  
 }
 .aboutUsText {
   color: black;
-  padding-left: 15px;
+  padding-left: 35px;
+  /* padding-top: 10px; */
 }
 .social-media {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(4, 50px);
   grid-gap: 10px;
+  padding-bottom: 25px;
 }
 .sm_list {
   list-style: none;
@@ -133,14 +140,16 @@ export default {
   justify-content: center;
   text-decoration: none;
   border-radius: 4px;
+   color: black;
+  font-size: 20px;
 }
 .sm_a:hover {
   background: #6380FE
 }
-.sm_a .fa {
+/* .sm_a .fa {
   color: black;
   font-size: 20px;
-}
+} */
 .quicklinks {
   position: relative;
 }
