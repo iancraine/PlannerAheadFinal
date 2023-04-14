@@ -10,14 +10,25 @@
 
       <div>
         <button v-on:click="toggleShowForm()">Edit Recipe</button>
-        <edit-recipe-form v-show="showForm"/>
+        <edit-recipe-form v-bind:id-recipe="recipe.recipeId" v-if="showForm"/>
       </div>
-
+      <div>
         <h3>Directions:</h3>
         <p align="justify" class="directions">{{recipe.directions}}</p>
+      </div>
+      <div>
+        <h3>Ingredients</h3>
+        <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
+          <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
+          <p id="ingredient-amount">{{ ingredient.amount }}</p>
+        </div>
+        <!-- V-for ingredients here -->
+      </div>
+
+        
 
       <div class="tag">
-        <h5 class="tag">Tag:</h5>
+        <h5 class="tag">Tags:</h5>
         <p class="tag">{{recipe.tags}}</p>
       </div>
 
@@ -47,6 +58,8 @@
 <script>
 import EditRecipeForm from "./EditRecipeForm.vue";
 import recipeService from "../services/RecipeService.js";
+import IngredientService from "../services/IngredientService";
+
 export default {
 name:'recipe-detail',
 components: {
@@ -63,7 +76,8 @@ data(){
            prep_time:'',
            food_pic:'',
            is_public:''
-        }
+        },
+        ingredients: []
     };
 },
 methods: {
@@ -78,6 +92,9 @@ created() {
       this.recipe = response.data;
       
     });
+    IngredientService.getIngredientsForRecipe(this.$route.params.recipeId).then((response) => {
+      this.ingredients = response.data;
+    })
   }
 }
 </script>
@@ -101,8 +118,8 @@ created() {
  /* h2:hover{
   color:rgb(31, 112, 11);
 } */
-h2{
-  color: #89c36f;
+h2, h3{
+  color: #79b85d;
 }
 .left{
   grid-area: righty;
@@ -117,23 +134,31 @@ h2{
   clear: both;
   padding:10px;
 }
+/* img.left{  Trying to have the image stay in line with the recipe as you scroll down
+  position: fixed;
+} */
 .tag {
   display: inline-block;
-  
-  
+}
+p.tag, p.time{
+  margin-top: 0;
+  margin-left: 6px;
 }
 .time{
   display: inline-block;
-  
 }
-.time h5 {
+.time h5, .tag h5 {
   margin-top: 0;
 }
-div.time{
+#ingredient-name{
+  display: inline-block;
   margin-top:0;
+  margin-left: 40px;
 }
-p.time{
-  margin-top: 0;
+#ingredient-amount{
+  display: inline-block;
+  margin-top:0;
+  margin-left: 6px;
 }
 
 
