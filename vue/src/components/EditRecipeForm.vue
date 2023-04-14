@@ -1,6 +1,7 @@
 <template>
     <div>
-        <form action="#" v-on:submit.prevent="" class="recipe-form">
+        <button v-on:click="toggleShowForm()">Edit Recipe</button>
+        <form action="#" v-on:submit.prevent="" class="recipe-form" v-show="showForm">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
@@ -33,6 +34,7 @@
                     <option value="quarts">quarts</option>
                     <option value="pints">pints</option>
                     <option value="gallons">gallons</option>
+                    <option value="units">units</option>
                 </select>
                 <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
             </div>
@@ -62,10 +64,11 @@
 
 export default {
     props: {
-        "idRecipe": Number
+        recipeFrom: Object
         },
     data(){
     return{
+        showForm: false,
         inputTag: '',
         inputIngredient: {
             ingredient_name: '',
@@ -86,15 +89,18 @@ export default {
         };
     },
  methods: {
+    toggleShowForm() {
+        this.showForm = !this.showForm;
+        this.recipe = this.recipeFrom;
+    },
     getRecipe(){
         RecipeService.getRecipeById(this.idRecipe).then((response) =>{
             this.recipe = response.data;
             console.log(this.recipe);
         })
     },
-    beforeMount(){
-        console.log("does this count as being created");
-        this.getRecipe();
+    created(){
+        this.recipe = this.recipeFrom;
     },
     clear() {
         this.inputTag = '';
@@ -188,7 +194,7 @@ export default {
 
 <style scoped>
 form {
-    background-color: rgb(236, 245, 226);
+    background-color: rgb(212, 245, 174);
 }
 .addIngredient {
     background-color: #AFE1AF;
@@ -212,7 +218,7 @@ input.prep-time{
     width: 5em;
 }
 form.recipeForm{
-    background-color: #ebf2ef;
+    background-color: #aff8bb;
     font-family: system-ui, sans-serif;
 }
 
