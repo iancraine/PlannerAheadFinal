@@ -55,7 +55,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
                         lastIndex = j+1;
                         if(j == mealPlans.size()-1){
                             nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
-                            break;
+                            i = mealPlans.size();
                         }
                     }
                 }else {
