@@ -33,6 +33,7 @@
                     <option value="quarts">quarts</option>
                     <option value="pints">pints</option>
                     <option value="gallons">gallons</option>
+                    <option value="units">units</option>
                 </select>
                 <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
             </div>
