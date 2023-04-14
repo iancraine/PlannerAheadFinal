@@ -100,6 +100,7 @@ export default {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  
 }
 
 .form-signin .form-control {
@@ -108,6 +109,9 @@ export default {
   height: auto;
   padding: 10px;
   font-size: 16px;
+  align-content: center;
+  margin-left: 50px;
+  text-align: center;
 }
 .btn{
   padding: 10px;
