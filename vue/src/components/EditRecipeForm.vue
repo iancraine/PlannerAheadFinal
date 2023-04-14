@@ -1,6 +1,7 @@
 <template>
     <div>
-        <form action="#" v-on:submit.prevent="" class="recipe-form">
+        <button v-on:click="toggleShowForm()">Edit Recipe</button>
+        <form action="#" v-on:submit.prevent="" class="recipe-form" v-show="showForm">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
@@ -12,34 +13,16 @@
             <br>
             <textarea name="directions" id="" cols="100" rows="10" v-model="recipe.directions"></textarea>
             <br>
-
-            <input class="addTag" type="text" placeholder="Add a tag" v-model="inputTag"/>
-            <button class="addTag" @click.prevent="concatTag()" >Add</button>
-            <p v-bind:show="recipe.tags">{{recipe.tags}}</p>
+            <div>
+                <textarea name="editTag" id="editTag" cols="30" rows="2" v-model="recipe.tags"></textarea>
+            </div>
             
             <div  class="ingredients-content">
-                <label for="userInput">Add Ingredients: </label>
-                <input type="text" id="userInput" v-model="inputIngredient.ingredient_name">
-                <label for="amount">Amount: </label>
-                <input type="text" id="amount" v-model="inputIngredient.amount">
-                <label for="unit">Unit: </label>
-                <select name="units" id="units" v-model="unit">
-                    <option value="cups">cups</option>
-                    <option value="Tbsp">Tbsp</option>
-                    <option value="Tsp">Tsp</option>
-                    <option value="grams">g</option>
-                    <option value="pounds">lbs</option>
-                    <option value="ounces">oz</option>
-                    <option value="quarts">quarts</option>
-                    <option value="pints">pints</option>
-                    <option value="gallons">gallons</option>
-                </select>
-                <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
-            </div>
-
-            <div>
-                <ul v-for="ingredient in ingredients" v-bind:key="ingredient.name">
-                    <li>{{ingredient.amount}} of {{ingredient.ingredient_name}}</li>
+                <ul>
+                    <li v-for="(ingredient, index) in ingredients" v-bind:key="index">
+                        <input type="text" v-model="ingredients[index].ingredient_name">
+                        <input type="text" v-model="ingredients[index].amount">
+                    </li>
                 </ul>
             </div>
 
@@ -62,10 +45,12 @@
 
 export default {
     props: {
-        "idRecipe": Number
+        recipeFrom: Object,
+        listIngredients: Array
         },
     data(){
     return{
+        showForm: false,
         inputTag: '',
         inputIngredient: {
             ingredient_name: '',
@@ -82,19 +67,13 @@ export default {
            is_public: false
         },
         ingredients: [],
-        recipe_id: ''
         };
     },
  methods: {
-    getRecipe(){
-        RecipeService.getRecipeById(this.idRecipe).then((response) =>{
-            this.recipe = response.data;
-            console.log(this.recipe);
-        })
-    },
-    beforeMount(){
-        console.log("does this count as being created");
-        this.getRecipe();
+    toggleShowForm() {
+        this.showForm = !this.showForm;
+        this.recipe = this.recipeFrom;
+        this.ingredients = this.listIngredients;
     },
     clear() {
         this.inputTag = '';
@@ -109,14 +88,6 @@ export default {
         };
         this.ingredients= [];
     },
-    concatTag(){
-        if(this.recipe.tags === ''){
-            this.recipe.tags += this.inputTag;
-        }else{
-            this.recipe.tags += ", " + this.inputTag;
-        }
-        this.inputTag = '';
-    },
     concatIngredient(){
         this.inputIngredient.amount += " " + this.unit;
         this.ingredients.push(this.inputIngredient);
@@ -128,8 +99,8 @@ export default {
         this.unit='';
     },
     editRecipe(){
-        RecipeService.modifyRecipe(this.$store.state.user.id,this.recipe).then((response) => {
-                this.recipe_id = response.data.recipeId;
+        RecipeService.modifyRecipe(this.recipe.recipeId, this.recipe).then((response) => {
+                this.recipe = response.data;
                 this.editIngredient(); 
         }).catch(error => {
             if(error.response){
@@ -144,39 +115,11 @@ export default {
        
     },
     editIngredient(){
-        this.ingredients.forEach((ingredient) => {
-            IngredientService.modifyIngredient(this.$store.state.user.id, ingredient)
-            .then((response) => {            
-                if(response.status === 201 || response.status===200){
-                    ingredient.ingredient_id =  response.data.ingredient_id;
-                    IngredientService.modifyIngredientForRecipe(this.recipe_id, ingredient)
-                    .then((response) => {
-                        if(response.status === 201 || response.status===200){
-                            this.showForm = false;
-                            this.clear();
-                            this.$router.push(`/recipes/list/${this.$store.state.user.id}`);
-                        }
-                    }).catch(error => {
-                        if(error.response){
-                            console.log("Error submitting new recipe. Response recived was '"+ error.response.statusText+"'")  ;
-                        }else if(error.request) {
-                            console.log("Error submitting new recipe. Server could not be reached.");
-                        }else{
-                            console.log("Error submitting new recipe. Request could not be reached.");
-                        }
-                    });
-                }
-                
-            }).catch(error => {
-                if(error.response){
-                    this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";
-                }else if(error.request) {
-                    this.errorMsg = "Error submitting new recipe. Server could not be reached.";
-                }else{
-                    this.errorMsg = "Error submitting new recipe. Request could not be reached.";
-                }
-            });                  
-        });
+            IngredientService.editIngredient(this.recipe.recipeId, this.ingredients).then((response) => {
+                this.ingredients = response.data;
+                this.showForm = false;
+            })
+           
 
     }
 
@@ -188,7 +131,7 @@ export default {
 
 <style scoped>
 form {
-    background-color: rgb(236, 245, 226);
+    background-color: rgb(212, 245, 174);
 }
 .addIngredient {
     background-color: #AFE1AF;
@@ -212,7 +155,7 @@ input.prep-time{
     width: 5em;
 }
 form.recipeForm{
-    background-color: #ebf2ef;
+    background-color: #aff8bb;
     font-family: system-ui, sans-serif;
 }
 

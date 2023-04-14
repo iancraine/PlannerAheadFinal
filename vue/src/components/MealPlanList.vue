@@ -27,10 +27,8 @@
       </table>  
      
     </div>
-    
   </div>
 </template>
-
 <script>
 import mealPlanService from "../services/MealPlanService.js";
 import recipeService from "../services/RecipeService.js";
@@ -43,7 +41,6 @@ export default {
         viewDetails: []
       }
       },
-
     created() {
     mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
       this.mealPlans = response.data;
@@ -90,7 +87,5 @@ export default {
 }
 
 </script>
-
 <style>
-
 </style>

@@ -9,8 +9,7 @@
       <h2>{{recipe.recipe_name}}</h2>
 
       <div>
-        <button v-on:click="toggleShowForm()">Edit Recipe</button>
-        <edit-recipe-form v-bind:id-recipe="recipe.recipeId" v-if="showForm"/>
+        <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
       </div>
       <div>
         <h3>Directions:</h3>
