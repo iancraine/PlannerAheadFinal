@@ -9,7 +9,7 @@
       <h2>{{recipe.recipe_name}}</h2>
 
       <div>
-        <edit-recipe-form v-bind:recipe-from="recipe"/>
+        <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
       </div>
       <div>
         <h3>Directions:</h3>
