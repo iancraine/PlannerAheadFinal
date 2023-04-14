@@ -40,6 +40,7 @@ INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VAL
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 1, '08/11/2023', 1);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 2, '12/25/2023', 3);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 1, '12/24/2023', 5);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 1, '12/23/2023', 1);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 1, '1/3/2023', 2);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 2, '1/4/2023', 3);
 

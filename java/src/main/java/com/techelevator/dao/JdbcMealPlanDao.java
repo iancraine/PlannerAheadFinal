@@ -25,7 +25,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
                 "FROM meal_plan mp " +
                 "JOIN meal_plan_recipes mpr ON mpr.meal_plan_id = mp.meal_plan_id " +
                 "JOIN users_meal_plan ump ON ump.meal_plan_id = mp.meal_plan_id " +
-                "WHERE user_id = ? ORDER BY plan_name;";
+                "WHERE user_id = ? ORDER BY meal_plan_id;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
 
@@ -53,10 +53,16 @@ public class JdbcMealPlanDao implements MealPlanDao{
                         firstIndex = j;
                     }else if (j == mealPlans.size()-1 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j+1).getMeal_plan_id()){
                         lastIndex = j+1;
+                        if(j == mealPlans.size()-1){
+                            nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
+                            break;
+                        }
                     }
                 }else {
                     nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
                     jHolder = j;
+                    break;
+
                 }
             }
 
