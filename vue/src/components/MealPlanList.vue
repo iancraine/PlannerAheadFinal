@@ -3,7 +3,7 @@
     <h1>My MealPlans</h1>
     <div v-for="mealplan in mealPlans" v-bind:key="mealplan">
       <h2>{{ mealplan[0].plan_name }}</h2>
-      <table>
+
         <thead>
           <tr>
             <th>Meal Type</th>
@@ -18,7 +18,7 @@
             <td>{{day.for_date}}</td>
           </tr>
         </tbody>
-      </table>
+
     </div>
   </div>
 </template>

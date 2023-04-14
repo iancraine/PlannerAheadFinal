@@ -22,7 +22,6 @@
           <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
           <p id="ingredient-amount">{{ ingredient.amount }}</p>
         </div>
-        <!-- V-for ingredients here -->
       </div>
 
         
@@ -112,12 +111,6 @@ created() {
   margin-right: 40px;
   margin-left: 40px;
 }
-/* .directions:hover{
-  color:rgb(176, 241, 181);
-} */
- /* h2:hover{
-  color:rgb(31, 112, 11);
-} */
 h2, h3{
   color: #79b85d;
 }
