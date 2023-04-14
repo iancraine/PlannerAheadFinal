@@ -86,6 +86,7 @@ p {
   background-color: #faf7f0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   justify-content: center;
+  width: 70%;
 }
 
 
