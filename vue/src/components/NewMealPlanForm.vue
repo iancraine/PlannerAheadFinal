@@ -299,8 +299,8 @@ table {
   margin: 50px;
 }
 
-.mealForm {
-  /* background-color:white; */
-}
+/* .mealForm {
+  background-color:white;
+} */
 
 </style>
