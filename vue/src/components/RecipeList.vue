@@ -57,7 +57,7 @@ export default {
 
 }
 </script>
-<style scooped>
+<style scoped>
 
 .recipe-title{
   display: grid;
@@ -113,6 +113,9 @@ div.page-title h1{
 #form {
   display: flex;
   justify-content: center;
+  margin: 15px;
+  padding: 20px;
+  background-color: rgb(236, 245, 226);;
 }
 </style>
 

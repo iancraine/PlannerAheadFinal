@@ -1,7 +1,10 @@
 <template>
   <div id="login" class="text-center">
     <div class="login1">
+      
      <about-us class="login2"/>
+    </div>
+    <div class="form">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -80,11 +83,18 @@ export default {
 };
 </script>
 <style scoped>
-.login1 {
+#login {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+.login1{
+  width:70%
+}
+.form{
+  width:30%;
+  align-content: center;
 }
 .form-signin {
   max-width: 330px;
@@ -93,7 +103,7 @@ export default {
 }
 
 .form-signin .form-control {
-  position: relative;
+  /* position: relative; */
   box-sizing: border-box;
   height: auto;
   padding: 10px;
