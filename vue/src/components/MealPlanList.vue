@@ -23,6 +23,7 @@
   </div>
 </template>
 <script>
+// import { computed } from 'vue';
 import mealPlanService from "../services/MealPlanService.js";
 export default {
     name: 'my-meal-plans',
@@ -30,12 +31,21 @@ export default {
       return {
         mealPlans: []
       }
-      },
+    },
     created() {
     mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
       this.mealPlans = response.data;
     });
-  }
+  },
+  computed:{
+        currentRecipeId() {
+      let recipeObj =  this.$store.state.recipes.find((recipe) => 
+         recipe.recipe_name === this.currentSelectedRecipe
+      );
+      return recipeObj.recipeId;
+    }
+  
+    }
 }
 </script>
 <style>

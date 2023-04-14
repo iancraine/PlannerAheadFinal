@@ -7,8 +7,7 @@
     <div class="aboutus">
       <h2 class="header">About Us</h2>
       <div class="aboutUsText">
-      <p> Your one-stop solution for planning, cooking, and enjoying delicious and healthy meals every day! We are a team of passionate food lovers, nutrition experts, and tech enthusiasts who came together to make meal planning and cooking easier and more enjoyable for everyone.</p>
-      <p> At Meal Planner, we believe that eating healthy and delicious meals should be effortless, fun, and affordable for everyone. That's why we created a simple and intuitive meal planning platform that helps you plan your meals for the week, create a shopping list, and cook delicious and healthy meals in no time.</p>
+      <p>"Effortlessly plan, cook, and enjoy deliciously healthy meals with Meal Planner - your one-stop solution for mealtime bliss!"</p>
       </div>
       <ul class="social-media">
         <li class="sm_list"><a href="#" class="sm_a"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>

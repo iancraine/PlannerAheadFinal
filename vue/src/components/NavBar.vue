@@ -4,7 +4,7 @@
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <!-- <div id="brandName"> Planner Ahead </div> -->
-
+    
       <ul class="nav-links">
         <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
         <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
@@ -12,6 +12,7 @@
         <li id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }" v-if="$store.state.token != ''">My Recipes</router-link> </li>
         <li id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></li>
         </ul>
+    
   </div>
 </template>
 
@@ -22,16 +23,87 @@ export default {
 </script>
 
 <style scoped>
-     
-    div#headerNav {
+     #headerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(226, 246, 202);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* padding: 10px 20px; */
+  width:100%;
+  height: 100px;
+  padding: 5px;
+}
+
+.logoImg {
+  height: 80px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 2px;
+}
+
+.logo {
+  height: 100%;
+  width: auto;
+  
+  
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* background-color: darkgrey; */
+  padding: 10px;
+  
+}
+
+.nav-links li{
+  margin: 0 10px;
+  padding: 5px;
+  min-width:120px;
+  
+   
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+  background-color: #89c36f;
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.nav-links a:hover {
+  color: white;
+  background-color: #aadd92;
+}
+
+    /* #headerNav {
         display: flex;
         align-items: center;
-       /* margin: 0 auto; */
+        margin: 0 auto;
        padding: 0px;
        border-bottom: 3px solid rgb(244, 247, 224);
        background-color:rgb(236, 245, 226);
+      
     }
+li{
+background-color: rgb(222, 247, 192);
+padding: 15px;
+list-style: none;
+width:100px;
+text-align: center;
+border:5px  darkgrey;
+margin: 0,10px;
+}
 
+.nav{
+display: flex;
+}
     .logo{
         border-radius: 10%;     
         width: 100px; 
@@ -67,16 +139,6 @@ export default {
         left: 200px;
     }
 
-    /* flex nav links to right side */
-
-    /* .nav-links{
-        display: flex;
-        justify-content: flex-end;
-    }
-    ul{
-        display: flex;
-        justify-content: flex-end;
-    } */
 
     #home {
         position: absolute;
@@ -101,6 +163,6 @@ export default {
         position: absolute;
         right: 500px;
     }
-   
+    */
 
 </style>
