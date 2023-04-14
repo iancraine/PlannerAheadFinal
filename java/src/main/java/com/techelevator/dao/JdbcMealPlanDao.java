@@ -25,7 +25,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
                 "FROM meal_plan mp " +
                 "JOIN meal_plan_recipes mpr ON mpr.meal_plan_id = mp.meal_plan_id " +
                 "JOIN users_meal_plan ump ON ump.meal_plan_id = mp.meal_plan_id " +
-                "WHERE user_id = ? ORDER BY meal_plan_id;";
+                "WHERE user_id = ? ORDER BY meal_plan_id, for_date, meal_type;";
 
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
 

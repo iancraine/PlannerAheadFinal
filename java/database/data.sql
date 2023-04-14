@@ -19,6 +19,7 @@ VALUES('Roasted Asparagus','Preheat oven to 425°F.'
 	   They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal.','Healthy',20,null,true,2);
 
 INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,1);
+INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,2);
 
 INSERT INTO ingredients (ingredient_name) VALUES ('Flour');
 INSERT INTO ingredients  (ingredient_name) VALUES ('Sugar');

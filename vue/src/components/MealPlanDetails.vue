@@ -1,10 +1,9 @@
 <template>
  <div>
-     <div>
+
          <h1>Meal Plan Details</h1>
-         
-     </div>
-     <table>
+      
+     <!-- <table>
         <thead>
           <th>
             <tr >
@@ -20,56 +19,38 @@
               </div>
             </tr>
           </th>
+        </thead> -->
+
+        <div>
+      <h2>{{ eachMealPlan[0].plan_name }}</h2>
+      <table>  
+        <thead>
+          <tr>
+            <th>Meal Type</th>
+            <th>Recipe Id</th>
+            <th>Date</th>
+          </tr>
         </thead>
-
         <tbody>
-            <tr class="breakfast">
-              <td> Breakfast</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-
-             <tr class="lunch">
-              <td> Lunch</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-
-             <tr class="dinner">
-              <td> Dinner</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+          <tr v-for="meal in each-meal-plan" v-bind:key="meal">
+            <td>{{meal.meal_type}}</td>
+            <td>{{meal.recipe_id}}</td>
+            <td>{{meal.for_date}}</td>
+          </tr>
         </tbody>
-    </table>
+      </table>  
+    </div>
+    <!-- </table> -->
  </div>
 
 </template>
 
 <script>
-
 export default {
     name: "meal-plan-details",
     data(){
         return{
-            plans: [
-                {
-                    plan_name: 'healthy week',
-                    
-                }
-            ]
+            mealPlanId: this.$route.params.mealPlanId
         }
     }
 
