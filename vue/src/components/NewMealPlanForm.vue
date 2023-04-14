@@ -1,9 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="weekly-plan-name">
-      <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label>
+      <!-- <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label> -->
       <div class="title-add-section" v-if="!planNameAdded">
         <input
+          placeholder="Meal Plan Name"
           type="text"
           class="meal-plan-name"
           id="meal-plan-name"
@@ -15,7 +16,7 @@
 
       <div class="addedTitleDisplay" v-if="planNameAdded">
         <h3>{{ mealPlanName }}</h3>
-        <button class="modifyBtn" @click.prevent="modifyName">Modify</button>
+        <button class="modifyBtn" @click.prevent="modifyName">Edit Name</button>
       </div>
     </div>
 
@@ -57,7 +58,7 @@
 
       </div>
        <div class="btn">
-           <button class="addToPlanBtn" @click.prevent="addMealCombo">Add To Plan </button>
+           <button class="addToPlanBtn" @click.prevent="addMealCombo">Add Meal </button>
        </div>
    
     </form>
@@ -214,15 +215,23 @@ export default {
 </script>
 
 <style scoped>
+
 .wrapper {
-  margin-bottom: 15%; 
+  /* margin-bottom: 15%;  */
+  background-color: rgb(255, 240, 221);
+  padding-bottom: 1ch;
+  width: 50%;
+  border-radius: 25px;
+  margin-left: 25vw;
+
+
 }
 .addBtn,
 .modifyBtn, 
 .addToPlanBtn {
   margin: 0 10px;
   background-color: #a6f5ac;
-  color: white;
+  /* color: white; */
   font-weight: bold;
   font-family: system-ui, sans-serif;
   border-radius: 3px;
@@ -238,18 +247,21 @@ export default {
 }
 
 .addToPlanBtn {
-  position: absolute;
-  left: 50%;
+  position: relative;
+  /* left: 50%; */
+  margin-left: 43%;
 }
 .weekly-plan-name {
   text-align: center;
   padding: 30px;
+  background-color: rgba(255, 239, 14, 0.411);
+  border-radius: 25px 25px 0 0;
 }
 
 .options {
   display: flex;
   justify-content: center;
-  background-color:rgb(241, 249, 253);
+  /* background-color:rgb(241, 249, 253); */
   margin: 0 auto;
   max-width: 50%;
 }
@@ -272,6 +284,9 @@ table {
   padding: 1.2em;
   margin: 1.5em;
 }
+.tdata:nth-child(even){
+  background-color: #dfe9e6;
+}
 
 .planContainer {
   display: flex;
@@ -285,7 +300,7 @@ table {
 }
 
 .mealForm {
-  background-color:white;
+  /* background-color:white; */
 }
 
 </style>
