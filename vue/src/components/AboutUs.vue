@@ -7,7 +7,8 @@
 			</div>
 			<h1 class="plannerTitle">Welcome to <br><span class="aboutUs"> PLANNER AHEAD</span><br> Meal Planner</h1>
 			</div>
-		<h2>Our mission</h2>
+		<div class="para">
+    <h2>Our mission</h2>
 		<p>Your one-stop solution for planning, cooking, and enjoying delicious and healthy meals every day! We are a team of passionate food lovers, nutrition experts, and tech enthusiasts who came together to make meal planning and cooking easier and more enjoyable for everyone.</p>
 		<p>At Meal Planner, we believe that eating healthy and delicious meals should be effortless, fun, and affordable for everyone. That's why we created a simple and intuitive meal planning platform that helps you plan your meals for the week, create a shopping list, and cook delicious and healthy meals in no time.</p>
 		
@@ -17,6 +18,7 @@
 		<p>At Planner Ahead, we are committed to helping you eat healthier, save time and money, and enjoy delicious and nutritious meals every day. We hope you enjoy using our platform and join us on this exciting journey of healthy and tasty eating!</p>
 
 		<h2>Reviews</h2>
+    </div>
 	</div>
   </div>
 </template>
@@ -31,9 +33,8 @@ export default {
 <style scoped>
 img {
   position: absolute;
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-start;
+  /* display: flex; */
+  /* justify-content: flex-start; */
   top: 0;
   left: 0;
   width: 50%;
@@ -42,12 +43,16 @@ img {
   object-fit: cover;
   -webkit-box-reflect: right;
 }
+.para{
+  padding: 25px;
+}
 .title {
   position: relative;
   display: flex;
   width: 100%;
   flex-grow: 1;
   flex-direction: column;
+  height:10%;
 }
 
 .title h1 {
