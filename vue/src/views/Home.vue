@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Welcome Back!</h1>
     <h2>Featured Recipes</h2>
-    <div class="container">
+    <div class="container1">
       <section class="recipes" v-for="recipe in recipeSamples" v-bind:key="recipe.recipeId">
             <h3>{{recipe.recipe_name}}</h3>
            <div>
@@ -35,10 +35,16 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.home{
+  width:100vh;
+  padding-bottom: 2.5rem;
+  display: inline-block;
+
+}
+.container1{
      background-color: #ebf2ef;
-     display: flex;
-     flex-wrap: wrap;
+     /* display: flex; */
+     /* flex-wrap: wrap; */
  }
  
  h2, h3 {
