@@ -91,4 +91,64 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#register {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.form-register {
+  display: grid;
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+
+  background-color: rgb(236, 245, 226);
+  
+}
+
+router-link {
+  padding-left: 15px;
+}
+
+.alert {
+  margin-bottom: 20px;
+}
+
+label {
+  display: none; 
+}
+
+input[type="text"],
+input[type="password"] {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #CCCCFF;
+  color: #333;
+}
+
+router-link {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  background-color: #89c36f; 
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #2e7d32; 
+}
+
+
+</style>
