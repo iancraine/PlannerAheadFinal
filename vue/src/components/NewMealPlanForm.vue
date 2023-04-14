@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <form>
+    <form class="mealForm">
       <div class="options">
  <div class="dateOptions">
           <label for="date">Select Date: </label>
@@ -64,7 +64,7 @@
         <th>
           <tr>
             <div class="planContainer">
-              <td>
+              <td class="tdata">
                 <img
                   src="../assets/calendar-planner.jpg"
                   class="calendarImg"
@@ -72,19 +72,18 @@
                   width="100"
                 />
               </td>
-              <td>Date</td>
-              <td>Meal</td>
-              <td>Recipe</td>
+              <td class="tdata">Date</td>
+              <td class="tdata">Meal</td>
+              <td class="tdata">Recipe</td>
             </div>
           </tr>
         </th>
       </thead>
       <tbody>
         <tr v-for="plan in listOfPlans" v-bind:key="plan.plan_name">
-          <td></td>
-          <td>{{listOfPlans.for_date}}</td>
-          <td>{{listOfPlans.meal}}</td>
-          <td>{{mealTypeName}}</td>
+          <td class="tdata">{{plan.for_date}}</td>
+          <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
+          <td class="tdata">{{plan.recipe_id}}</td>
         </tr>
 
       </tbody>
@@ -101,7 +100,7 @@ export default {
     return {
       planNameAdded: false,
       mealPlanName: "",
-      currentSelectedRecipe: "recipe",
+      currentSelectedRecipe: "",
       listOfPlans:[],
       mealPlan: {
         plan_name: "",
@@ -161,6 +160,23 @@ export default {
 
       this.currentSelectedRecipe = "";
     },
+    convertMealTypeToWord(mealType) {
+      if (mealType === "1") {
+        return "Breakfast";
+      }
+      else if (mealType === "2") {
+        return "Lunch";
+      }
+      else if(mealType === "3") {
+        return "Dinner";
+      }
+      else if(mealType === "4") {
+        return "Snack";
+      }
+      else {
+        return "Appetizer"
+      }
+    },
     addMealCombo() {
          this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
          this.mealPlan.plan_name = this.mealPlanName;
@@ -175,6 +191,7 @@ export default {
 </script>
 
 <style scoped>
+
 .addBtn,
 .modifyBtn, 
 .addToPlanBtn {
@@ -220,9 +237,13 @@ table {
   border-radius: 25px;
 }
 
-tr,
-td {
+tr{
   padding: 1.2em;
+}
+
+.tdata{
+  padding: 1.2em;
+  margin: 1.5em;
 }
 
 .planContainer {
@@ -236,5 +257,8 @@ td {
   margin: 50px;
 }
 
+.mealForm {
+  background-color:white;
+}
 
 </style>
