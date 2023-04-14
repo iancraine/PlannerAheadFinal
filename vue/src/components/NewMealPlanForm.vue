@@ -64,29 +64,31 @@
 
     <table>
       <thead>
-        <th>
           <tr>
             <div class="planContainer">
-              <td class="tdata">
+              <th class="tdata">
                 <img
                   src="../assets/calendar-planner.jpg"
                   class="calendarImg"
                   height="100"
                   width="100"
                 />
-              </td>
-              <td class="tdata">Date</td>
-              <td class="tdata">Meal</td>
-              <td class="tdata">Recipe</td>
+              </th>
+              <th class="tdata">Date</th>
+              <th class="tdata">Meal</th>
+              <th class="tdata">Recipe</th>
             </div>
           </tr>
-        </th>
+       
       </thead>
       <tbody>
         <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
+          <div class="planContainer">
+          <td class="tdata"> placeholder</td>
           <td class="tdata">{{plan.for_date}}</td>
           <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
           <td class="tdata">{{plan.recipe_id}}</td>
+          </div>
         </tr>
 
       </tbody>
@@ -128,23 +130,23 @@ export default {
   },
 
   computed: {
-    mealTypeName() {
-      if (this.mealPlan.meal_type === "1") {
-        return "Breakfast";
-      }
-      else if (this.mealPlan.meal_type === "2") {
-        return "Lunch";
-      }
-      else if(this.mealPlan.meal_type === "3") {
-        return "Dinner";
-      }
-      else if(this.mealPlan.meal_type === "4") {
-        return "Snack";
-      }
-      else {
-        return "Appetizer"
-      }
-    },
+    // mealTypeName() {
+    //   if (this.mealPlan.meal_type === "1") {
+    //     return "Breakfast";
+    //   }
+    //   else if (this.mealPlan.meal_type === "2") {
+    //     return "Lunch";
+    //   }
+    //   else if(this.mealPlan.meal_type === "3") {
+    //     return "Dinner";
+    //   }
+    //   else if(this.mealPlan.meal_type === "4") {
+    //     return "Snack";
+    //   }
+    //   else {
+    //     return "Appetizer"
+    //   }
+    // },
 
     currentRecipeId() {
       let recipeObj =  this.$store.state.recipes.find((recipe) => 
@@ -176,16 +178,16 @@ export default {
     },
 
     convertMealTypeToWord(mealType) {
-      if (mealType === "1") {
+      if (mealType === 1) {
         return "Breakfast";
       }
-      else if (mealType === "2") {
+      else if (mealType === 2) {
         return "Lunch";
       }
-      else if(mealType === "3") {
+      else if(mealType === 3) {
         return "Dinner";
       }
-      else if(mealType === "4") {
+      else if(mealType === 4) {
         return "Snack";
       }
       else {
@@ -262,9 +264,9 @@ table {
   border-radius: 25px;
 }
 
-tr{
+/* tr{
   padding: 1.2em;
-}
+} */
 
 .tdata{
   padding: 1.2em;
