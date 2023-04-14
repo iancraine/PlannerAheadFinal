@@ -19,6 +19,9 @@ export default {
     },
     deleteIngredientForRecipe(userId, recipeId) {
         return http.delete(`/ingredients/${userId}/${recipeId}`);
+    },
+    editIngredient(recipeId, ingredients){
+        return http.put(`/ingredients/edit/${recipeId}`, ingredients);
     }
 
 }
