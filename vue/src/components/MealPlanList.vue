@@ -1,10 +1,33 @@
 <template>
   <div>
-    <h2>My MealPlans</h2>
+    <h1>My MealPlans</h1>
 
-    {{mealPlans.plan_name}}
     <div v-for="mealplan in mealPlans" v-bind:key="mealplan">
-          <h1>{{mealplan.plan_name}} {{mealplan.meal_type}}</h1>
+      <div>
+       <ul>
+        <li v-for="(day, index) in mealplan" v-bind:key="index">
+          <h2 v-if="index === 0">{{day.plan_name}}</h2>
+          <div v-else>
+            <div >
+            <tr>
+              <th>Meal Type</th>
+              <th>Recipe Id</th>
+              <th>Date</th>
+              </tr>
+            <tr v-for="day in mealplan" v-bind:key="day">
+              <td>{{day.meal_type}}</td>
+              <td>{{day.recipe_id}}</td>
+              <td>{{day.for_date}}</td>
+            </tr>
+            </div>
+            </div>
+        </li>
+       </ul>
+     </div>
+
+     
+
+
 
     </div>
     
@@ -28,6 +51,7 @@ export default {
       
     });
   }
+
 
 }
 </script>
