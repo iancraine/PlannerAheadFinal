@@ -88,10 +88,12 @@ export default {
  methods: {
     getRecipe(){
         RecipeService.getRecipeById(this.idRecipe).then((response) =>{
-            this.recipe = response.data
+            this.recipe = response.data;
+            console.log(this.recipe);
         })
     },
-    created(){
+    beforeMount(){
+        console.log("does this count as being created");
         this.getRecipe();
     },
     clear() {
@@ -143,11 +145,11 @@ export default {
     },
     editIngredient(){
         this.ingredients.forEach((ingredient) => {
-            IngredientService.addIngredient(this.$store.state.user.id, ingredient)
+            IngredientService.modifyIngredient(this.$store.state.user.id, ingredient)
             .then((response) => {            
                 if(response.status === 201 || response.status===200){
                     ingredient.ingredient_id =  response.data.ingredient_id;
-                    IngredientService.addIngredientForRecipe(this.recipe_id, ingredient)
+                    IngredientService.modifyIngredientForRecipe(this.recipe_id, ingredient)
                     .then((response) => {
                         if(response.status === 201 || response.status===200){
                             this.showForm = false;
@@ -184,7 +186,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 form {
     background-color: rgb(236, 245, 226);
 }

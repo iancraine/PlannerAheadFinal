@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="weekly-plan-name">
       <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label>
       <div class="title-add-section" v-if="!planNameAdded">
@@ -8,13 +8,14 @@
           class="meal-plan-name"
           id="meal-plan-name"
           v-model="mealPlanName"
+          @keyup.enter="addName"
         />
-        <button class="addBtn">Add</button>
+        <button class="addBtn" @click.prevent="addName">Add</button>
       </div>
 
       <div class="addedTitleDisplay" v-if="planNameAdded">
-        <h3>{{ mealPlan.plan_name }}</h3>
-        <button class="modifyBtn">Modify</button>
+        <h3>{{ mealPlanName }}</h3>
+        <button class="modifyBtn" @click.prevent="modifyName">Modify</button>
       </div>
     </div>
 
@@ -55,8 +56,10 @@
         </div>
 
       </div>
-       
-     <button class="addToPlanBtn" @click.prevent="addMealCombo">Add To Plan </button>
+       <div class="btn">
+           <button class="addToPlanBtn" @click.prevent="addMealCombo">Add To Plan </button>
+       </div>
+   
     </form>
 
     <table>
@@ -80,7 +83,7 @@
         </th>
       </thead>
       <tbody>
-        <tr v-for="plan in listOfPlans" v-bind:key="plan.plan_name">
+        <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
           <td class="tdata">{{plan.for_date}}</td>
           <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
           <td class="tdata">{{plan.recipe_id}}</td>
@@ -88,12 +91,17 @@
 
       </tbody>
     </table>
+    <div class="btn">
+     <button class="addToPlanBtn" @click.prevent="addMealToDB"> Add To Meal Plan </button>
+     </div>
   </div>
 </template>
 
 
 <script>
 import recipeService from "../services/RecipeService.js";
+import mealPlanService from "../services/MealPlanService"
+
 export default {
   name: "add-meal-plan",
   data() {
@@ -138,9 +146,9 @@ export default {
       }
     },
 
-    recipeId() {
+    currentRecipeId() {
       let recipeObj =  this.$store.state.recipes.find((recipe) => 
-         recipe.recipe_name = this.currentSelectedRecipe
+         recipe.recipe_name === this.currentSelectedRecipe
       );
       return recipeObj.recipeId;
     }
@@ -160,6 +168,13 @@ export default {
 
       this.currentSelectedRecipe = "";
     },
+    addName(){
+        this.planNameAdded = true;
+    },
+    modifyName() {
+        this.planNameAdded = false;
+    },
+
     convertMealTypeToWord(mealType) {
       if (mealType === "1") {
         return "Breakfast";
@@ -180,23 +195,33 @@ export default {
     addMealCombo() {
          this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
          this.mealPlan.plan_name = this.mealPlanName;
-         this.mealPlan.recipe_id = this.recipeId;
+         this.mealPlan.recipe_id = this.currentRecipeId;
 
          this.listOfPlans.push(this.mealPlan);
 
         this.clear();
     },
+    addMealToDB() {
+      mealPlanService.addMealPlan(this.$store.state.user.id, this.listOfPlans);
+      this.listOfPlans=[];
+      this.clear();
+      this.mealPlanName= "";
+    }
   },
 };
 </script>
 
 <style scoped>
-
+.wrapper {
+  margin-bottom: 15%; 
+}
 .addBtn,
 .modifyBtn, 
 .addToPlanBtn {
   margin: 0 10px;
-  background-color: #e1ecf4;
+  background-color: #a6f5ac;
+  color: white;
+  font-weight: bold;
   font-family: system-ui, sans-serif;
   border-radius: 3px;
   border: 1px solid #adc4d4;

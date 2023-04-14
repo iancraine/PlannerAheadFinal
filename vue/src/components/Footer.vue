@@ -89,6 +89,7 @@ export default {
   background: rgb(226, 246, 202);
   justify-items: center;
 }
+
 .container2 {
   width: 100%;
   display: grid;
