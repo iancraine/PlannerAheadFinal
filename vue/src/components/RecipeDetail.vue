@@ -1,8 +1,11 @@
 <template>
-  <div class="recipe-detail">
+  <div class="recipe-detail" >
     
     
     <div class="right">
+      <router-link v-bind:to="{ name:'recipes', params:{userId:$store.state.user.id}}">
+        <img class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow">
+      </router-link>
       <h2>{{recipe.recipe_name}}</h2>
 
       <div>
@@ -80,6 +83,9 @@ created() {
 </script>
 
 <style scoped>
+.back-arrow{
+  width: 25px;
+}
 .recipe-detail{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -119,6 +125,15 @@ h2{
 .time{
   display: inline-block;
   
+}
+.time h5 {
+  margin-top: 0;
+}
+div.time{
+  margin-top:0;
+}
+p.time{
+  margin-top: 0;
 }
 
 

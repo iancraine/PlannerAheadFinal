@@ -44,7 +44,7 @@
                  <p><a href="#">contact@plannerahead.com</a>
               </p>
             </li>
-            </ul>                                                                                                                                                                                                                                                                >
+            </ul>    
    </div>
   </div>
     <div class="copyright">

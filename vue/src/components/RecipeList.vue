@@ -82,10 +82,11 @@ div.page-title h1{
 }
 
 .recipe{
-  display: flex;
+  grid-area: card;
+  /* display: flex; */
   flex-wrap: wrap;
   justify-content: space-around;
-  grid-area: "card";
+  
 }
 .h1{
   color: rgb(20, 73, 187);
