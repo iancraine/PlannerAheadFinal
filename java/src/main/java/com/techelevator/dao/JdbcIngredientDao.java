@@ -89,6 +89,20 @@ public class JdbcIngredientDao implements IngredientDao{
             jdbcTemplate.update(deleteSql, ingredient.getIngredientId(), recipeId);
         }
     }
+    @Override
+    public void modifyIngredient(List<Ingredient> editedIngredients, int recipeId){
+
+        for(Ingredient ingredient : editedIngredients){
+            String sql = "UPDATE recipe_ingredients SET amount = ? WHERE ingredient_id = ? AND recipe_id = ?;";
+            jdbcTemplate.update(sql, ingredient.getAmount(), ingredient.getIngredientId(), recipeId);
+
+
+            sql = "UPDATE ingredients SET ingredient_name = ? WHERE ingredient_id = ?;";
+            jdbcTemplate.update(sql, ingredient.getIngredientName(), ingredient.getIngredientId());
+        }
+
+
+    }
 
     private Ingredient mapRowSetToIngredientWithAmount(SqlRowSet row) {
         Ingredient ingredient = new Ingredient();

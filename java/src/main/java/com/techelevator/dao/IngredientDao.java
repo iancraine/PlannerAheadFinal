@@ -15,4 +15,6 @@ public interface IngredientDao {
     List<Ingredient> getAllIngredients();
 
     List<Ingredient> getIngredientsForRecipe(int recipeId);
+
+    void modifyIngredient(List<Ingredient> editedIngredient, int recipeId);
 }

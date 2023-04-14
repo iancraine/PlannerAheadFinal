@@ -43,4 +43,9 @@ public class IngredientController {
         ingredientDao.deleteIngredientForRecipe(ingredient, recipeId, userId);
     }
 
+    @RequestMapping(path="/edit/{recipeId}", method=RequestMethod.PUT)
+    public void modifyIngredient(@PathVariable int recipeId, @RequestBody List<Ingredient> ingredient){
+        ingredientDao.modifyIngredient(ingredient, recipeId);
+    }
+
 }
