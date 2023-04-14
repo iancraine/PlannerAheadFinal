@@ -113,6 +113,13 @@ export default {
   margin-left: 50px;
   text-align: center;
 }
+.form-signin input:hover{
+  
+  color: white;
+  background-color: #fcf8ee;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .btn{
   padding: 10px;
   margin: 20px;
