@@ -2,8 +2,10 @@
   <div>
     <div class="container">
 		<div class="title">
+			<div>
 			<img src="../assets/healthy-food.jpg"/>
-			<h1>Welcome to <br><span class="aboutUs"> PLANNER AHEAD</span><br> Meal Planner</h1>
+			</div>
+			<h1 class="plannerTitle">Welcome to <br><span class="aboutUs"> PLANNER AHEAD</span><br> Meal Planner</h1>
 			</div>
 		<h2>Our mission</h2>
 		<p>Your one-stop solution for planning, cooking, and enjoying delicious and healthy meals every day! We are a team of passionate food lovers, nutrition experts, and tech enthusiasts who came together to make meal planning and cooking easier and more enjoyable for everyone.</p>
@@ -29,20 +31,30 @@ export default {
 <style scoped>
 img {
   position: absolute;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 90%;
-  float: left;
+  width: 50%;
+  height: 100%;
+  
   object-fit: cover;
   -webkit-box-reflect: right;
 }
+.title {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
 
 .title h1 {
-  position: relative;
+  /* position: relative; */
   z-index: 1;
-  text-align: left;
-  color: white;
+  text-align: center;
+  color: rgb(9, 172, 49);
   align-content: center;
   font-size: 3rem;
   margin: 0;
@@ -50,7 +62,7 @@ img {
 }
 
 h1 {
-  text-align: end;
+  align-content: center;
   margin: 40px 0;
 }
 
@@ -63,7 +75,7 @@ p {
 }
 
 .aboutUs {
-  color: rgb(206, 111, 48);
+  color: rgb(235, 126, 53);
 }
 
 .container {
@@ -76,11 +88,6 @@ p {
   justify-content: center;
 }
 
-.title {
-  position: relative;
-  display: inline-block;
-  flex-grow: 1;
-  flex-direction: column;
-}
+
 
 </style>

@@ -57,7 +57,7 @@ export default {
 
 }
 </script>
-<style scooped>
+<style scoped>
 
 .recipe-title{
   display: grid;
