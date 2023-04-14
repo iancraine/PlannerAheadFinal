@@ -7,7 +7,7 @@
     <new-recipe-form  id="form" v-if="showForm"/>
       <div class="recipe-container">
       <div class="recipe">
-        <div v-for="recipe in recipes" v-bind:key="recipe.recipeId"> 
+        <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
             <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
            <div class="image">
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
@@ -17,7 +17,7 @@
             </div>
             <div class="time">
               <h5 class="time">Prep Time:</h5>
-            <p class="time">{{recipe.prepTime}}</p>
+            <p class="time">{{recipe.prep_time}}</p>
             </div>
         </div>
         </div>
@@ -76,11 +76,16 @@ export default {
 div.page-title h1{
   text-align: center;
 }
+.recipe-container{
+  display: grid;
+  grid-template-areas: "card card card card";
+}
 
 .recipe{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  grid-area: "card";
 }
 .h1{
   color: rgb(20, 73, 187);
@@ -116,6 +121,9 @@ div.page-title h1{
   margin: 15px;
   padding: 20px;
   background-color: rgb(236, 245, 226);;
+}
+img {
+  width: 350px
 }
 </style>
 

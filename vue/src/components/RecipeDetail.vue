@@ -10,28 +10,32 @@
         <edit-recipe-form v-show="showForm"/>
       </div>
 
-      <h3>Directions:</h3>
+        <h3>Directions:</h3>
+        <p align="justify" class="directions">{{recipe.directions}}</p>
 
-      
+      <div class="tag">
+        <h5 class="tag">Tag:</h5>
+        <p class="tag">{{recipe.tags}}</p>
+      </div>
 
-      <p align="justify" class="directions">{{recipe.directions}}</p>
-      <div class="tag"><h5 class="tag">Tag:</h5>
-            <p class="tag">{{recipe.tags}}</p>
-            </div>
+      <br/>
+
       <div class="time">
               <h5 class="time">Prep Time:</h5>
-            <p class="time">{{recipe.prepTime}}</p>
-            </div>
+            <p class="time">{{recipe.prep_time}}</p>
+      </div>
+
       <div>
-       <label>
-  <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
-</label>
-               </div>
+        <label>
+          <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
+        </label>
+      </div>
+      
     </div>
     <div>
-       <div class="left">
-              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
-            </div>
+       
+        <img class="left" src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+            
     </div>
  
   </div>
@@ -77,28 +81,45 @@ created() {
 
 <style scoped>
 .recipe-detail{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "lefty righty";
   padding: 20px;
-   font-size: 18px;
+  font-size: 18px;
+  margin-right: 40px;
+  margin-left: 40px;
 }
-.directions:hover{
-  color:rgb(15, 194, 30);
-}
- h2:hover{
-  color:darkblue;
-}
+/* .directions:hover{
+  color:rgb(176, 241, 181);
+} */
+ /* h2:hover{
+  color:rgb(31, 112, 11);
+} */
 h2{
-  color: rgb(20, 73, 187);
+  color: #89c36f;
 }
 .left{
+  grid-area: righty;
   float:right;
-clear: both;
-padding:10px;
+  clear: both;
+  padding:10px;
+  position: relative;
 }
 .right{
+  grid-area: lefty;
   float: left;
   clear: both;
   padding:10px;
 }
+.tag {
+  display: inline-block;
+  
+  
+}
+.time{
+  display: inline-block;
+  
+}
+
 
 </style>

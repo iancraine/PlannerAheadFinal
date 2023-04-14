@@ -83,7 +83,7 @@ export default {
   width: 100%;
   height: auto;
   padding: 50px 100px;
-  background: #bfcbfa;
+  background: rgb(226, 246, 202);
   justify-items: center;
 }
 .container2 {
@@ -127,7 +127,7 @@ export default {
   display: inline-block;
   width: 48px;
   height: 48px;
-  background: #3E56CB;
+  background: #89c36f;
   display: grid;
   align-content: center;
   justify-content: center;
@@ -191,7 +191,7 @@ export default {
 }
 .copyright {
   width: 100%;
-  background: #1F3389;
+  background: #89c36f;
   padding: 2px 0;
   text-align: center;
   color: #fff;
