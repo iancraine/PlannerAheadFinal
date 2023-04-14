@@ -62,12 +62,13 @@ CREATE TABLE users_meal_plan (
 	CONSTRAINT FK_users_meal_plan_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 CREATE TABLE meal_plan_recipes(
+	meal_plan_recipes_id serial,
 	meal_plan_id int NOT NULL,
 	recipe_id int NOT NULL,
 	for_date date,
 	meal_type int,
 	
-	CONSTRAINT PK_meal_plan_recipes PRIMARY KEY (meal_plan_id, recipe_id),
+	CONSTRAINT PK_meal_plan_recipes PRIMARY KEY (meal_plan_recipes_id),
 	CONSTRAINT FK_meal_plan_meal_plan_id FOREIGN KEY (meal_plan_id) REFERENCES meal_plan (meal_plan_id),
 	CONSTRAINT FK_meal_plan_recipe_id FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
 );
