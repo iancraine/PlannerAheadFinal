@@ -24,6 +24,7 @@ export default {
 
 <style scoped>
      #headerNav {
+         font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;

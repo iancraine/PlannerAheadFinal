@@ -111,7 +111,7 @@ export default {
   font-size: 16px;
   align-content: center;
   margin-left: 50px;
-  text-align: center;
+  text-align: center; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .form-signin input:hover{
   
