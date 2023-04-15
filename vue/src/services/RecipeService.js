@@ -20,4 +20,5 @@ export default {
     modifyRecipe(recipeId, recipe) {
         return http.put(`/recipes/${recipeId}`, recipe);
     }
+    
 }

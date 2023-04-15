@@ -25,6 +25,26 @@
                     </li>
                 </ul>
             </div>
+              <div  class="ingredients-content">
+                <label for="userInput">Add Ingredients: </label>
+                <input type="text" id="userInput" v-model="inputIngredient.ingredient_name">
+                <label for="amount">Amount: </label>
+                <input type="text" id="amount" v-model="inputIngredient.amount">
+                <label for="unit">Unit: </label>
+                <select name="units" id="units" v-model="unit">
+                    <option value="cups">cups</option>
+                    <option value="Tbsp">Tbsp</option>
+                    <option value="Tsp">Tsp</option>
+                    <option value="grams">g</option>
+                    <option value="pounds">lbs</option>
+                    <option value="ounces">oz</option>
+                    <option value="quarts">quarts</option>
+                    <option value="pints">pints</option>
+                    <option value="gallons">gallons</option>
+                    <option value="units">units</option>
+                </select>
+                <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
+            </div>
 
             <label for="food-pic">Upload a picture: </label>
             <input type="file" id="food-pic" >
@@ -143,6 +163,7 @@ li {
 }
 .ingredients-content > input{
     margin-right: 25px;
+    margin-bottom: 20px;
 }
 form.recipeForm > *{
     margin-bottom: 15px;

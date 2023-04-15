@@ -45,7 +45,7 @@
             </div>
 
             <label for="food-pic">Upload a picture: </label>
-            <input type="file" id="food-pic" >
+            <input type="file" id="food-pic" ref="file" @change="handleFileUpload()" />
             <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
             <label for="public">Public?</label>
             <br>
@@ -60,10 +60,11 @@
 <script>
  import RecipeService from "../services/RecipeService";
  import IngredientService from "../services/IngredientService";
-
+ import axios from 'axios';
 export default {
     data(){
     return{
+        file: '',
         inputTag: '',
         inputIngredient: {
             ingredient_name: '',
@@ -84,6 +85,19 @@ export default {
         };
     },
  methods: {
+     handleFileUpload(){
+         this.file = this.$refs.file.files[0];
+     },
+     submitFile(){
+         let formData = new FormData();
+         formData.append('file', this.file);
+         axios.post('/single-file',
+         formData,{
+             headers: {
+                 'Content-Type': 'multipart/form-data'
+             }
+         })
+     },
     clear() {
         this.inputTag = '';
         this.inputIngredient= {
@@ -189,6 +203,7 @@ li {
 }
 .ingredients-content > input{
     margin-right: 25px;
+     margin-bottom: 20px;
 }
 form.recipeForm > *{
     margin-bottom: 15px;
