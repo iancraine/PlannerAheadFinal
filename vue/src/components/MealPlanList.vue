@@ -10,16 +10,18 @@
        <p style="font-weight: bold;">{{mealplan[mealplan.length-1].for_date}}</p>
        <br>
        <div class="buttons">
-          <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button>
+
+          <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
+          <button v-on:click="showMealPlan = !showMealPlan">{{ showMealPlan ? 'Hide' : 'Show' }} Details</button>
        <button> Modify Plan</button>
        <button > Delete Plan </button>
        </div>
       
       </div>
        <div>
-    <button v-on:click="showMealPlan = !showMealPlan">
+    <!-- <button v-on:click="showMealPlan = !showMealPlan">
       {{ showMealPlan ? 'Hide' : 'Show' }} Meal Plan Details
-    </button>
+    </button> -->
     <meal-plan-details v-if="showMealPlan" v-bind:meal-plan="mealplan"></meal-plan-details>
   </div>
 
@@ -61,7 +63,7 @@ export default {
     },
     data() {
       return {
-        showMealPlan: false,
+        showMealPlan:false,
         mealPlans: [], 
         viewDetails: {},
         test: false
