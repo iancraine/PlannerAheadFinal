@@ -35,16 +35,23 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
         List<List<MealPlan>> nestedMealPlans = new ArrayList<>();
         int currentMealPlanId = 0;
-        int newListIndex =
+        int newListIndex = -1;
 
         for(int i=0; i< mealPlans.size(); i++){
             if(mealPlans.get(i).getMeal_plan_id() != currentMealPlanId){
                 List<MealPlan> currentMealPlan = new ArrayList<>();
                 currentMealPlan.add(mealPlans.get(i));
+                nestedMealPlans.add(currentMealPlan);
+                currentMealPlanId = mealPlans.get(i).getMeal_plan_id();
+                newListIndex++;
+            }
+            else {
+                nestedMealPlans.get(newListIndex).add(mealPlans.get(i));
             }
 
         }
-
+//        List<List<MealPlan>> nestedMealPlans = new ArrayList<>();
+//
 //        int jHolder = 0;
 //        for(int i = 0; i < mealPlans.size(); i=jHolder){
 //            int firstIndex = 0;
@@ -54,7 +61,15 @@ public class JdbcMealPlanDao implements MealPlanDao{
 //                if(mealPlans.get(i).getMeal_plan_id() == mealPlans.get(j).getMeal_plan_id()){
 //                    if(j == 0 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j-1).getMeal_plan_id() || j == mealPlans.size()-1){
 //                        firstIndex = j;
-//                        if(j == mealPlans.size()-1){
+//                        if(j==0 && mealPlans.get(j+1).getMeal_plan_id() != mealPlans.get(j).getMeal_plan_id()){
+//                            nestedMealPlans.add(mealPlans.subList(j,j+1));
+//                            jHolder = j;
+//                            break;
+//                        } else if(mealPlans.get(j-1).getMeal_plan_id() != mealPlans.get(j).getMeal_plan_id() && mealPlans.get(j+1).getMeal_plan_id() != mealPlans.get(j).getMeal_plan_id()){
+//                            nestedMealPlans.add(mealPlans.subList(j,j+1));
+//                            jHolder = j;
+//                            break;
+//                        } else if(j == mealPlans.size()-1){
 //                            nestedMealPlans.add(mealPlans.subList(j, j+1));
 //                            jHolder = j+1;
 //                            break;
@@ -65,7 +80,6 @@ public class JdbcMealPlanDao implements MealPlanDao{
 //                            nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
 //                            jHolder = mealPlans.size();
 //                            break;
-//
 //                        }
 //                    }
 //                }else {
