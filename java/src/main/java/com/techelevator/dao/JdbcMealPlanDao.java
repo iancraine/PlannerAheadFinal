@@ -43,7 +43,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
 //        }
 //        System.out.println(result);  // [[1, 2, 3], [4, 5, 7], [8, 9, 10], [11]]
         int jHolder = 0;
-        for(int i = 0; i < mealPlans.size(); i+=jHolder){
+        for(int i = 0; i < mealPlans.size(); i=jHolder){
             int firstIndex = 0;
             int lastIndex = 0;
 
@@ -55,7 +55,9 @@ public class JdbcMealPlanDao implements MealPlanDao{
                         lastIndex = j+1;
                         if(j == mealPlans.size()-1){
                             nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
-                            i = mealPlans.size();
+                            jHolder = mealPlans.size();
+                            break;
+
                         }
                     }
                 }else {

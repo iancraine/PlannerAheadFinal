@@ -45,7 +45,7 @@
             </div>
 
             <label for="food-pic">Upload a picture: </label>
-            <input type="file" id="food-pic" ref="file" @change="onFileSelected()" />
+            <input type="file" id="food-pic" ref="file" @change="onFileSelected" />
             <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
             <label for="public">Public?</label>
             <br>
@@ -85,18 +85,19 @@ export default {
         };
     },
  methods: {
-     onFileSelected(){
+     onFileSelected(event){
          console.log(event);
          this.file = event.target.files[0];
      },
      submitFile(){
          const fd = new FormData();
          fd.append('image', this.file, this.file.name);
-         axios.post(`http://localhost:9000/recipes/images/${this.recipeId}`, fd, {
-             onUploadProgress: uploadEvent => {
-                 console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total)*100 + '%' );
-             }
-         }).then((response) => {
+         let config = {
+            header : {
+                'Content-Type' : 'multipart/form-data'
+            }
+        }
+        axios.post(`http://localhost:9000/recipes/images/${this.recipe_id}`, fd, config).then((response) => {
              console.log(response);
          })
      },
@@ -164,7 +165,7 @@ export default {
                         if(response.status === 201 || response.status===200){
                             this.showForm = false;
                             this.clear();
-                            this.$router.push(`/recipes/list/${this.$store.state.user.id}`);
+                            // window.location.reload();
                         }
                     }).catch(error => {
                         if(error.response){
