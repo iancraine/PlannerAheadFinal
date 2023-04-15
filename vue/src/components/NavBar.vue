@@ -34,6 +34,7 @@ export default {
   width:100%;
   height: 100px;
   padding: 5px;
+  
 }
 
 .logoImg {
@@ -57,6 +58,7 @@ export default {
   padding: 0;
   /* background-color: darkgrey; */
   padding: 10px;
+ flex-shrink: 0;
   
 }
 
