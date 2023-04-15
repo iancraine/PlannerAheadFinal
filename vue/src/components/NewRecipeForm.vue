@@ -45,7 +45,7 @@
             </div>
 
             <label for="food-pic">Upload a picture: </label>
-            <input type="file" id="food-pic" ref="file" @change="handleFileUpload()" />
+            <input type="file" id="food-pic" ref="file" @change="onFileSelected()" />
             <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
             <label for="public">Public?</label>
             <br>
@@ -64,7 +64,7 @@
 export default {
     data(){
     return{
-        file: '',
+        file: null,
         inputTag: '',
         inputIngredient: {
             ingredient_name: '',
@@ -85,17 +85,19 @@ export default {
         };
     },
  methods: {
-     handleFileUpload(){
-         this.file = this.$refs.file.files[0];
+     onFileSelected(){
+         console.log(event);
+         this.file = event.target.files[0];
      },
      submitFile(){
-         let formData = new FormData();
-         formData.append('file', this.file);
-         axios.post('/single-file',
-         formData,{
-             headers: {
-                 'Content-Type': 'multipart/form-data'
+         const fd = new FormData();
+         fd.append('image', this.file)
+         axios.post(`http://localhost:9000/recipes/images/${this.recipeId}`, fd, {
+             onUploadProgress: uploadEvent => {
+                 console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total)*100 + '%' );
              }
+         }).then((response) => {
+             console.log(response);
          })
      },
     clear() {

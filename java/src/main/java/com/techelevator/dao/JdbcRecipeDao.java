@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +94,11 @@ public class JdbcRecipeDao implements RecipeDao{
         changedRecipe = getRecipeById(recipeId);
 
         return changedRecipe;
+    }
+
+    @Override
+    public void addImageToFile(int recipeId, File image){
+        File newImage = new File ("/database");
     }
 
     public Recipe mapRowsetToRecipe(SqlRowSet row){
