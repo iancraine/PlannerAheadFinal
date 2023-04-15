@@ -16,8 +16,14 @@
        </div>
       
       </div>
+       <div>
+    <button v-on:click="showMealPlan = !showMealPlan">
+      {{ showMealPlan ? 'Hide' : 'Show' }} Meal Plan Details
+    </button>
+    <meal-plan-details v-if="showMealPlan" v-bind:meal-plan="mealplan"></meal-plan-details>
+  </div>
 
-      <meal-plan-details v-if="true" v-bind:meal-plan="mealplan"></meal-plan-details>
+      <!-- <meal-plan-details v-if="true" v-bind:meal-plan="mealplan"></meal-plan-details> -->
        <!-- <table v-if="viewDetailSection[index]">   -->
       <!-- <div class="tableStyle">
          <table v-show="viewDetailSection[mealplan[0].meal_plan_id]">
@@ -55,9 +61,11 @@ export default {
     },
     data() {
       return {
+        showMealPlan: false,
         mealPlans: [], 
         viewDetails: {},
         test: false
+       
       }
     },
     
