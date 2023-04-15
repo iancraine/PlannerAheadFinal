@@ -2,6 +2,7 @@
   <div class="image-container">
       
           <p calss="para zoom">More Time Eating!</p>
+          <!-- <img class="logo" src="..\assets\cropped-logo.png" alt="Logo"> -->
          <div class="img">
     <img src="..\assets\1M.png" alt="Pot Roast" class="two">
       </div>
@@ -28,7 +29,7 @@ export default {
 <style scoped>
 .image-container{
     
-    padding-left: 90px;
+    padding-left: 20px;
    
  
     
@@ -42,13 +43,23 @@ div p{
       text-shadow: #FC0 1px 0 10px;
       
 }
+/* p .logo{
+    display: inline-block;
+} */
+/* .logo{
+    max-width: 150px;
+    border-radius: 50%;
+    box-shadow: #FC0 1px 0 10px;
+    /* margin-left:200px; 
+}  
+*/
 
 .img{
-    max-width:350px;
+    max-width:200px;
     max-height:400px;
 }
 .two{
-    max-width:700px
+    max-width:600px
 }
 
 .img1:hover {
@@ -57,11 +68,11 @@ div p{
     box-shadow: 0 0 2px 1px rgba(148, 224, 181, 0.5);
 }
 .roast{
-    max-width:320px;
-    max-height:350;
+    max-width:300px;
+    max-height:300;
 }
 .lastimg{
-max-width:220px;
+max-width:200px;
 }
 div img{
     display: inline-block;
