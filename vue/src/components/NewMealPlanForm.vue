@@ -86,10 +86,10 @@
       <tbody>
         <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
           <div class="planContainer">
-          <td class="tdata"> placeholder</td>
+          <td class="tdata">   placeholder </td>
           <td class="tdata">{{plan.for_date}}</td>
           <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
-          <td class="tdata">{{plan.recipe_id}}</td>
+          <td class="tdata">{{getRecipeName(plan.recipe_id)}}</td>
           </div>
         </tr>
 
@@ -178,6 +178,11 @@ export default {
     },
     modifyName() {
         this.planNameAdded = false;
+    },
+
+    getRecipeName(currentRecipeId) {
+        let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
+        return recipeObj.recipe_name;
     },
 
     convertMealTypeToWord(mealType) {
