@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 //TODO: what to do with authorization?!?!?!?
@@ -47,7 +48,7 @@ public class RecipeController {
         return recipeDao.modifyRecipe(recipe, recipeId);
     }
     @RequestMapping(path="/images/{recipeId}", method = RequestMethod.POST)
-    public void addImage(@PathVariable int recipeId, @RequestBody File image){
+    public void addImage(@PathVariable int recipeId, @RequestBody File image) throws IOException {
         recipeDao.addImageToFile(recipeId, image);
     }
 

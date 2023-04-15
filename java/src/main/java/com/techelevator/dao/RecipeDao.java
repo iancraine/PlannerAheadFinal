@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Recipe;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public interface RecipeDao {
@@ -18,6 +19,6 @@ public interface RecipeDao {
 
     Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
 
-    void addImageToFile(int recipeId, File image);
+    void addImageToFile(int recipeId, File image) throws IOException;
 
 }
