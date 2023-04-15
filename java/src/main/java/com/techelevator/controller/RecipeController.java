@@ -5,6 +5,7 @@ import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 
 //TODO: what to do with authorization?!?!?!?
@@ -45,5 +46,10 @@ public class RecipeController {
     public Recipe modifyRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
         return recipeDao.modifyRecipe(recipe, recipeId);
     }
+    @RequestMapping(path="/images/{recipeId}", method = RequestMethod.POST)
+    public void addImage(@PathVariable int recipeId, @RequestBody File image){
+        recipeDao.addImageToFile(recipeId, image);
+    }
+
 
 }

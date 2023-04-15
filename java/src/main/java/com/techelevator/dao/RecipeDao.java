@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Recipe;
 
+import java.io.File;
 import java.util.List;
 
 public interface RecipeDao {
@@ -16,5 +17,7 @@ public interface RecipeDao {
     void deleteRecipe(int recipeId, int userId);
 
     Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
+
+    void addImageToFile(int recipeId, File image);
 
 }
