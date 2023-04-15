@@ -1,13 +1,13 @@
 <template>
     <div>
         <form action="#" v-on:submit.prevent="" class="recipe-form">
-            <label for="recipe-name">Recipe Name: </label>
-            <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
-            <label for="prep-time" class="prep-time">Prep time: </label>
-            <input type="number" class="prep-time" id="prep-time" size="5" v-model="recipe.prep_time"/>
-            mins
-            <br>
-
+            <div class="name-prep">
+                <label for="recipe-name">Recipe Name: </label>
+                <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
+                <label for="prep-time" class="prep-time">Prep time: </label>
+                <input type="number" class="prep-time" id="prep-time" size="5" v-model="recipe.prep_time"/>
+                mins
+            </div>
             <label for="directions">Directions: </label>
             <br>
             <textarea name="directions" id="" cols="100" rows="10" v-model="recipe.directions"></textarea>
@@ -43,12 +43,10 @@
                     <li>{{ingredient.amount}} of {{ingredient.ingredient_name}}</li>
                 </ul>
             </div>
-
-            <label for="food-pic">Upload a picture: </label>
-            <input type="file" id="food-pic" ref="file" @change="onFileSelected" />
-            <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
-            <label for="public">Public?</label>
-            <br>
+            <div class="file-upload">
+                <label for="food-pic">Upload a picture: </label>
+                <input type="file" id="food-pic" ref="file" @change="onFileSelected" />
+            </div>
 
             <div class="btn-align">
                 <input class="submitBtn" type="submit" v-on:click="addRecipeToDatabase()" value="Submit">
@@ -219,6 +217,12 @@ label.prep-time{
 input.prep-time{
     width: 5em;
 }
+.name-prep{
+    margin-bottom: 12px;
+}
+.file-upload {
+    margin-bottom: 16px;
+}
 form.recipeForm{
     background-color: #ebf2ef;
     font-family: system-ui, sans-serif;
@@ -231,7 +235,7 @@ form.recipeForm{
 }
 
 .submitBtn, .cancelBtn{
-    margin: 0 10px;
+    margin: 0px 10px;
     background-color: #e1ecf4;
     font-family: system-ui, sans-serif;
     border-radius: 3px;
