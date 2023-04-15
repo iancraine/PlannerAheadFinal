@@ -1,8 +1,5 @@
 <template>
  <div>
-
-         <h1>Meal Plan Details</h1>
-      
      <!-- <table>
         <thead>
           <th>
@@ -20,45 +17,88 @@
             </tr>
           </th>
         </thead> -->
-
-        <div>
-      <h2>{{ eachMealPlan[0].plan_name }}</h2>
-      <table>  
+<div class="tableStyle">
+         <table>
         <thead>
           <tr>
-            <th>Meal Type</th>
-            <th>Recipe Id</th>
-            <th>Date</th>
+            <th class="tdata">Date</th>
+            <th class="tdata">Meal</th>
+            <th class="tdata">Recipe</th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr v-for="meal in each-meal-plan" v-bind:key="meal">
-            <td>{{meal.meal_type}}</td>
-            <td>{{meal.recipe_id}}</td>
-            <td>{{meal.for_date}}</td>
+          <tr v-for="(day, index) in mealPlan" v-bind:key="index">
+            <td class="tdata">{{day.for_date}}</td>
+            <td class="tdata">{{convertMealTypeToWord(day.meal_type)}}</td>
+            <td class="tdata"><router-link :to="{name: 'recipesId', params: {recipeId: day.recipe_id}}">{{getRecipeName(day.recipe_id)}}</router-link></td>
+            
           </tr>
         </tbody>
       </table>  
-    </div>
-    <!-- </table> -->
- </div>
+      </div>
+  </div>
 
 </template>
 
 <script>
 export default {
     name: "meal-plan-details",
+    props: {
+      mealPlan: Array
+    },
     data(){
         return{
             mealPlanId: this.$route.params.mealPlanId
         }
+    },
+    methods: {
+         getRecipeName(currentRecipeId) {
+        let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
+        return recipeObj.recipe_name;
+    },
+     convertMealTypeToWord(mealType) {
+      if (mealType === 1) {
+        return "Breakfast";
+      }
+      else if (mealType === 2) {
+        return "Lunch";
+      }
+      else if(mealType === 3) {
+        return "Dinner";
+      }
+      else if(mealType === 4) {
+        return "Snack";
+      }
+      else {
+        return "Appetizer"
+      }
+    }
     }
 
 }
 </script>
 
 <style scoped>
-.addBtn,
+
+.tableStyle {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  border-bottom: 1px dashed black;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.tdata {
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .addBtn,
 .modifyBtn {
   margin: 0 10px;
   background-color: #e1ecf4;
@@ -101,5 +141,5 @@ tr, td {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
 </style>

@@ -1,20 +1,26 @@
 <template>
   <div class="mealPlans">
     <h1>My Meal Plans</h1>   
-    <div v-for="(mealplan, index) in mealPlans" v-bind:key="index" >
+    <div v-for="(mealplan) in mealPlans" v-bind:key="mealplan[0].meal_plan_id" >
       <div class="planTitle">
         <h2>{{ mealplan[0].plan_name }}</h2>
        <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
-       
        <p style="font-weight: bold;"> {{ mealplan[0].for_date }}</p>
        <p> to </p>
        <p style="font-weight: bold;">{{mealplan[mealplan.length-1].for_date}}</p>
-       <button @click.prevent="showDetailTable(index)"> View Details</button>
+       <br>
+       <div class="buttons">
+          <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button>
+       <button> Modify Plan</button>
+       <button > Delete Plan </button>
+       </div>
+      
       </div>
 
+      <meal-plan-details v-if="true" v-bind:meal-plan="mealplan"></meal-plan-details>
        <!-- <table v-if="viewDetailSection[index]">   -->
-      <div class="tableStyle">
-         <table v-if="true">
+      <!-- <div class="tableStyle">
+         <table v-show="viewDetailSection[mealplan[0].meal_plan_id]">
         <thead>
           <tr>
             <th class="tdata">Date</th>
@@ -32,7 +38,7 @@
           </tr>
         </tbody>
       </table>  
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -40,13 +46,17 @@
 // import { computed } from 'vue';
 import mealPlanService from "../services/MealPlanService.js";
 import recipeService from "../services/RecipeService.js";
+import MealPlanDetails from "./MealPlanDetails.vue"
 
 export default {
     name: 'my-meal-plans',
+    components: {
+      MealPlanDetails
+    },
     data() {
       return {
         mealPlans: [], 
-        viewDetails: [],
+        viewDetails: {},
         test: false
       }
     },
@@ -54,8 +64,8 @@ export default {
     created() {
     mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
       this.mealPlans = response.data;
-      this.mealPlans.forEach((mealPlan, index) => {
-          this.viewDetails[index] = false; 
+      this.mealPlans.forEach((mealPlan) => {
+          this.viewDetails[mealPlan[0].plan_name] = false; 
       })
       
     });
@@ -71,9 +81,9 @@ computed: {
 },
 
  methods: {
-    showDetailTable(index) {
-       this.viewDetails[index] = !this.viewDetails[index];
-       console.log(this.viewDetails[index]);
+    showDetailTable(mealPlanId) {
+       this.viewDetails[mealPlanId] = !this.viewDetails[mealPlanId];
+       console.log(this.viewDetails[mealPlanId]);
     },
     getRecipeName(currentRecipeId) {
         let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
@@ -130,7 +140,7 @@ p {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
+  padding-bottom: 50px;
 }
 
 .tableStyle {
@@ -147,9 +157,33 @@ p {
   max-width: 45%;
   margin: 0 auto;
   border-radius: 30px;
+  padding-bottom: 20px;
 }
 
 .tdata {
   padding: 10px;
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button{
+   background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+}
+
 </style>
