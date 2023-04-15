@@ -59,7 +59,7 @@
         </form>
     </div>
 </template>
-<script>
+<script scoped>
  import RecipeService from "../services/RecipeService";
  import IngredientService from "../services/IngredientService";
 

@@ -36,15 +36,23 @@ export default {
 
 <style scoped>
 .home{
-  width:100vh;
-  padding-bottom: 2.5rem;
-  display: inline-block;
+  /* width:100vh; */
+  padding: 2.5rem;
+  padding-bottom: 50px;
 
 }
 .container1{
      background-color: #ebf2ef;
-     /* display: flex; */
-     /* flex-wrap: wrap; */
+     /* display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-template-areas: "recipe recipe";
+     justify-items: center; */
+     display: flex;
+      flex-wrap: wrap; 
+      margin: 0 auto;
+      border-radius: 10px;
+      padding: 2%;
+      
  }
  
  h2, h3 {
@@ -63,6 +71,7 @@ export default {
 
  .recipes{
     margin: 0 auto;
+
  }
 
 img{

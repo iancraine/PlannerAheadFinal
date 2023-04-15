@@ -49,7 +49,6 @@ export default {
     },
     data(){
         return{
-            mealPlanId: this.$route.params.mealPlanId
         }
     },
     methods: {

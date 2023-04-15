@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="page">
     <div class="page-title">
       <h2 class="title">My Recipes</h2>
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
@@ -58,10 +58,20 @@ export default {
 }
 </script>
 <style scoped>
+@import url(https://fonts.googleapis.com/css2?family=Dosis);
 
-.recipe-title{
-  display: grid;
-  grid-template-areas: "recipe recipe"
+.page{
+  margin: 5em;
+  font-family: 'Dosis', monospace, sans-serif;
+  text-align: center;
+  font-family: 'Dosis', monospace, sans-serif;
+  /* background: url(../assets/white-background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+  padding-bottom: 50px;
+  margin: 0px;
 }
 .title{
   color:#0d75134b;
@@ -78,14 +88,16 @@ div.page-title h1{
 }
 .recipe-container{
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: "card card card card";
+  justify-items: center;
 }
 
 .recipe{
   grid-area: card;
   /* display: flex; */
-  flex-wrap: wrap;
-  justify-content: space-around;
+  /* flex-wrap: wrap;
+  justify-content: space-around; */
   
 }
 .h1{
@@ -94,11 +106,11 @@ div.page-title h1{
 }
 .tag{
   display: inline-block;
-  padding: 10px;
+  padding: 5px;
 }
 .time{
   display: inline-block;
-  padding: 10px;
+  padding: 5px;
 }
 .addNewRecipe {
   background: #cdeccd;
@@ -121,10 +133,10 @@ div.page-title h1{
   justify-content: center;
   margin: 15px;
   padding: 20px;
-  background-color: rgb(236, 245, 226);;
+  background-color: rgb(236, 245, 226);
 }
 img {
-  width: 350px
+  width: 350px;
 }
 </style>
 

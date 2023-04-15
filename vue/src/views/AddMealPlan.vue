@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mealForm">
       <new-meal-plan-form></new-meal-plan-form>
   </div>
 </template>
