@@ -80,6 +80,7 @@ export default {
 
 <style scoped>
 
+
 .tableStyle {
   display: flex;
   justify-content: center;
@@ -87,14 +88,23 @@ export default {
   border-bottom: 1px dashed black;
   max-width: 50%;
   margin: 0 auto;
-}
+  
+  font-weight: bold;
 
+}
+tr>th{
+  font-size: 22px;
+}
 .tdata {
   padding: 10px;
 }
 
 a {
   text-decoration: none;
+  color:rgb(13, 173, 75);
+  font-weight: bold;
+  font-family:cursive
+  
 }
 
 /* .addBtn,
