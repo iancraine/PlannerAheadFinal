@@ -230,7 +230,7 @@ export default {
   width: 50%;
   border-radius: 25px;
   margin-left: 25vw;
-  border: solid 4px;
+  border: solid 4px ;
   
 }
 .placehold{
