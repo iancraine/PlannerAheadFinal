@@ -1,6 +1,9 @@
 <template>
   <div class="mealPlans">
     <h1>My Meal Plans</h1>   
+    <button class="topBtn" v-on:click="showMealPlan = !showMealPlan">{{ showMealPlan ? 'Hide' : 'Show' }} Details</button>
+     <button class="topBtn"> <router-link :to="{name: 'add-meal-plan'}"> Add Meal Plan </router-link></button>
+
     <div v-for="(mealplan) in mealPlans" v-bind:key="mealplan[0].meal_plan_id" >
       <div class="planTitle">
         <h2>{{ mealplan[0].plan_name }}</h2>
@@ -10,22 +13,19 @@
        <p style="font-weight: bold;">{{mealplan[mealplan.length-1].for_date}}</p>
        <br>
        <div class="buttons">
-
           <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
-          <button v-on:click="showMealPlan = !showMealPlan">{{ showMealPlan ? 'Hide' : 'Show' }} Details</button>
+          
        <button> Modify Plan</button>
        <button > Delete Plan </button>
        </div>
       
       </div>
        <div>
-    <!-- <button v-on:click="showMealPlan = !showMealPlan">
-      {{ showMealPlan ? 'Hide' : 'Show' }} Meal Plan Details
-    </button> -->
-    <meal-plan-details v-if="showMealPlan" v-bind:meal-plan="mealplan"></meal-plan-details>
   </div>
-
-      <!-- <meal-plan-details v-if="true" v-bind:meal-plan="mealplan"></meal-plan-details> -->
+  <meal-plan-details v-if="showMealPlan" v-bind:meal-plan="mealplan"></meal-plan-details>
+      <!-- <meal-plan-details v-if="viewDetailSection[mealplan[0].meal_plan_id]" v-bind:meal-plan="mealplan"></meal-plan-details> -->
+       
+       
        <!-- <table v-if="viewDetailSection[index]">   -->
       <!-- <div class="tableStyle">
          <table v-show="viewDetailSection[mealplan[0].meal_plan_id]">
@@ -65,7 +65,8 @@ export default {
       return {
         showMealPlan:false,
         mealPlans: [], 
-        viewDetails: {},
+        viewDetails: {
+        },
         test: false
        
       }
@@ -139,6 +140,10 @@ h2 {
   color:cadetblue;
 }
 
+a {
+  text-decoration: none;
+  color:rgb(23, 112, 82);
+}
 p {
   margin: 0.5em;
 }
@@ -194,6 +199,34 @@ button{
   text-align: center;
   text-decoration: none;
   font-family: 'Dosis', monospace, sans-serif;
+
+}
+
+.topBtn {
+  margin-right: 15px;
+   background: #fff;
+  backface-visibility: hidden;
+  border-radius: .375rem;
+  border-width: .125rem;
+  color: #212121;
+  cursor: pointer;
+  font-family: 'Dosis', monospace, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.5rem;
+  position: relative;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
 }
 
 </style>
+

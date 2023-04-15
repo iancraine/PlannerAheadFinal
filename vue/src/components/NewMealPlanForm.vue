@@ -1,4 +1,5 @@
 <template>
+<div class="background">
   <div class="wrapper">
     <div class="weekly-plan-name">
       <!-- <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label> -->
@@ -85,10 +86,10 @@
       <tbody>
         <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
           <div class="planContainer">
-          <td class="tdata"> placeholder</td>
+          <td class="tdata">   placeholder </td>
           <td class="tdata">{{plan.for_date}}</td>
           <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
-          <td class="tdata">{{plan.recipe_id}}</td>
+          <td class="tdata">{{getRecipeName(plan.recipe_id)}}</td>
           </div>
         </tr>
 
@@ -98,6 +99,7 @@
      <button class="addToPlanBtn" @click.prevent="addMealToDB"> Add To Meal Plan </button>
      </div>
   </div>
+</div>
 </template>
 
 
@@ -178,6 +180,11 @@ export default {
         this.planNameAdded = false;
     },
 
+    getRecipeName(currentRecipeId) {
+        let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
+        return recipeObj.recipe_name;
+    },
+
     convertMealTypeToWord(mealType) {
       if (mealType === 1) {
         return "Breakfast";
@@ -223,8 +230,16 @@ export default {
   width: 50%;
   border-radius: 25px;
   margin-left: 25vw;
-
-
+}
+.background{
+  text-align: center;
+  font-family: 'Dosis', monospace, sans-serif;
+  background: url(../assets/veggies.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 50px;
 }
 .addBtn,
 .modifyBtn, 

@@ -86,11 +86,17 @@ export default {
 div.page-title h1{
   text-align: center;
 }
-.recipe-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "card card card card";
-  justify-items: center;
+div.recipe{
+  display: flex;
+      flex-wrap: wrap; 
+      margin: 0 auto;
+      border-radius: 10px;
+      justify-content: space-around;
+      padding: 2%;
+}
+.recipe-card{
+  width: calc(100% * (1/4) - 10px - 1px);
+  border-radius: 10px;
 }
 
 .recipe{
@@ -137,6 +143,7 @@ div.page-title h1{
 }
 img {
   width: 350px;
+  border-radius: 15px;
 }
 </style>
 
