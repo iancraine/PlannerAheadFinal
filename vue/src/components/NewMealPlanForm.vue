@@ -1,4 +1,5 @@
 <template>
+<div class="background">
   <div class="wrapper">
     <div class="weekly-plan-name">
       <!-- <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label> -->
@@ -98,6 +99,7 @@
      <button class="addToPlanBtn" @click.prevent="addMealToDB"> Add To Meal Plan </button>
      </div>
   </div>
+</div>
 </template>
 
 
@@ -223,8 +225,16 @@ export default {
   width: 50%;
   border-radius: 25px;
   margin-left: 25vw;
-
-
+}
+.background{
+  text-align: center;
+  font-family: 'Dosis', monospace, sans-serif;
+  background: url(../assets/veggies.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 50px;
 }
 .addBtn,
 .modifyBtn, 
