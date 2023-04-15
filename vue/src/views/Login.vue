@@ -1,12 +1,13 @@
 <template>
   <div id="login" class="text-center">
     <div class="login1">
-      
-     <about-us class="login2"/>
+      <main-login class="login2"/>
+     <!-- <about-us class="login2"/> -->
     </div>
     <div class="form">
+       <img class="logo" src="..\assets\cropped-logo.png" alt="Logo">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Please Sign In</h2>
       <div
         class="alert alert-danger"
         role="alert"
@@ -44,14 +45,17 @@
 </template>
 
 <script>
-import AboutUs from '../components/AboutUs.vue';
+// import AboutUs from '../components/AboutUs.vue';
+import MainLogin from '../components/MainLogin.vue';
 import authService from "../services/AuthService";
+// import MainLogin from "../components/MainLogin.vue"
 
 export default {
   name: "login",
-  components: {AboutUs},
+  components: {MainLogin},
   data() {
-    return {
+ 
+     return {
       user: {
         username: "",
         password: ""
@@ -88,6 +92,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(234, 250, 176);
 }
 .login1{
   width:70%
@@ -95,6 +100,7 @@ export default {
 .form{
   width:30%;
   align-content: center;
+  text-align: center;
 }
 .form-signin {
   max-width: 330px;
@@ -136,6 +142,12 @@ input{
 }
 .form-control{
 margin: 2%;
+}
+.logo{
+    max-width: 130px;
+    border-radius: 50%;
+    box-shadow: #FC0 1px 0 10px;
+     
 }
 
 </style>

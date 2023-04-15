@@ -16,8 +16,8 @@
       </div>
 
       <div class="addedTitleDisplay" v-if="planNameAdded">
-        <h3>{{ mealPlanName }}</h3>
-        <button class="modifyBtn" @click.prevent="modifyName">Edit Name</button>
+        <h1 @click="modifyName">{{ mealPlanName }}</h1>
+        <!-- <button class="modifyBtn" @click.prevent="modifyName">Edit Name</button> -->
       </div>
     </div>
 
@@ -86,7 +86,7 @@
       <tbody>
         <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
           <div class="planContainer">
-          <td class="tdata">   placeholder </td>
+          <td class="tdata placehold" style="color:#ecf2f0">     placeholder </td>
           <td class="tdata">{{plan.for_date}}</td>
           <td class="tdata">{{convertMealTypeToWord(plan.meal_type)}}</td>
           <td class="tdata">{{getRecipeName(plan.recipe_id)}}</td>
@@ -230,6 +230,11 @@ export default {
   width: 50%;
   border-radius: 25px;
   margin-left: 25vw;
+  border: solid 4px ;
+  
+}
+.placehold{
+  color: black;
 }
 .background{
   text-align: center;
@@ -263,14 +268,31 @@ export default {
 
 .addToPlanBtn {
   position: relative;
+  background-color: #ffffff;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
   /* left: 50%; */
-  margin-left: 43%;
+  /* position: absolute; */
+  /* margin-left: 43%; */
 }
 .weekly-plan-name {
   text-align: center;
   padding: 30px;
   background-color: rgba(255, 239, 14, 0.411);
   border-radius: 25px 25px 0 0;
+  border-bottom: solid 2px;
 }
 
 .options {
@@ -291,9 +313,7 @@ table {
   border-radius: 25px;
 }
 
-/* tr{
-  padding: 1.2em;
-} */
+
 
 .tdata{
   padding: 1.2em;

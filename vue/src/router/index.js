@@ -11,6 +11,7 @@ import AboutUsPage from '../views/AboutUsPage.vue'
 import MealPlanDetails from '../views/MealPlanDetails.vue'
 import AddMealPlan from '../views/AddMealPlan.vue'
 import MyMealPlans from '../views/MyMealPlans.vue'
+import MainLogin from '../components/MainLogin.vue'
 
 Vue.use(Router)
 
@@ -105,7 +106,14 @@ const router = new Router({
         requiresAuth: true
     }
   },
-  
+    {
+      path: "/main",
+      name: "main",
+      component: MainLogin,
+      meta: {
+        requiresAuth: false
+    }
+  },
   ]
 })
 
