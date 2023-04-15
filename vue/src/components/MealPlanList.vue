@@ -6,9 +6,9 @@
         <h2>{{ mealplan[0].plan_name }}</h2>
        <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
        
-       <p> {{ mealplan[0].for_date }}</p>
+       <p style="font-weight: bold;"> {{ mealplan[0].for_date }}</p>
        <p> to </p>
-       <p>{{mealplan[mealplan.length-1].for_date}}</p>
+       <p style="font-weight: bold;">{{mealplan[mealplan.length-1].for_date}}</p>
        <button @click.prevent="showDetailTable(index)"> View Details</button>
       </div>
 
@@ -106,7 +106,7 @@ computed: {
 @import url(https://fonts.googleapis.com/css2?family=Dosis);
 
 h1 {
-  color:#07857a4b;
+  color:black;
   text-shadow: 5px 2px 5px hsl(99, 18%, 85%);
   font-size: 2.8em;
   align-content: center;
@@ -125,7 +125,12 @@ p {
 .mealPlans {
   text-align: center;
   font-family: 'Dosis', monospace, sans-serif;
-  background-image:;
+  background: url(../assets/veggies.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
 .tableStyle {
