@@ -1,8 +1,8 @@
 <template>
   <div id="login" class="text-center">
     <div class="login1">
-      
-     <about-us class="login2"/>
+      <main-login class="login2"/>
+     <!-- <about-us class="login2"/> -->
     </div>
     <div class="form">
     <form class="form-signin" @submit.prevent="login">
@@ -44,14 +44,17 @@
 </template>
 
 <script>
-import AboutUs from '../components/AboutUs.vue';
+// import AboutUs from '../components/AboutUs.vue';
+import MainLogin from '../components/MainLogin.vue';
 import authService from "../services/AuthService";
+// import MainLogin from "../components/MainLogin.vue"
 
 export default {
   name: "login",
-  components: {AboutUs},
+  components: {MainLogin},
   data() {
-    return {
+ 
+     return {
       user: {
         username: "",
         password: ""
@@ -88,6 +91,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(234, 250, 177);
 }
 .login1{
   width:70%
