@@ -3,14 +3,8 @@
     
     
     <div class="right">
-      <label for="myrecipesbtn">My Recipes</label>
-      <router-link v-bind:to="{ name:'recipes', params:{userId:$store.state.user.id}}">
-        <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow">
-      </router-link>
-      <!-- <label for="mealplansbtn">My Meals</label>
-      <router-link v-bind:to="{ name: 'mealplans', params:{userId:$store.state.uesr.id}}">
-        <img src="../assets/backArrow.png" alt="Back Arrow meal plans" id="mealplansbtn">
-      </router-link> -->
+      
+        <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
 
       <h2>{{recipe.recipe_name}}</h2>
 
@@ -89,8 +83,6 @@ methods: {
     this.showForm = !this.showForm;
   }
 },
-
-
 created() {
     recipeService.getRecipeById(this.$route.params.recipeId).then(response => {
       this.recipe = response.data;
