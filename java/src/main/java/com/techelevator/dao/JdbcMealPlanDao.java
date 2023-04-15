@@ -35,12 +35,18 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
         List<List<MealPlan>> nestedMealPlans = new ArrayList<>();
         int currentMealPlanId = 0;
-        int newListIndex =
+        int newListIndex = -1;
 
         for(int i=0; i< mealPlans.size(); i++){
             if(mealPlans.get(i).getMeal_plan_id() != currentMealPlanId){
                 List<MealPlan> currentMealPlan = new ArrayList<>();
                 currentMealPlan.add(mealPlans.get(i));
+                nestedMealPlans.add(currentMealPlan);
+                currentMealPlanId = mealPlans.get(i).getMeal_plan_id();
+                newListIndex++;
+            }
+            else {
+                nestedMealPlans.get(newListIndex).add(mealPlans.get(i));
             }
 
         }
