@@ -34,41 +34,49 @@ public class JdbcMealPlanDao implements MealPlanDao{
         }
 
         List<List<MealPlan>> nestedMealPlans = new ArrayList<>();
-//        List<Integer> list = List.of(1, 2, 3, 4, 5, 7, 8, 9, 10, 11);
-//        int n = 3;
-//        List<List<Integer>> result = new LinkedList<>();
-//        int size = list.size();
-//        for (int i = 0; i <= size; i += n) {
-//            result.add(list.subList(i, Math.min(i + n, size)));
-//        }
-//        System.out.println(result);  // [[1, 2, 3], [4, 5, 7], [8, 9, 10], [11]]
-        int jHolder = 0;
-        for(int i = 0; i < mealPlans.size(); i=jHolder){
-            int firstIndex = 0;
-            int lastIndex = 0;
+        int currentMealPlanId = 0;
+        int newListIndex =
 
-            for(int j = i; j < mealPlans.size(); j++){
-                if(mealPlans.get(i).getMeal_plan_id() == mealPlans.get(j).getMeal_plan_id()){
-                    if(j == 0 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j-1).getMeal_plan_id()){
-                        firstIndex = j;
-                    }else if (j == mealPlans.size()-1 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j+1).getMeal_plan_id()){
-                        lastIndex = j+1;
-                        if(j == mealPlans.size()-1){
-                            nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
-                            jHolder = mealPlans.size();
-                            break;
-
-                        }
-                    }
-                }else {
-                    nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
-                    jHolder = j;
-                    break;
-
-                }
+        for(int i=0; i< mealPlans.size(); i++){
+            if(mealPlans.get(i).getMeal_plan_id() != currentMealPlanId){
+                List<MealPlan> currentMealPlan = new ArrayList<>();
+                currentMealPlan.add(mealPlans.get(i));
             }
 
         }
+
+//        int jHolder = 0;
+//        for(int i = 0; i < mealPlans.size(); i=jHolder){
+//            int firstIndex = 0;
+//            int lastIndex = 0;
+//
+//            for(int j = i; j < mealPlans.size(); j++){
+//                if(mealPlans.get(i).getMeal_plan_id() == mealPlans.get(j).getMeal_plan_id()){
+//                    if(j == 0 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j-1).getMeal_plan_id() || j == mealPlans.size()-1){
+//                        firstIndex = j;
+//                        if(j == mealPlans.size()-1){
+//                            nestedMealPlans.add(mealPlans.subList(j, j+1));
+//                            jHolder = j+1;
+//                            break;
+//                        }
+//                    }else if (j == mealPlans.size()-1 || mealPlans.get(j).getMeal_plan_id() != mealPlans.get(j+1).getMeal_plan_id()){
+//                        lastIndex = j+1;
+//                        if(j == mealPlans.size()-1){
+//                            nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
+//                            jHolder = mealPlans.size();
+//                            break;
+//
+//                        }
+//                    }
+//                }else {
+//                    nestedMealPlans.add((mealPlans.subList(firstIndex,lastIndex)));
+//                    jHolder = j;
+//                    break;
+//
+//                }
+//            }
+//
+//        }
         return nestedMealPlans;
     }
 
