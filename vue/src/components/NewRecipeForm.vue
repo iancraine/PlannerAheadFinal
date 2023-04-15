@@ -91,7 +91,7 @@ export default {
      },
      submitFile(){
          const fd = new FormData();
-         fd.append('image', this.file)
+         fd.append('image', this.file, this.file.name);
          axios.post(`http://localhost:9000/recipes/images/${this.recipeId}`, fd, {
              onUploadProgress: uploadEvent => {
                  console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total)*100 + '%' );
@@ -140,6 +140,7 @@ export default {
         RecipeService.addNewRecipe(this.$store.state.user.id,this.recipe).then((response) => {
                 this.recipe_id = response.data.recipeId;
                 this.addIngredientToDatabase(); 
+                this.submitFile();
         }).catch(error => {
             if(error.response){
                 this.errorMsg = "Error submitting new recipe. Response recived was '"+ error.response.statusText+"'";

@@ -6,6 +6,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,8 +99,13 @@ public class JdbcRecipeDao implements RecipeDao{
     }
 
     @Override
-    public void addImageToFile(int recipeId, File image){
-        File newImage = new File ("/database");
+    public void addImageToFile(int recipeId, File image)  throws IOException {
+        File newFile = new File("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images" + image.getName());
+
+        Files.copy(image.toPath(), newFile.toPath());
+
+        String sql = ("UPDATE recipes SET food_pic = ? WHERE recipe_id = ?;");
+        jdbcTemplate.update(sql, newFile.getAbsolutePath(), recipeId);
     }
 
     public Recipe mapRowsetToRecipe(SqlRowSet row){
