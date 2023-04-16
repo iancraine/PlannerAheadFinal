@@ -83,7 +83,7 @@ export default {
   /* width:100vh; */
   padding: 2.5rem;
   padding-bottom: 50px;
-
+  font-family: 'Dosis', monospace, sans-serif;
 }
 .container1{
      background-color: #ebf2ef;

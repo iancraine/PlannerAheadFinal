@@ -81,10 +81,16 @@ export default {
   padding: 20px;
   grid-area: "title";
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 div.page-title h1{
   text-align: center;
+}
+.recipe-container{
+  background-color: #ebf2ef;
+  margin-top: 10px;
 }
 div.recipe{
   display: flex;

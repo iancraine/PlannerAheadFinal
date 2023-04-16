@@ -104,7 +104,7 @@ export default {
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
-
+font-family: 'Dosis', monospace, sans-serif;
   background-color: rgb(236, 245, 226);
   
 }
@@ -128,6 +128,7 @@ input[type="password"] {
   padding: 10px;
   background-color: #CCCCFF;
   color: #333;
+  font-family: 'Dosis', monospace, sans-serif;
 }
 
 router-link {
@@ -144,6 +145,7 @@ button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Dosis', monospace, sans-serif;
 }
 
 button[type="submit"]:hover {
