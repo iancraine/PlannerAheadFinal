@@ -75,6 +75,7 @@ export default {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
+  font-family: 'Dosis', monospace, sans-serif;
   padding: 15px;
   background-color: #89c36f;
   border-radius: 10px; 
