@@ -94,6 +94,7 @@ export default {
   justify-content: space-between;
   background-color: rgb(234, 250, 176);
   font-family: 'Dosis', monospace, sans-serif;
+  padding: 30px;
 }
 .login1{
   width:70%
