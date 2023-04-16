@@ -3,45 +3,34 @@
     
     
     <div class="right">
-      
-        <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
-
-      <h2>{{recipe.recipe_name}}</h2>
-
-      <div>
-        <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
-      </div>
-      <div>
-        <h3>Directions:</h3>
-        <p align="justify" class="directions">{{recipe.directions}}</p>
-      </div>
-      <div>
-        <h3>Ingredients</h3>
-        <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
-          <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
-          <p id="ingredient-amount">{{ ingredient.amount }}</p>
+      <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
+      <div class="recipe-container">
+        <h2>{{recipe.recipe_name}}</h2>
+        <div>
+          <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
         </div>
-      </div>
-
-        
-
-      <div class="tag">
-        <h5 class="tag">Tags:</h5>
-        <p class="tag">{{recipe.tags}}</p>
-      </div>
-
+        <div>
+          <h3>Directions:</h3>
+          <p align="justify" class="directions">{{recipe.directions}}</p>
+        </div>
+        <div>
+          <h3>Ingredients</h3>
+          <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
+            <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
+            <p id="ingredient-amount">{{ ingredient.amount }}</p>
+          </div>
+        </div>
+        <div class="tag">
+          <h5 class="tag">Tags:</h5>
+          <p class="tag">{{recipe.tags}}</p>
+        </div>
       <br/>
-
       <div class="time">
               <h5 class="time">Prep Time:</h5>
             <p class="time">{{recipe.prep_time}}</p>
       </div>
-
-      <div>
-        <label>
-          <input type="checkbox" name="myCheckbox" value="1"> Set as {{recipe.public ? "public" : "private"}}
-        </label>
-      </div>
+    </div>
+    
       
     </div>
     <div>
@@ -107,6 +96,12 @@ created() {
   font-size: 18px;
   margin-right: 40px;
   margin-left: 40px;
+}
+.recipe-container{
+   background-color: #ebf2ef;
+    border-radius: 10px;
+    padding: 2%;
+     font-family: 'Dosis', monospace, sans-serif;
 }
 h2, h3{
   color: #79b85d;
