@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-on:click="toggleShowForm()">Edit Recipe</button>
+        <button v-on:click="toggleShowForm()" class="edit-recipe-btn">Edit Recipe</button>
         <form action="#" v-on:submit.prevent="" class="recipe-form" v-show="showForm">
             <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
@@ -184,6 +184,21 @@ form.recipeForm{
     display: flex;
     justify-content: center;
 
+}
+.edit-recipe-btn{
+    background: #cdeccd;
+  border-radius: 900px;
+  box-shadow: #bdbdfa 0 10px 20px -10px;
+  color: #180d04;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 24px;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  border: 0;
+  margin: 0 auto;
+
+  font-family: 'Dosis', monospace, sans-serif;
 }
 
 .submitBtn, .cancelBtn{
