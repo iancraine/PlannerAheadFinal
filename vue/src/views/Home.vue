@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <h1>Welcome Back!</h1>
-    <h2>Featured Recipes</h2>
+    <h2>Suggested Recipe</h2>
     <div class="container1">
-      <section class="recipes" v-for="recipe in recipeSamples" v-bind:key="recipe.recipeId">
-            <h3>{{recipe.recipe_name}}</h3>
+      <section class="random-recipe">
+            <h3>{{random_recipe.recipe_name}}</h3>
            <div>
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/>
             </div>
@@ -21,15 +21,25 @@ export default {
   name: "home",
   data() {
       return {
-        recipeSamples: []
+        recipe: [],
+        random_recipe: {}
       }
     },
   
   created() {
     recipeService.getRecipes(this.$store.state.user.id).then(response => {
-      this.recipeSamples = response.data.filter((recipe, index) => index < 4);
+      this.recipe = response.data;
+      this.randomized();
     });
+  },
+
+  methods: {
+    randomized () {
+      const chosenNumber = Math.floor(Math.random() * this.recipe.length);
+          this.random_recipe = this.recipe[chosenNumber];
+    }
   }
+
   
 };
 </script>
