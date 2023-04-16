@@ -16,7 +16,7 @@
           <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
           
        <button> <router-link :to="{name: 'modify-meal-plan', params: {mealPlanId: mealplan[0].meal_plan_id}}"> Modify Plan </router-link></button>
-       <button > Delete Plan </button>
+       <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)"> Delete Plan </button>
        </div>
       
       </div>
@@ -117,10 +117,14 @@ computed: {
         return "Appetizer"
       }
     },
+    deletePlan(mealPlanId) {
+      if (confirm("You can't undo the deletion. Would you like to proceed?")) {
+        mealPlanService.deleteMealPlan(this.$route.params.userId, mealPlanId);
+      }
+      }
+    }
     
   }
-
-}
 
 </script>
 <style scoped>

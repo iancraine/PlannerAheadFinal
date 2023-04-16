@@ -45,13 +45,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="plan in listOfPlans" v-bind:key="plan.for_date">
+          <tr v-for="(plan, index) in displayModifiedCombos" v-bind:key="index">
             <div class="planContainer">
               <td class="tdata placehold" style="color: #ecf2f0">
                 <img
                   src="../assets/pencil-edit-icon.jpg"
                   height="30"
                   width="30"
+                  @click="editAndDisplay(index)"
                 />
               </td>
               <td class="tdata">{{ plan.for_date }}</td>
@@ -62,7 +63,7 @@
         </tbody>
       </table>
 
-      <form class="mealForm">
+      <form class="mealForm" v-show="showOptions">
         <div class="options">
           <div class="dateOptions">
             <label for="date">Select Date: </label>
@@ -97,7 +98,7 @@
               </option>
             </select>
           </div>
-           <button class="addToPlanBtn" @click.prevent="addMealCombo">
+           <button class="addToPlanBtn" @click.prevent="addChangeToPlan(currentIdx)">
             Add Meal
           </button>
         </div>
@@ -124,8 +125,10 @@ export default {
   data() {
     return {
       planNameAdded: false,
+      showOptions: false,
       mealPlanName: "",
       currentSelectedRecipe: "",
+      currentIdx: 0,
       listOfPlans: [],
       mealPlan: {
         plan_name: "",
@@ -145,21 +148,29 @@ export default {
       );
       return recipeObj.recipeId;
     },
+    displayModifiedCombos() {
+        return this.listOfPlans;
+    }
   },
 
   created() {
     recipeService.getRecipes(this.$store.state.user.id).then((response) => {
       this.$store.commit("SET_RECIPE", response.data.sort());
     });
-    mealPlanService
+
+    this.getListOfMealPlans();
+   
+  },
+
+  methods: {
+    getListOfMealPlans() {
+        mealPlanService
       .getMealPlanById(this.$route.params.mealPlanId)
       .then((response) => {
         this.listOfPlans = response.data;
         this.mealPlanName = this.listOfPlans[0].plan_name;
       });
-  },
-
-  methods: {
+    },
     clear() {
       this.mealPlan = {
         plan_name: "",
@@ -197,21 +208,34 @@ export default {
         return "Appetizer";
       }
     },
-    addMealCombo() {
-      this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
-      this.mealPlan.plan_name = this.mealPlanName;
-      this.mealPlan.recipe_id = this.currentRecipeId;
+    // addMealCombo() {
+    //   this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
+    //   this.mealPlan.plan_name = this.mealPlanName;
+    //   this.mealPlan.recipe_id = this.currentRecipeId;
 
-      this.listOfPlans.push(this.mealPlan);
+    //   this.listOfPlans.push(this.mealPlan);
 
-      this.clear();
-    },
+    //   this.clear();
+    // },
     addMealToDB() {
-      mealPlanService.addMealPlan(this.$store.state.user.id, this.listOfPlans);
-      this.listOfPlans = [];
+      mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
       this.clear();
-      this.mealPlanName = "";
+      this.$router.push({name: 'mealplans', params: {userId: this.$store.state.user.id }});
     },
+
+    editAndDisplay(index) {
+        this.currentIdx = index;
+        this.showOptions = !this.showOptions;
+        
+    },
+
+    addChangeToPlan(index) {
+        this.listOfPlans[index].for_date = this.mealPlan.for_date;
+        this.listOfPlans[index].meal_type = parseInt(this.mealPlan.meal_type);
+        this.listOfPlans[index].recipe_id = this.currentRecipeId;
+        this.showOptions = !this.showOptions;
+        this.clear();
+    }
   },
 };
 </script>
@@ -238,6 +262,7 @@ export default {
   -o-background-size: cover;
   background-size: cover;
   padding-bottom: 50px;
+  padding-top: 50px;
 }
 .addBtn,
 .modifyBtn,
@@ -294,9 +319,9 @@ export default {
   /* background-color:rgb(241, 249, 253); */
   margin: 0 auto;
   width:70%;
-  margin-left: 10vw;
- 
+  margin-left: 10vw; 
 }
+
 
 .calendarImg {
   border-radius: 25px;
@@ -322,7 +347,7 @@ table {
 .planContainer {
   display: flex;
   justify-content: space-evenly center;
-  align-items: flex-center;
+  
 }
 
 .dateOptions,
