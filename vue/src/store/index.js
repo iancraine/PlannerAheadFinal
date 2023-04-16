@@ -21,7 +21,22 @@ export default new Vuex.Store({
     // userId: '',
     token: currentToken || '',
     user: currentUser || {},
-    recipes:[]
+    recipes:[],
+    //***n */
+    recipesimg: [
+      {
+        id: 1,
+        name: 'Pasta',
+        imagePath:'src/images/1/pasta.png'
+      },
+      {
+        id: 2,
+        name: 'Pizza',
+        imagePath:'src/images/2/pizza.jpg'
+      }
+    ]
+
+
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

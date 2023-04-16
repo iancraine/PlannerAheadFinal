@@ -37,6 +37,7 @@ INSERT INTO meal_plan (plan_name) VALUES ('Beach Weekend!');
 INSERT INTO meal_plan (plan_name) VALUES ('Turkey Day!');
 INSERT INTO meal_plan (plan_name) VALUES ('Christmas Meals');
 INSERT INTO meal_plan (plan_name) VALUES ('My One Healthy Week a Year');
+INSERT INTO meal_plan (plan_name) VALUES ('Todays Plan');
 
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 2, '08/10/2023', 2);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 1, '08/11/2023', 1);
@@ -46,11 +47,15 @@ INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VAL
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 1, '12/23/2023', 1);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (4, 1, '1/3/2023', 2);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (4, 2, '1/4/2023', 3);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 2, '04/16/2023', 2);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 1, '04/17/2023', 3);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 2, '04/18/2023', 1);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 1, '04/19/2023', 2);
 
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (1, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (2, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (3, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (4, 2);
-
+INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (5, 1);
 
 COMMIT TRANSACTION;

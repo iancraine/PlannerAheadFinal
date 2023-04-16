@@ -101,7 +101,7 @@ tr>th{
 
 a {
   text-decoration: none;
-  color:rgb(13, 173, 75);
+  color:rgb(71, 149, 194);
   font-weight: bold;
   font-family:cursive
   

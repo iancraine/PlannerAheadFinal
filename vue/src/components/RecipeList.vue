@@ -13,7 +13,7 @@
            <div class="image">
               <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
               <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" />
-             
+             <!-- <img :src="getRecipeId(recipe.recipeId)"  alt="first imag"/> -->
             </div>
             <div class="tag"><h5 class="tag">Tag:</h5>
             <p class="tag">{{recipe.tags}}</p>
@@ -65,6 +65,10 @@ export default {
            return items[Math.floor(Math.random()*items.length)];
         }
        
+      },
+      getRecipeId(recipeId){
+             return this.$store.state.recipesimg.find(recipesimg => recipesimg.id === recipeId).imagePath;
+
       }
     
   },
@@ -75,7 +79,13 @@ export default {
       this.recipes = response.data;
     });
     
-  }
+  },
+// computed: {
+//     recipe() {
+    
+//       return this.$store.state.recipesimg.find(recipesimg => recipesimg.id === this.$route.params.recipe.recipe.Id)
+//     }
+//   }
 
 }
 </script>

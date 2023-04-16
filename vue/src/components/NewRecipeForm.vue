@@ -45,7 +45,7 @@
             </div>
             <div class="file-upload">
                 <label for="food-pic">Upload a picture: </label>
-                <input type="file" id="food-pic" ref="file" @change="onFileSelected" />
+                <input type="file" id="food-pic" ref="uploadImage" @change="onImageUpload()" />
             </div>
 
             <div class="btn-align">
@@ -62,7 +62,7 @@
 export default {
     data(){
     return{
-        file: null,
+        formData: null,
         inputTag: '',
         inputIngredient: {
             ingredient_name: '',
@@ -83,22 +83,22 @@ export default {
         };
     },
  methods: {
-     onFileSelected(event){
-         console.log(event);
-         this.file = event.target.files[0];
+     onImageUpload(){
+         let file = this.$refs.uploadImage.files[0];
+         this.formData = new FormData();
+         this.formData.append("file", file);
      },
      submitFile(){
-         const fd = new FormData();
-         fd.append('image', this.file, this.file.name);
-         let config = {
-            header : {
-                'Content-Type' : 'multipart/form-data'
-            }
-        }
-        axios.post(`http://localhost:9000/recipes/images/${this.recipe_id}`, fd, config).then((response) => {
-             console.log(response);
+         axios({
+             url: `http://localhost:9000/recipes/images/${this.recipe_id}`,
+             method: 'POST',
+             data: this.formData,
+             headers: {
+                 Accept: 'application/json',
+                 'Content-Type': 'multipart/form-data'
+             },
          })
-     },
+        },
     clear() {
         this.inputTag = '';
         this.inputIngredient= {
@@ -163,7 +163,7 @@ export default {
                         if(response.status === 201 || response.status===200){
                             this.showForm = false;
                             this.clear();
-                            // window.location.reload();
+                            window.location.reload();
                         }
                     }).catch(error => {
                         if(error.response){
@@ -186,7 +186,7 @@ export default {
                 }
             });                  
         });
-          location.reload();
+       
     }
 
 

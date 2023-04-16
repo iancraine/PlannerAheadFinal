@@ -4,6 +4,7 @@ import com.techelevator.dao.RecipeDao;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -48,8 +49,9 @@ public class RecipeController {
     public Recipe modifyRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
         return recipeDao.modifyRecipe(recipe, recipeId);
     }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(path="/images/{recipeId}", method = RequestMethod.POST)
-    public void addImage(@PathVariable int recipeId, @RequestBody BufferedImage image) throws IOException {
+    public void addImage(@PathVariable int recipeId, @RequestBody MultipartFile image) throws IOException {
         recipeDao.addImageToFile(recipeId, image);
     }
 

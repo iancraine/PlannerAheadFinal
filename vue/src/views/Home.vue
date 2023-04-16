@@ -45,7 +45,11 @@ export default {
     MealPlanService.listAllMealPlans(this.$store.state.user.id).then((response) => {
       this.mealPlans = response.data;
       this.mealPlans.forEach((plan) => {
-        this.dateRanges.push({fromDate: plan[0].for_date, toDate: plan[plan.length-1].for_date, planId: plan[0].meal_plan_id});
+        this.dateRanges.push({
+          fromDate: plan[0].for_date, 
+          toDate: plan[plan.length-1].for_date, 
+          planId: plan[0].meal_plan_id
+        });
       });
     });
     this.closestMealPlanToNow();
@@ -57,13 +61,16 @@ export default {
           this.randomRecipe = this.recipe[chosenNumber];
     },
     closestMealPlanToNow(){
-  
-      this.dateRanges.forEach(x => {
-        this.dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
-      })
-      this.currentMealPlan = this.dates.filter(x =>{
-        return x.to >= Date.now() && x.from <= Date.now(); 
-      })
+      console.log("closestMealPlanToNow is running" + Date.now() + this.dateRanges[0].toDate);
+      // this.dateRanges.forEach(x => {
+      //   this.dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
+      // })
+      // this.dateRanges.filter((item) => {
+      //   return item.toDate >= Date.now().toString() && item.fromDate <= Date.now().toString()
+      // })
+      // this.currentMealPlan = this.dates.filter(x =>{
+      //   return x.to >= Date.now() && x.from <= Date.now(); 
+      // })
       
     },
     getCurrentMealPlan(){
