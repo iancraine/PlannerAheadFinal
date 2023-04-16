@@ -15,7 +15,7 @@
        <div class="buttons">
           <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
           
-       <button> Modify Plan</button>
+       <button> <router-link :to="{name: 'modify-meal-plan', params: {mealPlanId: mealplan[0].meal_plan_id}}"> Modify Plan </router-link></button>
        <button > Delete Plan </button>
        </div>
       
