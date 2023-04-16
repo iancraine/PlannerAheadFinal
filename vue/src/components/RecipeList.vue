@@ -3,14 +3,17 @@
     <div class="page-title">
       <h2 class="title">My Recipes</h2>
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
-    </div>
+    
+    </div> 
     <new-recipe-form  id="form" v-if="showForm"/>
       <div class="recipe-container">
       <div class="recipe">
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
             <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
            <div class="image">
-              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+              <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
+              <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" />
+             
             </div>
             <div class="tag"><h5 class="tag">Tag:</h5>
             <p class="tag">{{recipe.tags}}</p>
@@ -35,7 +38,17 @@ export default {
   data() {
     return {
       recipes: [],
-      showForm: false
+      showForm: false,
+      images:[
+        require('../assets/meal-sample1.jpg'),
+         require('../assets/meal-sample2.png'),
+          require('../assets/meal-sample3.png'),
+         require('../assets/meal-sample-4.jpg'),
+          require('../assets/food-plate-icon.png'),
+           require('../assets/1M.png'),
+            require('../assets/M6.png'),
+           require('../assets/M9.png')
+      ],
     }
   },
   components: {
@@ -44,7 +57,16 @@ export default {
   methods: {
     toggleShowForm() {
       this.showForm = !this.showForm;
-    }
+    },
+      randomItem(items, name) {
+        if (name === 'Crock Pot Roast') return require('../assets/Old-Fashioned-Pot-Roast.png');
+        else if(name === 'Roasted Asparagus') return  require('../assets/roasted-asparagus.jpg');
+        else {
+           return items[Math.floor(Math.random()*items.length)];
+        }
+       
+      }
+    
   },
 
   //** might not need this*/
@@ -52,7 +74,7 @@ export default {
     recipeService.getRecipes(this.$route.params.userId).then(response => {
       this.recipes = response.data;
     });
-    //todo: make a request to pull ingredients for recipe (from IngredientService)
+    
   }
 
 }
@@ -148,9 +170,11 @@ div.recipe{
   padding: 20px;
   background-color: rgb(236, 245, 226);
 }
-img {
+.foodPic {
   width: 350px;
   border-radius: 15px;
+  max-width: 80%;
+  height: auto;
 }
 </style>
 
