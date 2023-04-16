@@ -101,6 +101,7 @@ created() {
    background-color: #ebf2ef;
     border-radius: 10px;
     padding: 2%;
+     font-family: 'Dosis', monospace, sans-serif;
 }
 h2, h3{
   color: #79b85d;

@@ -132,6 +132,7 @@ div.recipe{
   border: 0;
   margin: 0 auto;
   display: flex;
+  font-family: 'Dosis', monospace, sans-serif;
 }
 
 #form {
