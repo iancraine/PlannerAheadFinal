@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Recipe;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,6 +21,6 @@ public interface RecipeDao {
 
     Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
 
-    void addImageToFile(int recipeId, BufferedImage image) throws IOException;
+    void addImageToFile(int recipeId, MultipartFile image) throws IOException;
 
 }
