@@ -90,7 +90,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public void deleteMealPlan(int mealPlanId, int userId) {
+    public void deleteMealPlan(int userId, int mealPlanId) {
         //users_meal_plan
         String deleteSql = "DELETE FROM users_meal_plan WHERE user_id=? AND meal_plan_id=?;";
         jdbcTemplate.update(deleteSql, userId, mealPlanId);

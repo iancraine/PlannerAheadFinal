@@ -33,7 +33,7 @@ public class MealPlanController {
  }
 
  @RequestMapping(path="/{userId}/{mealPlanId}", method=RequestMethod.DELETE)
-    public void deleteMealPlan(@PathVariable int mealPlanId, @PathVariable int userId){
+    public void deleteMealPlan(@PathVariable int userId, @PathVariable int mealPlanId){
         mealPlanDao.deleteMealPlan(userId,mealPlanId);
  }
 

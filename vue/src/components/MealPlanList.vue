@@ -4,7 +4,7 @@
     <button class="topBtn" v-on:click="showMealPlan = !showMealPlan">{{ showMealPlan ? 'Hide' : 'Show' }} Details</button>
      <button class="topBtn"> <router-link :to="{name: 'add-meal-plan'}"> Add Meal Plan </router-link></button>
 
-    <div v-for="(mealplan) in mealPlans" v-bind:key="mealplan[0].meal_plan_id" >
+    <div v-for="(mealplan) in viewMealPlans" v-bind:key="mealplan[0].meal_plan_id" >
       <div class="planTitle">
         <h2>{{ mealplan[0].plan_name }}</h2>
        <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
@@ -14,7 +14,6 @@
        <br>
        <div class="buttons">
           <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
-          
        <button> <router-link :to="{name: 'modify-meal-plan', params: {mealPlanId: mealplan[0].meal_plan_id}}"> Modify Plan </router-link></button>
        <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)"> Delete Plan </button>
        </div>
@@ -73,13 +72,8 @@ export default {
     },
     
     created() {
-    mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
-      this.mealPlans = response.data;
-      this.mealPlans.forEach((mealPlan) => {
-          this.viewDetails[mealPlan[0].plan_name] = false; 
-      })
-      
-    });
+       this.populateMealplanList();
+
      recipeService.getRecipes(this.$route.params.userId).then((response) => {
       this.$store.commit("SET_RECIPE", response.data.sort());
   });
@@ -88,6 +82,9 @@ export default {
 computed: {
   viewDetailSection() {
     return this.viewDetails;
+  },
+  viewMealPlans() {
+    return this.mealPlans;
   }
 },
 
@@ -100,6 +97,13 @@ computed: {
         let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
         return recipeObj.recipe_name;
     },
+    populateMealplanList() {
+      mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
+      this.mealPlans = response.data;
+      this.mealPlans.forEach((mealPlan) => {
+          this.viewDetails[mealPlan[0].plan_name] = false; 
+      })
+    }) },
      convertMealTypeToWord(mealType) {
       if (mealType === 1) {
         return "Breakfast";
@@ -119,12 +123,15 @@ computed: {
     },
     deletePlan(mealPlanId) {
       if (confirm("You can't undo the deletion. Would you like to proceed?")) {
-        mealPlanService.deleteMealPlan(this.$route.params.userId, mealPlanId);
+        mealPlanService.deleteMealPlan( this.$route.params.userId, mealPlanId);
+        // this.populateMealplanList();
+        location.reload();
       }
       }
     }
     
   }
+
 
 </script>
 <style scoped>
