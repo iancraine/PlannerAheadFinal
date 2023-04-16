@@ -64,8 +64,12 @@ data(){
            food_pic:'',
            is_public:''
         },
-        ingredients: []
+        ingredients: [],
+        tags: []
     };
+},
+computed: {
+  
 },
 methods: {
   toggleShowForm() {

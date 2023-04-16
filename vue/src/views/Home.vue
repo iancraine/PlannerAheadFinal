@@ -3,8 +3,12 @@
     <h1>Welcome Back!</h1>
     <h2>Suggested Recipe</h2>
     <div class="container1">
-      <section class="random-recipe">
-            <h3>{{random_recipe.recipe_name}}</h3>
+      <section class="current-mealplan" v-if="isHappeningNow">
+        <!-- <h3>{{thePlan[0].plan_name}}</h3> -->
+        <!-- <p>{{thePlan[0].for_date}} - {{thePlan[thePlan.lenght-1].for_date}}</p> -->
+      </section>
+      <section class="random-recipe" >
+            <h3>{{randomRecipe.recipe_name}}</h3>
            <div>
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/>
             </div>
@@ -15,29 +19,58 @@
 </template>
 
 <script>
-import recipeService from '../services/RecipeService'
+import RecipeService from '../services/RecipeService';
+import MealPlanService from '../services/MealPlanService';
 
 export default {
   name: "home",
   data() {
       return {
         recipe: [],
-        random_recipe: {}
+        randomRecipe: {},
+        mealPlans: [],
+        dateRanges: [],
+        currentMealPlan: null,
+        isHappeningNow: true,
+        thePlan: null
       }
     },
   
   created() {
-    recipeService.getRecipes(this.$store.state.user.id).then(response => {
+    RecipeService.getRecipes(this.$store.state.user.id).then(response => {
       this.recipe = response.data;
       this.randomized();
     });
+    MealPlanService.listAllMealPlans(this.$store.state.user.id).then((response) => {
+      this.mealPlans = response.data;
+      this.mealPlans.forEach((plan) => {
+        this.dateRanges.push({fromDate: plan[0].for_date, toDate: plan[plan.length-1].for_date, planId: plan[0].meal_plan_id});
+      });
+    });
+    this.closestMealPlanToNow();
   },
 
   methods: {
     randomized () {
       const chosenNumber = Math.floor(Math.random() * this.recipe.length);
-          this.random_recipe = this.recipe[chosenNumber];
+          this.randomRecipe = this.recipe[chosenNumber];
+    },
+    closestMealPlanToNow(){
+      let dates = []
+      this.dateRanges.forEach(x => {
+        dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
+      })
+      this.currentMealPlan = dates.filter(x =>{
+        return x.to >= Date.now() && x.from <= Date.now(); 
+      })
+      
+    },
+    getCurrentMealPlan(){
+      MealPlanService.getMealPlanById(this.currentMealPlan.planId).then((response) => {
+        this.thePlan = response.data;
+      })
     }
+    
   }
 
   
