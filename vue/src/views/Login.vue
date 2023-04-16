@@ -93,6 +93,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: rgb(234, 250, 176);
+  font-family: 'Dosis', monospace, sans-serif;
 }
 .login1{
   width:70%
@@ -130,7 +131,7 @@ export default {
   padding: 10px;
   margin: 20px;
   width:25%;
-  
+  font-family: 'Dosis', monospace, sans-serif;
 }
 .sr-only{
   padding: 10px;
@@ -139,6 +140,7 @@ export default {
 }
 input{
   padding:10px;
+  font-family: 'Dosis', monospace, sans-serif;
 }
 .form-control{
 margin: 2%;

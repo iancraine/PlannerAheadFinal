@@ -81,6 +81,7 @@ p {
 
 .aboutUs {
   color: rgb(235, 126, 53);
+  
 }
 
 .container {
@@ -92,6 +93,7 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   justify-content: center;
   width: 70%;
+  font-family: 'Dosis', monospace, sans-serif;
 }
 
 
