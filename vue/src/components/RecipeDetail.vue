@@ -65,15 +65,27 @@ data(){
            is_public:''
         },
         ingredients: [],
-        tags: []
+        tagsInBoxes: null
     };
 },
 computed: {
-  
+
 },
 methods: {
   toggleShowForm() {
     this.showForm = !this.showForm;
+  },
+  puttingTagsInBoxes(){
+    console.log('putting tags in boxes is being run');
+    if(this.recipe.tags.includes(',')){
+      console.log('tags having a coma is evalutaing to true');
+      this.tagsInBoxes = this.recipe.tags.split(",");
+      console.log('the split statement ran');
+    } else {
+      console.log('tags having comas evaulated to fasle')
+      this.tagsInBoxes = this.recipe.tags;
+      console.log('setting tagsinBoxes equal to something ran');
+    }
   }
 },
 created() {
@@ -83,7 +95,9 @@ created() {
     });
     IngredientService.getIngredientsForRecipe(this.$route.params.recipeId).then((response) => {
       this.ingredients = response.data;
-    })
+    });
+    this.puttingTagsInBoxes();
+    
   }
 }
 </script>

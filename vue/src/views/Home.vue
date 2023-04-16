@@ -32,7 +32,8 @@ export default {
         dateRanges: [],
         currentMealPlan: null,
         isHappeningNow: true,
-        thePlan: null
+        thePlan: null,
+        dates: []
       }
     },
   
@@ -56,11 +57,11 @@ export default {
           this.randomRecipe = this.recipe[chosenNumber];
     },
     closestMealPlanToNow(){
-      let dates = []
+  
       this.dateRanges.forEach(x => {
-        dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
+        this.dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
       })
-      this.currentMealPlan = dates.filter(x =>{
+      this.currentMealPlan = this.dates.filter(x =>{
         return x.to >= Date.now() && x.from <= Date.now(); 
       })
       
