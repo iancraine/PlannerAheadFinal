@@ -13,7 +13,7 @@ import AddMealPlan from '../views/AddMealPlan.vue'
 import MyMealPlans from '../views/MyMealPlans.vue'
 import MainLogin from '../components/MainLogin.vue'
 import ModifyMealPlan from '../views/ModifyMealPlan.vue'
-
+import GroceryList from '../views/GroceryList.vue'
 Vue.use(Router)
 
 /**
@@ -119,7 +119,15 @@ const router = new Router({
     path: "/modifymealplan/:mealPlanId",
     name: "modify-meal-plan",
     component: ModifyMealPlan
-  }
+  },
+  {
+    path: "/grocerylist/:userId",
+    name: "grocery-list",
+    component: GroceryList,
+    meta: {
+      requiresAuth: true
+    }
+  },
   ]
 })
 
