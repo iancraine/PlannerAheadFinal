@@ -1,24 +1,42 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
+
+    <div class="nav-bar">
+      <nav-bar></nav-bar>
+    </div>
+    
     <router-view />
-    <Footer class="footer"/>
+
+    <div class="footer-parent">
+      <page-bottom class="footer"/>
+    </div>
+  
   </div>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
+import PageBottom from './components/PageBottom.vue'
 import NavBar from './components/NavBar.vue'
 
 export default {
   components: { 
-    Footer,
+    PageBottom,
     NavBar
    },
 };
 </script>
 
 <style>
+@media(max-width: 768px){
+  /* .nav-bar{
+    display: flex;
+    flex-shrink: 1;
+  }
+  .footer-parent{
+    display: flex;
+    flex-shrink: 1;
+  } */
+}
 
 #app {
   display: grid;
@@ -43,6 +61,7 @@ router-view {
   grid-area: footer;
   /* position: absolute; */
   bottom: 0;
+
   /* height: 2.5rem; */
   /* margin: 10%; */
 }
