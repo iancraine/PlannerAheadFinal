@@ -11,9 +11,9 @@
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
             <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
            <div class="image">
-              <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
-              <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" />
-             <!-- <img :src="getRecipeId(recipe.recipeId)"  alt="first imag"/> -->
+              <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
+              <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
+             <img :src="getRecipeId(recipe.recipeId)"  alt="first imag" class="foodPic"/>
             </div>
             <div class="tag"><h5 class="tag">Tag:</h5>
             <p class="tag">{{recipe.tags}}</p>
@@ -58,16 +58,23 @@ export default {
     toggleShowForm() {
       this.showForm = !this.showForm;
     },
-      randomItem(items, name) {
-        if (name === 'Crock Pot Roast') return require('../assets/Old-Fashioned-Pot-Roast.png');
-        else if(name === 'Roasted Asparagus') return  require('../assets/roasted-asparagus.jpg');
-        else {
-           return items[Math.floor(Math.random()*items.length)];
-        }
+      // randomItem(items, name) {
+      //   if (name === 'Crock Pot Roast') return require('../assets/Old-Fashioned-Pot-Roast.png');
+      //   else if(name === 'Roasted Asparagus') return  require('../assets/roasted-asparagus.jpg');
+      //   else {
+      //      return items[Math.floor(Math.random()*items.length)];
+      //   }
        
-      },
+      // },
+
+      randomItem(items) {
+           return items[Math.floor(Math.random()*items.length)];
+        },
+
       getRecipeId(recipeId){
-             return this.$store.state.recipesimg.find(recipesimg => recipesimg.id === recipeId).imagePath;
+             let imgPath = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId).path;
+             if (imgPath != undefined) return imgPath;
+             else return this.randomItem(this.images);
 
       }
     
