@@ -185,7 +185,7 @@ background-color: #ebf2ef;
     border-radius: 10px;
     padding: 2%;
   }
-  /* .left-container{
+  .left-container{
     display: flex;
     
     
@@ -193,7 +193,7 @@ background-color: #ebf2ef;
   .left{
     width: 400px;
     align-self: flex-end;
-  } */
+  }
 }
 @media(max-width: 1200px){
   .left{
