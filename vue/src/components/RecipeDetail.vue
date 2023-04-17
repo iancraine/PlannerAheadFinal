@@ -18,10 +18,23 @@
 
         <div id="ingredients-section">
           <h3>Ingredients</h3>
-          <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
-            <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
-            <p id="ingredient-amount">{{ ingredient.amount }}</p>
-          </div>
+          <ul>
+            <li v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" >
+                <input type="checkbox" v-model="ingredient.checked"/>
+                <span class="category"> {{ ingredient.ingredient_name }}: {{ ingredient.amount }}</span>
+            </li>
+        </ul>
+
+
+          <!-- <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
+            <input type="checkbox" name="" id="list-item" v-model="itemsToAdd">
+            <label for="list-item">
+             {{ ingredient.ingredient_name }}: {{ ingredient.amount }}    Used to be h4 and p element respectively
+            </label>
+            
+            
+          </div> -->
+          <button type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
         </div>
 
         <div class="tag">
@@ -51,6 +64,7 @@
 import EditRecipeForm from "./EditRecipeForm.vue";
 import recipeService from "../services/RecipeService.js";
 import IngredientService from "../services/IngredientService";
+import GroceryListService from "../services/GroceryListService";
 
 export default {
 name:'recipe-detail',
@@ -70,13 +84,22 @@ data(){
            is_public:''
         },
         ingredients: [],
-        tagsInBoxes: null
+        tagsInBoxes: null,
+        itemsToAdd: []
     };
 },
 computed: {
 
 },
 methods: {
+  addItemToList(name, amount){
+    this.itemsToAdd.push({itemName: name, itemAmount: amount});
+  },
+  sendToGroceryDB(){
+
+    GroceryListService.addGroceriesToDB(this.$store.state.user.id, this.itemsToAdd);
+    this.itemsToAdd = [];
+  },
   toggleShowForm() {
     this.showForm = !this.showForm;
   },
@@ -205,6 +228,9 @@ h2, h3{
   clear: both;
   padding:10px;
   position: relative;
+}
+li{
+  list-style-type: none;
 }
 .right{
   grid-area: lefty;

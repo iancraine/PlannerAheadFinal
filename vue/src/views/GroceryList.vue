@@ -1,12 +1,12 @@
 <template>
-  <grocery-list/>
+  <groceries/>
 </template>
 
 <script>
-import GroceryList from '../components/GroceryList.vue'
+import Groceries from '../components/Groceries.vue'
 export default {
     name:'grocery-list',
-  components: { GroceryList },
+  components: { Groceries },
 
 }
 </script>

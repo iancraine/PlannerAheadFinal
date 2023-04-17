@@ -9,7 +9,9 @@
 
           </div>
           <div v-for="list in grocerylist" :key="list">
-              {{list.list_id}}
+            <input type="checkbox" name="" id="list-item">
+            <label for="list-item" v-if="list.ingredient_name != undefined" >{{list.ingredient_name}}</label>
+            <label for="list-item" v-else>{{list.non_food_option}}</label>
           </div>
       </div>
   </div>
@@ -42,7 +44,7 @@ export default {
       this.recipe = response.data;
       
     });
-     groceryListService.getAllGroceryListItem(this.$route.params.userId)
+     groceryListService.getAllGroceryListItems(this.$route.params.userId)
      .then(response=>{
          this.grocerylist=response.data;
      });
