@@ -1,0 +1,55 @@
+package com.techelevator.dao;
+
+import com.techelevator.model.GroceryList;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+@Component
+public class JdbcGroceryListDao implements GroceryListDao{
+
+    private JdbcTemplate jdbcTemplate;
+    public JdbcGroceryListDao (JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public List<GroceryList> getAllListItems(int userId) {
+        List<GroceryList> groceryList = new ArrayList<>();
+        String sql = "SELECT ingredient_name, non_food_option, quantity " +
+                "FROM groceryList " +
+                "JOIN ingredients ON ingredients.ingredient_id = grocery_list.ingredient_id " +
+                "WHERE user_id = ?" +
+                "ORDER BY ingredient_name;";
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userId);
+
+        while(row.next()){
+            groceryList.add(mapRowToGroceryList(row));
+        }
+
+        return groceryList;
+    }
+
+    @Override
+    public void addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront) {
+        String sql = "INSERT INTO grocery_list (user_id, )"
+    }
+
+    @Override
+    public void clearGroceryList(int userId) {
+
+    }
+
+    public GroceryList mapRowToGroceryList(SqlRowSet row){
+        GroceryList groceryList = new GroceryList();
+
+        groceryList.setIngredient_name(row.getString("ingredient_name"));
+        groceryList.setNon_food_option(row.getString("non_food_option"));
+        groceryList.setQuantity(row.getString("quantity"));
+
+        return groceryList;
+    }
+}
