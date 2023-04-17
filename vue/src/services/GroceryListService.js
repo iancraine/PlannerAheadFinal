@@ -7,6 +7,13 @@ const http = axios.create({
 export default{
     getAllGroceryListItems(userId){
         return http.get(`/grocery/list/${userId}`);
+    },
+    addGroceriesToDB(userId, groceries){
+        return http.post(`/grocery/add/${userId}`, groceries);
+    },
+    clearGroceryList(userId){
+        return http.delete(`/grocery/delete/${userId}`)
     }
+
 
 }

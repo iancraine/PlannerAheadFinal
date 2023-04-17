@@ -2,6 +2,10 @@
   <div class="page">
     <div class="page-title">
       <h2 class="title">My Recipes</h2>
+      <form class="search-form">
+          <input type="text" placeholder="Search...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
     
     </div> 
