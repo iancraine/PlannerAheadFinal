@@ -1,7 +1,7 @@
 <template>
 <div>
     <recipe-list />
-</div>
+    </div>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
   name: 'MyRecipes',
   components: {
     RecipeList,
+   
   
   }
 
