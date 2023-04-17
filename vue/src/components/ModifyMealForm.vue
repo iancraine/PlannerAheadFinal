@@ -235,6 +235,9 @@ export default {
       this.listOfPlans.forEach((plan) => {
         plan.plan_name = this.mealPlanName;
       })
+
+      console.log(this.listOfPlans);
+      console.log(this.listOfNewlyAddedPlans);
       mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
       mealPlanService.addMoreMealsToExistingPlan(this.listOfNewlyAddedPlans, this.$store.state.user.id);
       this.clear();

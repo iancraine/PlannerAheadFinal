@@ -22,6 +22,6 @@ export default {
     },
     addMoreMealsToExistingPlan(mealPlan, userId) {
         // mealPlan must be an array of newly adding meal combos to an existing plan
-        return http.post(`/mealplans/addnew/${userId}`);
+        return http.post(`/mealplans/addnew/${userId}`, mealPlan);
     }
 }
