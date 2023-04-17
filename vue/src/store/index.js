@@ -22,17 +22,18 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     recipes:[],
+   
     //***n */
-    recipesimg: [
+    images: [
       {
         id: 1,
-        name: 'Pasta',
-        imagePath:'src/images/1/pasta.png'
+        name: 'Crock Pot Roast',
+        path:'../assets/1M.png'
       },
       {
         id: 2,
-        name: 'Pizza',
-        imagePath:'src/images/2/pizza.jpg'
+        name: 'Roasted Asparagus',
+        path:'../assets/M2.jpg'
       }
     ]
 
@@ -57,7 +58,11 @@ export default new Vuex.Store({
     },
     SET_RECIPE(state, recipesArr) {
       state.recipes = recipesArr;
-    }
+    },
     // SET_USER_ID(state, )
+
+    //**N */
+    
+     
   }
 })
