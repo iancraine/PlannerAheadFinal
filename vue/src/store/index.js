@@ -28,12 +28,12 @@ export default new Vuex.Store({
       {
         id: 1,
         name: 'Crock Pot Roast',
-        path:'../assets/1M.png'
+        path: require('../assets/Old-Fashioned-Pot-Roast.png')
       },
       {
         id: 2,
         name: 'Roasted Asparagus',
-        path:'../assets/M2.jpg'
+        path: require('../assets/roasted-asparagus.jpg')
       }
     ]
 

@@ -149,6 +149,8 @@ export default {
                 this.errorMsg = "Error submitting new recipe. Request could not be reached.";
             }
         });
+
+        location.reload();
        
        
     },
