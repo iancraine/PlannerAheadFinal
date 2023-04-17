@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 
 public class MealPlan {
+    private int meal_plan_recipes_id;
     private int meal_plan_id;
     private String plan_name;
     private int recipe_id;
@@ -17,12 +18,13 @@ public class MealPlan {
         this.plan_name = plan_name;
     }
 
-    public MealPlan(int meal_plan_id, String plan_name, int recipe_id, LocalDate for_date, int meal_type) {
+    public MealPlan(int meal_plan_id, String plan_name, int recipe_id, LocalDate for_date, int meal_type, int meal_plan_recipes_id) {
         this.meal_plan_id = meal_plan_id;
         this.plan_name = plan_name;
         this.recipe_id = recipe_id;
         this.for_date = for_date;
         this.meal_type = meal_type;
+        this.meal_plan_recipes_id = meal_plan_recipes_id;
     }
 
     public int getMeal_plan_id() {
@@ -63,5 +65,13 @@ public class MealPlan {
 
     public void setMeal_type(int meal_type) {
         this.meal_type = meal_type;
+    }
+
+    public int getMeal_plan_recipes_id() {
+        return meal_plan_recipes_id;
+    }
+
+    public void setMeal_plan_recipes_id(int meal_plan_recipes_id) {
+        this.meal_plan_recipes_id = meal_plan_recipes_id;
     }
 }

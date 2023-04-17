@@ -3,7 +3,7 @@
       <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
 
     <h2>{{ recipe.name }}</h2>
-    <img :src="recipeImageMap[recipe.recipeId]" alt="my test images"/>
+    <img :src="requirerecipeImageMap[recipe.recipeId]" alt="my test images"/>
     <!-- <img v-bind:src=recipe.path alt=""/> -->
     {{recipe.recipeId}}{{recipeImageMap[recipe.recipeId]}}
       </div>
