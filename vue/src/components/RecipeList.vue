@@ -11,8 +11,8 @@
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
             <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
            <div class="image">
-              <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
-              <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" />
+              <img src="../assets/1M.png" alt="Pot Roast" />
+              <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
              <!-- <img :src="getRecipeId(recipe.recipeId)"  alt="first imag"/> -->
             </div>
             <div class="tag"><h5 class="tag">Tag:</h5>

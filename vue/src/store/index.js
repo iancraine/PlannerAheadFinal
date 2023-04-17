@@ -28,7 +28,7 @@ export default new Vuex.Store({
       {
         id: 1,
         name: 'Crock Pot Roast',
-        path:'../images/1/1M.png'
+        path:'../assets/1M.png'
       },
       {
         id: 2,

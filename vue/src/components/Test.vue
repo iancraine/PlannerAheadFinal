@@ -4,7 +4,7 @@
 
     <h2>{{ recipe.name }}</h2>
     <img :src="recipeImageMap[recipe.recipeId]" alt="my test images"/>
-    <img :src=recipe.path alt=""/>
+    <!-- <img v-bind:src=recipe.path alt=""/> -->
     {{recipe.recipeId}}{{recipeImageMap[recipe.recipeId]}}
       </div>
   </div>
@@ -29,7 +29,7 @@ export default {
   computed: {
     // recipe() {
     
-    //   return this.$store.state.recipesimg.find(recipe => recipe.id ===  parseInt(this.recipeId))
+    //   return this.$store.state.images.find(img => img.id ===  parseInt(this.recipeId))
     // }
      recipeImageMap() {
     return this.$store.state.images.reduce((map, image) => {
