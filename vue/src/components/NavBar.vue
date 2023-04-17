@@ -4,10 +4,7 @@
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <!-- <div id="brandName"> Planner Ahead </div> -->
-    <form class="search-form">
-          <input type="text" placeholder="Search...">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+    
       <ul class="nav-links">
         
         <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
