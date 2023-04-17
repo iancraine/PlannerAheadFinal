@@ -74,12 +74,14 @@ CREATE TABLE meal_plan_recipes(
 );
 CREATE TABLE grocery_list(
 	list_id serial,
+	user_id int NOT NULL,
 	ingredient_id int NULL,
 	non_food_option varchar(50) NULL,
-	quantity varchar (20),
+	quantity varchar (20) NULL,
 	
 	CONSTRAINT PK_grocery_list PRIMARY KEY (list_id),
-	CONSTRAINT FK_grocery_list_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
+	CONSTRAINT FK_grocery_list_ingredient_id FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id),
+	CONSTRAINT FK_grocery_list_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 CREATE TABLE recipe_ingredients(
 	recipe_id int NOT NULL,

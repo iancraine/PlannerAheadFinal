@@ -4,8 +4,12 @@
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <!-- <div id="brandName"> Planner Ahead </div> -->
-    
+    <form class="search-form">
+          <input type="text" placeholder="Search...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
       <ul class="nav-links">
+        
         <li id="home"> <router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
         <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
         <li id="mealPlans"><router-link v-bind:to="{ name: 'mealplans', params: {userId: this.$store.state.user.id}}" v-if="$store.state.token != ''">Meal Plans</router-link></li>
@@ -26,7 +30,7 @@ export default {
 @media(max-width: 1024px){
   #headerNav{
     display: flex;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
     align-items: center;
   }
   .nav-links {
@@ -39,12 +43,16 @@ export default {
  flex-shrink: 1;
  
   
-}
+  }
 
 .nav-links li{
   
   justify-content: flex-start;
    
+}
+.search-form {
+  border-radius: 25px;
+  margin: 30px;
 }
   /* .logoImg{
     height: 40px;

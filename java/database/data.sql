@@ -58,4 +58,10 @@ INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (3, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (4, 2);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (5, 1);
 
+INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 2, NULL, '3 lbs');
+INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, NULL, 'Toilet Paper', NULL);
+INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 4, NULL, '1 can');
+INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 5, NULL, '3 bushels');
+
+
 COMMIT TRANSACTION;
