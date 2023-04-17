@@ -218,7 +218,9 @@ export default {
     //   this.clear();
     // },
     addMealToDB() {
-      console.log(this.listOfPlans);
+      this.listOfPlans.forEach((plan) => {
+        plan.plan_name = this.mealPlanName;
+      })
       mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
       this.clear();
       this.$router.push({name: 'mealplans', params: {userId: this.$store.state.user.id }});
@@ -227,8 +229,6 @@ export default {
     editAndDisplay(index) {
       console.log(index);
         this.currentIdx = index;
-        // console.log(this.currentIdx);
-        // console.log(this.listOfPlans[this.currentIdx]);
         this.showOptions = !this.showOptions;
         
     },
@@ -237,8 +237,6 @@ export default {
         this.listOfPlans[index].for_date = this.mealPlan.for_date;
         this.listOfPlans[index].meal_type = parseInt(this.mealPlan.meal_type);
         this.listOfPlans[index].recipe_id = this.currentRecipeId;
-        // console.log(this.listOfPlans[index]);
-        // console.log(this.listOfPlans);
         this.showOptions = !this.showOptions;
         this.clear();
     }
