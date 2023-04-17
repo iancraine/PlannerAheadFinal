@@ -20,8 +20,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
     public List<List<MealPlan>> listAllMealPlans(int userId) {
         List<MealPlan> mealPlans = new ArrayList<>();
 
-
-        String sql = "SELECT mp.meal_plan_id, plan_name, mpr.recipe_id, for_date, meal_type " +
+        String sql = "SELECT mpr.meal_plan_recipes_id, mp.meal_plan_id, plan_name, mpr.recipe_id, for_date, meal_type " +
                 "FROM meal_plan mp " +
                 "JOIN meal_plan_recipes mpr ON mpr.meal_plan_id = mp.meal_plan_id " +
                 "JOIN users_meal_plan ump ON ump.meal_plan_id = mp.meal_plan_id " +
@@ -58,7 +57,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
     public List<MealPlan> getMealPlansById(int mealPlanId) {
         List<MealPlan> mealPlans = new ArrayList<>();
 
-        String sql= "SELECT mp.meal_plan_id, mp.plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
+        String sql= "SELECT mpr.meal_plan_recipes_id, mp.meal_plan_id, mp.plan_name, for_date, meal_type, recipe_id FROM meal_plan_recipes mpr " +
                 "JOIN meal_plan mp ON mp.meal_plan_id = mpr.meal_plan_id " +
                 "WHERE mpr.meal_plan_id=? ORDER BY for_date, meal_type;";
 
@@ -110,9 +109,14 @@ public class JdbcMealPlanDao implements MealPlanDao{
         String sql = "UPDATE meal_plan SET plan_name = ? where meal_plan_id =?;";
         jdbcTemplate.update(sql, updatedMealPlan.get(0).getPlan_name(), updatedMealPlan.get(0).getMeal_plan_id());
 
-        sql = "UPDATE meal_plan_recipes SET recipe_id = ?, for_date = ?, meal_type = ? WHERE meal_plan_id = ?;";
+//        sql = "UPDATE meal_plan_recipes SET recipe_id = ?, for_date = ?, meal_type = ? WHERE meal_plan_id = ?;";
+//        for(MealPlan plan : updatedMealPlan){
+//            jdbcTemplate.update(sql, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type(), plan.getMeal_plan_id());
+//        }
+
+        sql = "UPDATE meal_plan_recipes SET recipe_id = ?, for_date = ?, meal_type = ? WHERE meal_plan_recipes_id=?;";
         for(MealPlan plan : updatedMealPlan){
-            jdbcTemplate.update(sql, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type(), plan.getMeal_plan_id());
+            jdbcTemplate.update(sql, plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type(), plan.getMeal_plan_recipes_id());
         }
 
         return getMealPlansById(updatedMealPlan.get(0).getMeal_plan_id());
@@ -126,7 +130,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
         mealPlan.setRecipe_id(row.getInt("recipe_id"));
         mealPlan.setFor_date(row.getDate("for_date").toLocalDate());
         mealPlan.setMeal_type(row.getInt("meal_type"));
-
+        mealPlan.setMeal_plan_recipes_id(row.getInt("meal_plan_recipes_id"));
         return mealPlan;
     }
 }

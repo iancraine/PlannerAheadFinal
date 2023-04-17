@@ -30,7 +30,7 @@ export default {
 @media(max-width: 1024px){
   #headerNav{
     display: flex;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
     align-items: center;
   }
   .nav-links {
@@ -43,7 +43,7 @@ export default {
  flex-shrink: 1;
  
   
-}
+  }
 
 .nav-links li{
   

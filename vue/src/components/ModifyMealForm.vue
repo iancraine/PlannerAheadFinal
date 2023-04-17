@@ -218,12 +218,16 @@ export default {
     //   this.clear();
     // },
     addMealToDB() {
+      this.listOfPlans.forEach((plan) => {
+        plan.plan_name = this.mealPlanName;
+      })
       mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
       this.clear();
       this.$router.push({name: 'mealplans', params: {userId: this.$store.state.user.id }});
     },
 
     editAndDisplay(index) {
+      console.log(index);
         this.currentIdx = index;
         this.showOptions = !this.showOptions;
         
