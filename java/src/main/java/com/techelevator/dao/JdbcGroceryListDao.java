@@ -19,8 +19,8 @@ public class JdbcGroceryListDao implements GroceryListDao{
     public List<GroceryList> getAllListItems(int userId) {
         List<GroceryList> groceryList = new ArrayList<>();
         String sql = "SELECT ingredient_name, non_food_option, quantity " +
-                "FROM groceryList " +
-                "JOIN ingredients ON ingredients.ingredient_id = grocery_list.ingredient_id " +
+                "FROM grocery_list " +
+                "LEFT JOIN ingredients ON ingredients.ingredient_id = grocery_list.ingredient_id " +
                 "WHERE user_id = ?" +
                 "ORDER BY ingredient_name;";
 
@@ -34,12 +34,27 @@ public class JdbcGroceryListDao implements GroceryListDao{
     }
 
     @Override
-    public void addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront) {
-        String sql = "INSERT INTO grocery_list (user_id, )"
+    public List<GroceryList> addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront) {
+        List<GroceryList> newGroceryList = new ArrayList<>();
+        String sql = "INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) " +
+                "VALUES (?, ?, ?, ?);";
+
+        for(GroceryList item : itemsFromFront){
+            if(item.getIngredient_name() == null){
+                jdbcTemplate.update(sql, userId, null, item.getNon_food_option(), item.getQuantity());
+            } else {
+                String sqlTwo = "SELECT ingredient_id FROM ingredients WHERE ingredient_name = ?;";
+                int ingredientID = jdbcTemplate.queryForObject(sqlTwo, Integer.class, item.getIngredient_name());
+                jdbcTemplate.update(sql, userId, ingredientID, null, item.getQuantity());
+            }
+        }
+        return getAllListItems(userId);
     }
 
     @Override
     public void clearGroceryList(int userId) {
+        String sql = "DELETE FROM grocery_list WHERE user_id = ?;";
+        jdbcTemplate.update(sql, userId);
 
     }
 
