@@ -19,5 +19,9 @@ export default {
     },
     updateMealPlan(mealPlanId, mealPlan){
         return http.put(`/mealplans/${mealPlanId}`, mealPlan);  //mealPlan must be an array of objects
+    },
+    addMoreMealsToExistingPlan(mealPlan, userId) {
+        // mealPlan must be an array of newly adding meal combos to an existing plan
+        return http.post(`/mealplans/addnew/${userId}`);
     }
 }

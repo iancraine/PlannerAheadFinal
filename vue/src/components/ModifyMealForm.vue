@@ -26,6 +26,13 @@
         </div>
       </div>
 
+<div class="addNewMealBtn">
+  <button class="addToPlanBtn" @click.prevent="addNewMeal">
+         Add New Meal
+        </button>
+</div>
+   
+
       <table>
         <thead>
           <tr>
@@ -98,8 +105,11 @@
               </option>
             </select>
           </div>
-           <button class="addToPlanBtn" @click.prevent="addChangeToPlan(currentIdx)">
-            Add Meal
+           <button class="addToPlanBtn editBtn" v-if="!addingNewMeal" @click.prevent="addChangeToPlan(currentIdx)">
+            Edit
+          </button>
+          <button class="addToPlanBtn editBtn" v-else @click.prevent="addNewMealToPlan">
+            Add
           </button>
         </div>
         <div class="btn">
@@ -109,7 +119,7 @@
 
       <div class="btn">
         <button class="addToPlanBtn" @click.prevent="addMealToDB">
-          Add Changes
+          Save All Changes
         </button>
       </div>
     </div>
@@ -130,6 +140,9 @@ export default {
       currentSelectedRecipe: "",
       currentIdx: 0,
       listOfPlans: [],
+      listOfNewlyAddedPlans:[],
+      listOfTotalPlans:[],
+      addingNewMeal: false,
       mealPlan: {
         plan_name: "",
         // get the recipe Id based on the recipe name when user adds the combo
@@ -149,7 +162,7 @@ export default {
       return recipeObj.recipeId;
     },
     displayModifiedCombos() {
-        return this.listOfPlans;
+        return this.listOfTotalPlans;
     }
   },
 
@@ -168,6 +181,7 @@ export default {
       .getMealPlanById(this.$route.params.mealPlanId)
       .then((response) => {
         this.listOfPlans = response.data;
+        this.listOfTotalPlans = response.data;
         this.mealPlanName = this.listOfPlans[0].plan_name;
       });
     },
@@ -222,8 +236,11 @@ export default {
         plan.plan_name = this.mealPlanName;
       })
       mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
+      mealPlanService.addMoreMealsToExistingPlan(this.listOfNewlyAddedPlans, this.$store.state.user.id);
       this.clear();
       this.$router.push({name: 'mealplans', params: {userId: this.$store.state.user.id }});
+
+ 
     },
 
     editAndDisplay(index) {
@@ -231,6 +248,23 @@ export default {
         this.currentIdx = index;
         this.showOptions = !this.showOptions;
         
+    },
+
+    addNewMeal() {
+        this.showOptions = !this.showOptions;
+        this.addingNewMeal = !this.addingNewMeal;
+    },
+
+    addNewMealToPlan() {
+        this.mealPlan.plan_name = this.mealPlanName;
+        this.mealPlan.recipe_id = this.currentRecipeId;
+        this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
+        this.mealPlan.meal_plan_id = this.$route.params.mealPlanId;
+        this.listOfNewlyAddedPlans.push(this.mealPlan);
+        this.listOfTotalPlans.push(this.mealPlan);
+        this.clear();
+         this.addingNewMeal = !this.addingNewMeal;
+         this.showOptions = !this.showOptions;
     },
 
     addChangeToPlan(index) {
@@ -309,6 +343,17 @@ export default {
   /* position: absolute; */
   /* margin-left: 43%; */
 }
+
+.editBtn{
+ min-width: 10%;
+ height: 30px;
+}
+
+.addNewMealBtn {
+  margin-top: 1em;
+}
+
+
 .weekly-plan-name {
   text-align: center;
   padding: 30px;
@@ -320,6 +365,7 @@ export default {
 .options {
   display: flex;
   justify-content: center;
+  align-items: center;
   /* background-color:rgb(241, 249, 253); */
   margin: 0 auto;
   width:70%;
@@ -334,6 +380,7 @@ export default {
 table {
   background-color: #ecf2f0;
   margin: 50px auto;
+  margin-top: 20px;
   border-radius: 25px;
   text-align: center;
 }
@@ -358,7 +405,7 @@ table {
 .mealTypeOptions,
 .recipesOptions {
   display: inline-block;
-  margin: 50px;
+  margin: 30px;
 }
 
 h1 {
