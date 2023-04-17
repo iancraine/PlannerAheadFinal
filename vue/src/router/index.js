@@ -121,7 +121,7 @@ const router = new Router({
     component: ModifyMealPlan
   },
   {
-    path: "/grocerylist/:userId",
+    path: "/grocery/list/:userId",
     name: "grocery-list",
     component: GroceryList,
     meta: {
