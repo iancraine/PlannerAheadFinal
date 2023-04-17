@@ -72,9 +72,9 @@ export default {
         },
 
       getRecipeId(recipeId){
-             let imgPath = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId).path;
-             if (imgPath != undefined) return imgPath;
-             else return this.randomItem(this.images);
+            let matchingImage = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId);           
+             if (matchingImage != undefined) {return matchingImage.path;}
+             else {return this.randomItem(this.images);}
 
       }
     
