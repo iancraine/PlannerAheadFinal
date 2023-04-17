@@ -6,20 +6,24 @@
       <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
       <div class="recipe-container">
         <h2 id="recipe-name">{{recipe.recipe_name}}</h2>
-        <div>
+        <div class="details">
+          <div id="edit-button">
           <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
-        </div>
-        <div>
+          </div>
+
+        <div id="direction-section">
           <h3>Directions:</h3>
           <p align="justify" class="directions">{{recipe.directions}}</p>
         </div>
-        <div>
+
+        <div id="ingredients-section">
           <h3>Ingredients</h3>
           <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
             <h4 id="ingredient-name">{{ ingredient.ingredient_name }}:</h4>
             <p id="ingredient-amount">{{ ingredient.amount }}</p>
           </div>
         </div>
+
         <div class="tag">
           <h5 class="tag">Tags:</h5>
           <p class="tag">{{recipe.tags}}</p>
@@ -30,6 +34,7 @@
             <p class="time">{{recipe.prep_time}}</p>
       </div>
     </div>
+      </div>
     
       
     </div>
@@ -104,35 +109,52 @@ created() {
 
 <style scoped>
 
-@media(max-width: 768px){
+@media(max-width: 450){
   .recipe-detail{
-    position:relative;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "name"
+                    "pic"
+                    "details";
+    /* align-items: center;
+    justify-items: center; */
+  }
+  #recipe-name{
+    grid-area: name;
+  }
+  img.left{
+    grid-area: pic;
+  }
+  .details{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "edit"
+                          "directions"
+                          "ing"
+                          "tag"
+                          "time";
+    grid-area: details;
+  }
+  #edit-button{
+    grid-area: edit;
+  }
+  #direction-section{
+    grid-area: directions;
+  }
+  #ingredients-section{
+    grid-area: ing;
+  }
+  .tag{
+    grid-area: tag;
+  }
+  .time{
+    grid-area: time;
   }
   
-  /* #max-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
-    grid-template-areas: 
-    "tops tops" 
-    "bottoms bottoms";
-  } 
-  .left-container{
-    grid-area: bottoms;
-    
-  }
-  .recipe-container{
-    grid-area: tops;
-    display: flex;
-    flex-shrink: 1;
-    width: 200px;
-  } */
+
+
+
+  
 }
 @media(max-width: 1024px){
   .recipe-detail{
@@ -140,7 +162,7 @@ background-color: #ebf2ef;
     border-radius: 10px;
     padding: 2%;
   }
-  .left-container{
+  /* .left-container{
     display: flex;
     
     
@@ -148,8 +170,14 @@ background-color: #ebf2ef;
   .left{
     width: 400px;
     align-self: flex-end;
+  } */
+}
+@media(max-width: 1200px){
+  .left{
+    width: 500px;
   }
 }
+
 .back-arrow{
   width: 25px;
 }
