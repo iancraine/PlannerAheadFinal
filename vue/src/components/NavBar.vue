@@ -1,6 +1,6 @@
 <template>
   <div id="headerNav">
-      <div class="logoImg">
+      <div class="logoImg" id="top-bar">
           <img class="logo" src="../assets/cropped-logo.png" alt="Planner ahead logo"/>
       </div>
       <!-- <div id="brandName"> Planner Ahead </div> -->
@@ -25,7 +25,12 @@ export default {
 </script>
 
 <style scoped>
-@media(max-width: 1024px){
+@media screen and (max-width: 450px){
+  #top-bar{
+    display: none;
+  }
+}
+@media screen and (max-width: 1024px){
   #headerNav{
     display: flex;
     justify-content: flex-start;
@@ -39,33 +44,17 @@ export default {
   /* background-color: darkgrey; */
   padding: 10px;
  flex-shrink: 1;
- 
-  
-  }
+ }
 
 .nav-links li{
   
   justify-content: flex-start;
-   
-}
-.search-form {
-  border-radius: 25px;
-  margin: 30px;
-}
-  /* .logoImg{
-    height: 40px;
   }
-  .nav-links{
-    display: flex;
-    flex-shrink: 1;
-  }
-  .nav-links > li{
-    display: inline;
-    margin: 0px 0px;
-  } */
 }
-     #headerNav {
-      font-family: 'Poppins', sans-serif;
+
+
+#headerNav {
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,9 +86,8 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
-  /* background-color: darkgrey; */
   padding: 10px;
- flex-shrink: 0;
+  flex-shrink: 0;
   
 }
 
@@ -126,88 +114,4 @@ export default {
   color: white;
   background-color: #aadd92;
 }
-
-    /* #headerNav {
-        display: flex;
-        align-items: center;
-        margin: 0 auto;
-       padding: 0px;
-       border-bottom: 3px solid rgb(244, 247, 224);
-       background-color:rgb(236, 245, 226);
-      
-    }
-li{
-background-color: rgb(222, 247, 192);
-padding: 15px;
-list-style: none;
-width:100px;
-text-align: center;
-border:5px  darkgrey;
-margin: 0,10px;
-}
-
-.nav{
-display: flex;
-}
-    .logo{
-        border-radius: 10%;     
-        width: 100px; 
-    }
-
-    .logoImg{
-        padding-left: 25px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 90%;
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-
-    }
-    
-    a:hover{
-        background-color:rgb(220, 250, 206);
-        font-weight: bold;
-    }
-
-    #brandName{
-        text-decoration: none;
-        text-transform: capitalize;
-        font-size: 1.4em;
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        position: absolute;
-        left: 200px;
-    }
-
-
-    #home {
-        position: absolute;
-        right: 300px;
-    }
-
-    #myRecipes{
-        position: absolute;
-        right: 150px;
-    }
-
-    #logout{
-        position: absolute;
-        right: 50px;
-    }
-
-    #aboutUs{
-        position: absolute;
-        right: 400px;
-    }
-    #mealPlans{
-        position: absolute;
-        right: 500px;
-    }
-    */
-
 </style>
