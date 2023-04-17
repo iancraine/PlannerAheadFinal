@@ -23,8 +23,43 @@ export default {
 </script>
 
 <style scoped>
+@media(max-width: 1024px){
+  #headerNav{
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+  }
+  .nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* background-color: darkgrey; */
+  padding: 10px;
+ flex-shrink: 1;
+ 
+  
+}
+
+.nav-links li{
+  
+  justify-content: flex-start;
+   
+}
+  /* .logoImg{
+    height: 40px;
+  }
+  .nav-links{
+    display: flex;
+    flex-shrink: 1;
+  }
+  .nav-links > li{
+    display: inline;
+    margin: 0px 0px;
+  } */
+}
      #headerNav {
-         font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;

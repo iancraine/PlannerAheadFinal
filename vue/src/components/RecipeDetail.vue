@@ -1,11 +1,11 @@
 <template>
-  <div class="recipe-detail" >
+  <div class="recipe-detail" id="max-container">
     
     
     <div class="right">
       <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
       <div class="recipe-container">
-        <h2>{{recipe.recipe_name}}</h2>
+        <h2 id="recipe-name">{{recipe.recipe_name}}</h2>
         <div>
           <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
         </div>
@@ -33,7 +33,7 @@
     
       
     </div>
-    <div>
+    <div class="left-container">
        
         <img class="left" src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
             
@@ -103,6 +103,53 @@ created() {
 </script>
 
 <style scoped>
+
+@media(max-width: 768px){
+  .recipe-detail{
+    position:relative;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+  
+  /* #max-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    grid-template-areas: 
+    "tops tops" 
+    "bottoms bottoms";
+  } 
+  .left-container{
+    grid-area: bottoms;
+    
+  }
+  .recipe-container{
+    grid-area: tops;
+    display: flex;
+    flex-shrink: 1;
+    width: 200px;
+  } */
+}
+@media(max-width: 1024px){
+  .recipe-detail{
+background-color: #ebf2ef;
+    border-radius: 10px;
+    padding: 2%;
+  }
+  .left-container{
+    display: flex;
+    
+    
+  }
+  .left{
+    width: 400px;
+    align-self: flex-end;
+  }
+}
 .back-arrow{
   width: 25px;
 }
@@ -163,6 +210,7 @@ p.tag, p.time{
   margin-top:0;
   margin-left: 6px;
 }
+
 
 
 </style>
