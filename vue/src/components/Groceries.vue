@@ -110,6 +110,7 @@ export default {
           // if(amountI[1] == )
           this.updatedList[this.updatedList.length-1].amount += `, ${currentGrocery.quantity}}`;
         }
+
         else {
             this.updatedList.push(currentGrocery);
         }

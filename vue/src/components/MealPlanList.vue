@@ -1,31 +1,127 @@
 <template>
   <div class="mealPlans">
-    <h1>My Meal Plans</h1>   
-    <button class="topBtn" v-on:click="showMealPlan = !showMealPlan">{{ showMealPlan ? 'Hide' : 'Show' }} Details</button>
-     <button class="topBtn"> <router-link :to="{name: 'add-meal-plan'}"> Add Meal Plan </router-link></button>
+    <h1>My Meal Plans</h1>
 
-    <div v-for="(mealplan) in viewMealPlans" v-bind:key="mealplan[0].meal_plan_id" >
+    <h2>Current Plans</h2>
+    <div
+      class="current-plans"
+      v-for="mealplan in currentMealPlans"
+      v-bind:key="mealplan[0].meal_plan_id"
+    >
       <div class="planTitle">
         <h2>{{ mealplan[0].plan_name }}</h2>
-       <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
-       <p style="font-weight: bold;"> {{ mealplan[0].for_date }}</p>
-       <p> to </p>
-       <p style="font-weight: bold;">{{mealplan[mealplan.length-1].for_date}}</p>
-       <br>
-       <div class="buttons">
+        <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
+        <p style="font-weight: bold">{{ mealplan[0].for_date }}</p>
+        <p>to</p>
+        <p style="font-weight: bold">
+          {{ mealplan[mealplan.length - 1].for_date }}
+        </p>
+        <br /><div class="buttons">
           <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
-       <button> <router-link :to="{name: 'modify-meal-plan', params: {mealPlanId: mealplan[0].meal_plan_id}}"> Modify Plan </router-link></button>
-       <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)"> Delete Plan </button>
-       </div>
-      
+          <button>
+            <router-link
+              :to="{
+                name: 'modify-meal-plan',
+                params: { mealPlanId: mealplan[0].meal_plan_id },
+              }"
+            >
+              Modify Plan
+            </router-link>
+          </button>
+          <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)">
+            Delete Plan
+          </button>
+        </div>
+        </div>
+        
+        <meal-plan-details
+          v-if="showMealPlan"
+          v-bind:meal-plan="mealplan"
+        ></meal-plan-details>
       </div>
-       <div>
-  </div>
-  <meal-plan-details v-if="showMealPlan" v-bind:meal-plan="mealplan"></meal-plan-details>
+
+      <h2>Future Plans</h2>
+      <div
+        class="future-plans"
+        v-for="mealplan in futureMealPlans"
+        v-bind:key="mealplan[0].meal_plan_id"
+      >
+        <div class="planTitle">
+          <h2>{{ mealplan[0].plan_name }}</h2>
+          <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
+          <p style="font-weight: bold">{{ mealplan[0].for_date }}</p>
+          <p>to</p>
+          <p style="font-weight: bold">
+            {{ mealplan[mealplan.length - 1].for_date }}
+          </p>
+          <br /> 
+          <div class="buttons">
+            <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
+            <button>
+              <router-link
+                :to="{
+                  name: 'modify-meal-plan',
+                  params: { mealPlanId: mealplan[0].meal_plan_id },
+                }"
+              >
+                Modify Plan
+              </router-link>
+            </button>
+            <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)">
+              Delete Plan
+            </button>
+          </div>
+          </div>
+         
+      
+        <meal-plan-details
+          v-if="showMealPlan"
+          v-bind:meal-plan="mealplan"
+        ></meal-plan-details>
+      </div>
+
+      <h2>Previous Plans</h2>
+      <div
+        class="previous-plans"
+        v-for="mealplan in previousMealPlans"
+        v-bind:key="mealplan[0].meal_plan_id"
+      >
+        <div class="planTitle">
+          <h2>{{ mealplan[0].plan_name }}</h2>
+          <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
+          <p style="font-weight: bold">{{ mealplan[0].for_date }}</p>
+          <p>to</p>
+          <p style="font-weight: bold">
+            {{ mealplan[mealplan.length - 1].for_date }}
+          </p>
+          <br />
+          <div class="buttons">
+            <!-- <button @click.prevent="showDetailTable(mealplan[0].meal_plan_id)"> View Details</button> -->
+            <button>
+              <router-link
+                :to="{
+                  name: 'modify-meal-plan',
+                  params: { mealPlanId: mealplan[0].meal_plan_id },
+                }"
+              >
+                Modify Plan
+              </router-link>
+            </button>
+            <button @click.prevent="deletePlan(mealplan[0].meal_plan_id)">
+              Delete Plan
+            </button>
+          </div>
+        </div>
+          
+        <meal-plan-details
+          v-if="showMealPlan"
+          v-bind:meal-plan="mealplan"
+        ></meal-plan-details>
+      </div>
+      
       <!-- <meal-plan-details v-if="viewDetailSection[mealplan[0].meal_plan_id]" v-bind:meal-plan="mealplan"></meal-plan-details> -->
-       
-       
-       <!-- <table v-if="viewDetailSection[index]">   -->
+
+      <!-- <table v-if="viewDetailSection[index]">   -->
       <!-- <div class="tableStyle">
          <table v-show="viewDetailSection[mealplan[0].meal_plan_id]">
         <thead>
@@ -46,107 +142,164 @@
         </tbody>
       </table>  
       </div> -->
+
+    <div @click="scrollToTop()" class="scroll-btn">
+      <button
+        class="topBtn show-details"
+        v-on:click="showMealPlan = !showMealPlan"
+      >
+        {{ showMealPlan ? "Hide" : "Show" }} Details
+      </button>
+      <button class="topBtn add-meal">
+        <router-link :to="{ name: 'add-meal-plan' }">
+          Add Meal Plan
+        </router-link>
+      </button>
+      <img
+        class="move-to-top"
+        src="../assets/move-to-top-button.png"
+        height="50"
+        width="50"
+      />
     </div>
-
-     <div 
-        @click="scrollToTop()" 
-       class="scroll-btn"
-    >
-        <img class="move-to-top" src="../assets/move-to-top-button.png" height=50 width=50/>
-    </div>  
-
   </div>
 </template>
 <script>
 // import { computed } from 'vue';
 import mealPlanService from "../services/MealPlanService.js";
 import recipeService from "../services/RecipeService.js";
-import MealPlanDetails from "./MealPlanDetails.vue"
+import MealPlanDetails from "./MealPlanDetails.vue";
 
 export default {
-    name: 'my-meal-plans',
-    components: {
-      MealPlanDetails
-    },
-    data() {
-      return {
-        showMealPlan:false,
-        mealPlans: [], 
-        viewDetails: {
-        },
-        test: false
-       
-      }
-    },
-    
-    created() {
-       this.populateMealplanList();
-
-     recipeService.getRecipes(this.$route.params.userId).then((response) => {
-      this.$store.commit("SET_RECIPE", response.data.sort());
-  });
- 
-},
-computed: {
-  viewDetailSection() {
-    return this.viewDetails;
+  name: "my-meal-plans",
+  components: {
+    MealPlanDetails,
   },
-  viewMealPlans() {
-    return this.mealPlans;
-  }
-},
+  data() {
+    return {
+      showMealPlan: false,
+      mealPlans: [],
+      currentMealPlans: [],
+      previousMealPlans: [],
+      futureMealPlans: [],
+      viewDetails: {},
+      test: false,
+    };
+  },
 
- methods: {
+  created() {
+    //  this.populateMealplanList();
+    this.populatePlansByDate();
+
+    recipeService.getRecipes(this.$route.params.userId).then((response) => {
+      this.$store.commit("SET_RECIPE", response.data.sort());
+    });
+  },
+  computed: {
+    viewDetailSection() {
+      return this.viewDetails;
+    },
+    viewMealPlans() {
+      return this.mealPlans;
+    },
+  },
+
+  methods: {
     showDetailTable(mealPlanId) {
-       this.viewDetails[mealPlanId] = !this.viewDetails[mealPlanId];
-       console.log(this.viewDetails[mealPlanId]);
+      this.viewDetails[mealPlanId] = !this.viewDetails[mealPlanId];
+      console.log(this.viewDetails[mealPlanId]);
     },
     getRecipeName(currentRecipeId) {
-        let recipeObj = this.$store.state.recipes.find((recipe) => recipe.recipeId === currentRecipeId);
-        return recipeObj.recipe_name;
+      let recipeObj = this.$store.state.recipes.find(
+        (recipe) => recipe.recipeId === currentRecipeId
+      );
+      return recipeObj.recipe_name;
     },
+
+    //   response.data.forEach((plan) => {
+    //       let toDate = new Date(plan[plan.length-1].for_date);
+    //       let fromDate = new Date(plan[0].for_date);
+    //       let currentDate = new Date();
+    //        if (toDate.getTime() >=  currentDate.getTime() && fromDate.getTime() <= currentDate.getTime()) {
+    //          this.mealPlans.push(plan);
+    //        }
+    //     });
+
+    //     this.currentPlanExists = this.currentPlanPresent();
+    // });
+
+    // this.dateRanges.push()
+
     populateMealplanList() {
-      mealPlanService.listAllMealPlans(this.$route.params.userId).then(response => {
-      this.mealPlans = response.data;
-      this.mealPlans.forEach((mealPlan) => {
-          this.viewDetails[mealPlan[0].plan_name] = false; 
-      })
-    }) },
-     convertMealTypeToWord(mealType) {
+      mealPlanService
+        .listAllMealPlans(this.$route.params.userId)
+        .then((response) => {
+          this.mealPlans = response.data;
+          this.mealPlans.forEach((mealPlan) => {
+            this.viewDetails[mealPlan[0].plan_name] = false;
+          });
+        });
+    },
+
+    populatePlansByDate() {
+      mealPlanService
+        .listAllMealPlans(this.$route.params.userId)
+        .then((response) => {
+          this.mealPlans = response.data;
+          this.mealPlans.forEach((mealPlan) => {
+            this.viewDetails[mealPlan[0].plan_name] = false;
+
+            let toDate = new Date(mealPlan[mealPlan.length - 1].for_date);
+            let fromDate = new Date(mealPlan[0].for_date);
+            let currentDate = new Date();
+
+            if (
+              toDate.getTime() >= currentDate.getTime() &&
+              fromDate.getTime() <= currentDate.getTime()
+            ) {
+              this.currentMealPlans.push(mealPlan);
+            } else if (
+              toDate.getTime() > currentDate.getTime() &&
+              fromDate.getTime() > currentDate.getTime()
+            ) {
+              this.futureMealPlans.push(mealPlan);
+            } else {
+              this.previousMealPlans.push(mealPlan);
+            }
+          });
+          console.log(this.currentMealPlans);
+          console.log(this.futureMealPlans);
+          console.log(this.previousMealPlans);
+        });
+    },
+    convertMealTypeToWord(mealType) {
       if (mealType === 1) {
         return "Breakfast";
-      }
-      else if (mealType === 2) {
+      } else if (mealType === 2) {
         return "Lunch";
-      }
-      else if(mealType === 3) {
+      } else if (mealType === 3) {
         return "Dinner";
-      }
-      else if(mealType === 4) {
+      } else if (mealType === 4) {
         return "Snack";
-      }
-      else {
-        return "Appetizer"
+      } else {
+        return "Appetizer";
       }
     },
     deletePlan(mealPlanId) {
       if (confirm("You can't undo the deletion. Would you like to proceed?")) {
-        mealPlanService.deleteMealPlan( this.$route.params.userId, mealPlanId);
+        mealPlanService.deleteMealPlan(this.$route.params.userId, mealPlanId);
         // this.populateMealplanList();
         location.reload();
       }
-      }
-    }
-    
-  }
-
-
+    },
+  },
+};
 </script>
 <style scoped>
 @import url(https://fonts.googleapis.com/css2?family=Dosis);
 
 h1 {
-  color:black;
+  color: black;
   text-shadow: 5px 2px 5px hsl(99, 18%, 85%);
   font-size: 2.8em;
   align-content: center;
@@ -156,19 +309,19 @@ h1 {
 }
 
 h2 {
-  color:cadetblue;
+  color: cadetblue;
 }
 
 a {
   text-decoration: none;
-  color:rgb(23, 112, 82);
+  color: rgb(23, 112, 82);
 }
 p {
   margin: 0.5em;
 }
 .mealPlans {
   text-align: center;
-  font-family: 'Dosis', monospace, sans-serif;
+  font-family: "Dosis", monospace, sans-serif;
   background: url(../assets/veggies.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -204,8 +357,8 @@ p {
   justify-content: space-evenly;
 }
 
-button{
-   background-color: #fbeee0;
+button {
+  background-color: #fbeee0;
   border: 2px solid #422800;
   border-radius: 30px;
   box-shadow: #422800 4px 4px 0 0;
@@ -218,19 +371,18 @@ button{
   line-height: 30px;
   text-align: center;
   text-decoration: none;
-  font-family: 'Dosis', monospace, sans-serif;
-
+  font-family: "Dosis", monospace, sans-serif;
 }
 
 .topBtn {
   margin-right: 15px;
-   background: #fff;
+  background: #fff;
   backface-visibility: hidden;
-  border-radius: .375rem;
-  border-width: .125rem;
+  border-radius: 0.375rem;
+  border-width: 0.125rem;
   color: #212121;
   cursor: pointer;
-  font-family: 'Dosis', monospace, sans-serif;
+  font-family: "Dosis", monospace, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
@@ -240,21 +392,28 @@ button{
   margin-bottom: 15px;
 }
 
-button:hover{
+button:hover {
   transform: scale(1.05);
 }
 
-button:focus{
+button:focus {
   outline: 0 solid transparent;
 }
 
-.scroll-btn{
+.scroll-btn {
   position: fixed;
   left: 10%;
   bottom: 5%;
 }
 
-.move-to-top{
+.show-details {
+  display: block;
+}
+
+.add-meal {
+}
+
+.move-to-top {
   border-radius: 50%;
 }
 </style>
