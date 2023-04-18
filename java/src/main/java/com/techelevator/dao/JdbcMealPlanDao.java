@@ -89,6 +89,16 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
+    public List<MealPlan> addMoreMealsToExistingPlan(List<MealPlan> newMealPlan, int userId) {
+        String sql = "INSERT INTO meal_plan_recipes(meal_plan_id, recipe_id, for_date, meal_type) " +
+                    "VALUES(?, ?, ?, ?);";
+        for(MealPlan plan: newMealPlan) {
+            jdbcTemplate.update(sql, plan.getMeal_plan_id(), plan.getRecipe_id(), plan.getFor_date(), plan.getMeal_type());
+        }
+        return getMealPlansById(newMealPlan.get(0).getMeal_plan_id());
+    }
+
+    @Override
     public void deleteMealPlan(int userId, int mealPlanId) {
         //users_meal_plan
         String deleteSql = "DELETE FROM users_meal_plan WHERE user_id=? AND meal_plan_id=?;";

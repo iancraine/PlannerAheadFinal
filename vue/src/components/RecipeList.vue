@@ -2,10 +2,10 @@
   <div class="page">
     <div class="page-title">
       <h2 class="title">My Recipes</h2>
-      <form class="search-form">
+      <!-- <form class="search-form">
           <input type="text" placeholder="Search...">
           <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        </form> -->
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
     
     </div> 
@@ -168,7 +168,23 @@ div.recipe{
   padding: 5px;
 }
 .addNewRecipe {
+margin-right: 15px;
   background: #cdeccd;
+  backface-visibility: hidden;
+  border-radius: .375rem;
+  border-width: .125rem;
+  color: #180d04;
+  cursor: pointer;
+  font-family: 'Dosis', monospace, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.5rem;
+  position: relative;
+  text-align: left;
+  margin-bottom: 15px;
+
+  /* background: #cdeccd;
   border-radius: 900px;
   box-shadow: #bdbdfa 0 10px 20px -10px;
   color: #180d04;
@@ -181,8 +197,33 @@ div.recipe{
   border: 0;
   margin: 0 auto;
   display: flex;
-  font-family: 'Dosis', monospace, sans-serif;
+  font-family: 'Dosis', monospace, sans-serif; */
 }
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
+}
+button{
+   background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
+}
+
 
 #form {
   display: flex;

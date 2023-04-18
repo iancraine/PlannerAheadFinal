@@ -223,6 +223,19 @@ export default {
 
 <style scoped>
 
+@media (max-width: 1150px){
+  .dateOptions{
+  margin: 20px;
+}
+.mealTypeOptions{
+  margin: 20px;
+}
+.recipesOptions{
+  margin: 20px;
+}
+  
+}
+
 .wrapper {
   /* margin-bottom: 15%;  */
   background-color: rgb(255, 240, 221);
@@ -317,7 +330,7 @@ table {
 
 .tdata{
   padding: 1.2em;
-  margin: 1.5em;
+  margin: .5em;
 }
 .tdata:nth-child(even){
   background-color: #dfe9e6;
@@ -331,7 +344,7 @@ table {
 
 .dateOptions, .mealTypeOptions, .recipesOptions {
   display: inline-block;
-  margin: 50px;
+  margin: 20px;
 }
 
 /* .mealForm {

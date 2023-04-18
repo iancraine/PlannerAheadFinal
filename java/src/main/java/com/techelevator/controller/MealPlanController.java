@@ -42,5 +42,10 @@ public class MealPlanController {
         return mealPlanDao.updateMealPlan(mealPlan);
  }
 
+ @RequestMapping(path="/addnew/{userId}", method=RequestMethod.POST)
+    public List<MealPlan> addNewMealsToExistingPlan(@PathVariable int userId, @RequestBody List<MealPlan> newMealPlan) {
+        return mealPlanDao.addMoreMealsToExistingPlan(newMealPlan, userId);
+ }
+
 
 }

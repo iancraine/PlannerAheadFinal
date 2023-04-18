@@ -27,16 +27,7 @@ export default {
 </script>
 
 <style>
-@media(max-width: 768px){
-  /* .nav-bar{
-    display: flex;
-    flex-shrink: 1;
-  }
-  .footer-parent{
-    display: flex;
-    flex-shrink: 1;
-  } */
-}
+
 
 #app {
   display: grid;

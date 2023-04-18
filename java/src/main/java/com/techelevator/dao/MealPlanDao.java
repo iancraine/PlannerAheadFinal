@@ -12,6 +12,8 @@ public interface MealPlanDao {
 
      List<MealPlan> addMealPlan(List<MealPlan> newMealPlan, int userId);
 
+     List<MealPlan> addMoreMealsToExistingPlan(List<MealPlan> newMealPlan, int userId);
+
      void deleteMealPlan(int userId,int mealPlanId);
 
      List<MealPlan> updateMealPlan(List<MealPlan> updatedMealPlan);

@@ -48,8 +48,7 @@
 
             <label for="food-pic">Upload a picture: </label>
             <input type="file" id="food-pic" >
-            <input type="checkbox" id="public" v-bind:checked="is_public=true" v-model="recipe.is_public">
-            <label for="public">Public?</label>
+        
             <br>
 
             <div class="btn-align">
@@ -155,7 +154,7 @@ form {
 }
 .addIngredient {
     background-color: #AFE1AF;
-    color: white;
+    color: #180d04;
 }
 
 li {
@@ -188,26 +187,58 @@ form.recipeForm{
 .edit-recipe-btn{
     background: #cdeccd;
   border-radius: 900px;
-  box-shadow: #bdbdfa 0 10px 20px -10px;
+  box-shadow: #422800 4px 4px 0 0;
   color: #180d04;
   cursor: pointer;
   font-weight: 700;
   line-height: 24px;
   outline: 0 solid transparent;
   padding: 8px 18px;
-  border: 0;
   margin: 0 auto;
-
+border: 2px solid #422800;
+  border-radius: 10px;
   font-family: 'Dosis', monospace, sans-serif;
+}
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
+}
+button{
+   background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 10px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
 }
 
 .submitBtn, .cancelBtn{
-    margin: 0 10px;
-    background-color: #e1ecf4;
-    font-family: system-ui, sans-serif;
-    border-radius: 3px;
-     border: 1px solid #adc4d4;
-     padding: .3em;
+     background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 10px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
 
 }
 

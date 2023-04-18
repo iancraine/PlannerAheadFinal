@@ -6,33 +6,33 @@
       <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
       <div class="recipe-container">
         <h2 id="recipe-name">{{recipe.recipe_name}}</h2>
-        <div>
+        <div class="details">
+          <div id="edit-button">
           <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
-        </div>
-        <div>
+          </div>
+
+        <div id="direction-section">
           <h3>Directions:</h3>
           <p align="justify" class="directions">{{recipe.directions}}</p>
         </div>
-        <div>
+
+        <div id="ingredients-section">
           <h3>Ingredients</h3>
-          <ul>
-            <li v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" >
-                <input type="checkbox" v-model="ingredient.checked"/>
-                <span class="category"> {{ ingredient.ingredient_name }}: {{ ingredient.amount }}</span>
-            </li>
-        </ul>
+          
 
 
-          <!-- <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
-            <input type="checkbox" name="" id="list-item" v-model="itemsToAdd">
-            <label for="list-item">
-             {{ ingredient.ingredient_name }}: {{ ingredient.amount }}    Used to be h4 and p element respectively
-            </label>
+          <div v-for="(ingredient, index) in ingredients" v-bind:key="index" class="ingredient-list">
+            <input type="checkbox" v-bind:value="index" id="list-item" v-model="idsToAdd" v-on:click="addIdToSomething(index)">
+            
+             <h4 id="ingredient-name">{{ ingredient.ingredient_name }}: </h4>
+             <p id="ingredient-amount">{{ ingredient.amount }} </p>   
             
             
-          </div> -->
-          <button type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
+            
+          </div>
+          <button class="addGroceries" type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
         </div>
+
         <div class="tag">
           <h5 class="tag">Tags:</h5>
           <p class="tag">{{recipe.tags}}</p>
@@ -43,6 +43,7 @@
             <p class="time">{{recipe.prep_time}}</p>
       </div>
     </div>
+      </div>
     
       
     </div>
@@ -80,17 +81,18 @@ data(){
         },
         ingredients: [],
         tagsInBoxes: null,
+        idsToAdd: [],
         itemsToAdd: []
     };
 },
-computed: {
-
-},
 methods: {
-  addItemToList(name, amount){
-    this.itemsToAdd.push({itemName: name, itemAmount: amount});
+  addIdToSomething(ingredientId){
+    this.idsToAdd.push(ingredientId);
   },
   sendToGroceryDB(){
+    this.idsToAdd.forEach(id => {
+      this.itemsToAdd.push({name: this.ingredients[id].ingredient_name, quantity: this.ingredients[id].amount})
+    })
 
     GroceryListService.addGroceriesToDB(this.$store.state.user.id, this.itemsToAdd);
     this.itemsToAdd = [];
@@ -127,35 +129,52 @@ created() {
 
 <style scoped>
 
-@media(max-width: 768px){
+@media(max-width: 450){
   .recipe-detail{
-    position:relative;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "name"
+                    "pic"
+                    "details";
+    /* align-items: center;
+    justify-items: center; */
+  }
+  #recipe-name{
+    grid-area: name;
+  }
+  img.left{
+    grid-area: pic;
+  }
+  .details{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "edit"
+                          "directions"
+                          "ing"
+                          "tag"
+                          "time";
+    grid-area: details;
+  }
+  #edit-button{
+    grid-area: edit;
+  }
+  #direction-section{
+    grid-area: directions;
+  }
+  #ingredients-section{
+    grid-area: ing;
+  }
+  .tag{
+    grid-area: tag;
+  }
+  .time{
+    grid-area: time;
   }
   
-  /* #max-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
-    grid-template-areas: 
-    "tops tops" 
-    "bottoms bottoms";
-  } 
-  .left-container{
-    grid-area: bottoms;
-    
-  }
-  .recipe-container{
-    grid-area: tops;
-    display: flex;
-    flex-shrink: 1;
-    width: 200px;
-  } */
+
+
+
+  
 }
 @media(max-width: 1024px){
   .recipe-detail{
@@ -173,6 +192,12 @@ background-color: #ebf2ef;
     align-self: flex-end;
   }
 }
+@media(max-width: 1200px){
+  .left{
+    width: 500px;
+  }
+}
+
 .back-arrow{
   width: 25px;
 }
@@ -235,6 +260,33 @@ p.tag, p.time{
   display: inline-block;
   margin-top:0;
   margin-left: 6px;
+}
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
+}
+button{
+   background-color: #cdeccd;
+  border: 2px solid #422800;
+  border-radius: 10px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
+}
+.addGroceries{
+  margin-bottom: 20px;
 }
 
 
