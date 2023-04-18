@@ -112,7 +112,7 @@ export default {
           location.reload();
     },
     addItemsTogether(){
-      console.log('addItemsTogether is being called')
+      console.log('addItemsTogether is being called');
       this.grocerylist.forEach((item) => {
         console.log(item)
         console.log('the loop is entered')
