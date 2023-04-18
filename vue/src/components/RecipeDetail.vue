@@ -30,7 +30,7 @@
             
             
           </div>
-          <button type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
+          <button class="addGroceries" type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
         </div>
 
         <div class="tag">
@@ -260,6 +260,33 @@ p.tag, p.time{
   display: inline-block;
   margin-top:0;
   margin-left: 6px;
+}
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
+}
+button{
+   background-color: #cdeccd;
+  border: 2px solid #422800;
+  border-radius: 10px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
+}
+.addGroceries{
+  margin-bottom: 20px;
 }
 
 
