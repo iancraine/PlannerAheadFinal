@@ -19,7 +19,7 @@ public class JdbcGroceryListDao implements GroceryListDao{
     @Override
     public List<GroceryList> getAllListItems(int userId) {
         List<GroceryList> groceryList = new ArrayList<>();
-        String sql = "SELECT ingredient_name, non_food_option, quantity " +
+        String sql = "SELECT list_id, ingredient_name, non_food_option, quantity " +
                 "FROM grocery_list " +
                 "LEFT JOIN ingredients ON ingredients.ingredient_id = grocery_list.ingredient_id " +
                 "WHERE user_id = ?" +
@@ -60,9 +60,16 @@ public class JdbcGroceryListDao implements GroceryListDao{
 
     }
 
+    @Override
+    public void deleteSelectedGroceries(int listId) {
+        String sql = "DELETE FROM grocery_list WHERE list_id = ?;";
+        jdbcTemplate.update(sql, listId);
+    }
+
     public GroceryList mapRowToGroceryList(SqlRowSet row){
         GroceryList groceryList = new GroceryList();
 
+        groceryList.setList_id(row.getInt("list_id"));
         groceryList.setIngredient_name(row.getString("ingredient_name"));
         groceryList.setNon_food_option(row.getString("non_food_option"));
         groceryList.setQuantity(row.getString("quantity"));

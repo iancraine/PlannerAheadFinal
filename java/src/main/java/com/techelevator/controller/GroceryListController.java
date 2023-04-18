@@ -38,4 +38,10 @@ public class GroceryListController {
     public void deleteItemsInGroceryList(@PathVariable int userId){
         groceryListDao.clearGroceryList(userId);
     }
+
+
+    @RequestMapping(path="/delete-partial/{listId}", method = RequestMethod.DELETE)
+    public void deleteSelectedLists(@PathVariable int listId){
+        groceryListDao.deleteSelectedGroceries(listId);
+    }
 }

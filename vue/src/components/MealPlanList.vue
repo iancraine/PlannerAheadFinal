@@ -47,6 +47,14 @@
       </table>  
       </div> -->
     </div>
+
+     <div 
+        @click="scrollToTop()" 
+       class="scroll-btn"
+    >
+        <img class="move-to-top" src="../assets/move-to-top-button.png" height=50 width=50/>
+    </div>  
+
   </div>
 </template>
 <script>
@@ -167,6 +175,7 @@ p {
   -o-background-size: cover;
   background-size: cover;
   padding-bottom: 50px;
+  padding-top: 5px;
 }
 
 .tableStyle {
@@ -239,5 +248,14 @@ button:focus{
   outline: 0 solid transparent;
 }
 
+.scroll-btn{
+  position: fixed;
+  left: 10%;
+  bottom: 5%;
+}
+
+.move-to-top{
+  border-radius: 50%;
+}
 </style>
 

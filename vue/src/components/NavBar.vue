@@ -95,6 +95,7 @@ export default {
   margin: 0 10px;
   padding: 5px;
   min-width:120px;
+  text-align: center;
   
    
 }
@@ -105,7 +106,8 @@ export default {
   font-size: 18px;
   font-weight: 600;
   font-family: 'Dosis', monospace, sans-serif;
-  padding: 15px;
+  padding: 10px;
+  margin: 0 auto;
   background-color: #89c36f;
   border-radius: 10px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);

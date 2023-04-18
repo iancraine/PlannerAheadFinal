@@ -82,7 +82,7 @@
                   height="200"
                   width="150"
                 />
-                <p>Christina</p></span
+                <p class="person-name">Christina</p></span
               >
 
               <p>
@@ -102,7 +102,7 @@
                   height="200"
                   width="150"
                 />
-                <p>Matthew</p></span
+                <p class="person-name">Matthew</p></span
               >
               
             </div>
@@ -114,7 +114,7 @@
                   height="200"
                   width="150"
                 />
-                <p> Nicky </p></span
+                <p class="person-name"> Nicky </p></span
               >
 
               <p>
@@ -222,6 +222,11 @@ p {
   justify-content: center;
 }
 
+.person-name {
+  margin-top: 0;
+  text-align: center;
+  font-weight: 600;
+}
 /* .specialPara {
   border-radius: 10px 10px 10px 10px;
   border-style: solid;
@@ -285,7 +290,21 @@ section {
   border-bottom-style: groove;
   max-width:80%;
   margin: 0 auto;
+  /* border-radius: 10px / 30px; */
   
+}
+
+.review:nth-child(even) {
+border-top-right-radius: 15px;
+border-bottom-left-radius: 15px;
+
+}
+
+
+.review:nth-child(odd) {
+ border-top-left-radius: 15px;
+ border-bottom-right-radius: 15px;
+
 }
 
 .person {

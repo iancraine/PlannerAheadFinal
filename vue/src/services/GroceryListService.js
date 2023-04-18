@@ -13,6 +13,10 @@ export default{
     },
     clearGroceryList(userId){
         return http.delete(`/grocery/delete/${userId}`)
+    },
+
+    deleteSelectedLists(listId) {
+        return http.delete(`/grocery/delete-partial/${listId}`);
     }
 
 
