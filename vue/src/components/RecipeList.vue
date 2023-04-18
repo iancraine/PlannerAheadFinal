@@ -132,7 +132,7 @@ div.page-title h1{
   text-align: center;
 }
 .recipe-container{
-  background-color: #ebf2ef;
+  background-color: #f3e0a0;
   margin-top: 10px;
 }
 div.recipe{
@@ -169,7 +169,7 @@ div.recipe{
 }
 .addNewRecipe {
 margin-right: 15px;
-  background: #cdeccd;
+  background: #c1ecc1;
   backface-visibility: hidden;
   border-radius: .375rem;
   border-width: .125rem;
@@ -228,7 +228,9 @@ button{
 #form {
   display: flex;
   justify-content: center;
-  margin: 15px;
+  margin-left: 450px;
+  margin-right: 450px;
+  border-radius: 25px;
   padding: 20px;
   background-color: rgb(236, 245, 226);
 }

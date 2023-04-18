@@ -58,6 +58,8 @@ export default {
       addedgroceries: [],
       selectedIngredients: [],
       items: [],
+      itemIndex:'',
+      itemAmount:[]
     };
   },
   computed: {
@@ -90,9 +92,11 @@ export default {
         });
 
       this.grocerylist.forEach((item) => {
+        console.log('the loop is entered')
         if (this.items.includes(item.ingredient_name)) {
-          // let itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
-          // let amount = item.quantity.split(" ");
+          console.log('the if evaluates to true')
+          this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
+          this.amount = item.quantity.split(" ");
           //add the quantities together
         } else {
           this.items.push({

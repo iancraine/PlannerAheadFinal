@@ -12,6 +12,7 @@ public interface GroceryListDao {
     List<GroceryList> addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront);
 
     void clearGroceryList(int userId);
-     void deleteSelectedGroceries(int listId);
+
+    void deleteSelectedGroceries(int listId);
 
 }
