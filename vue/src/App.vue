@@ -1,13 +1,13 @@
 <template>
   <div id="app">
 
-    <div class="nav-bar">
+    <div class="nav-bar noprint">
       <nav-bar></nav-bar>
     </div>
     
     <router-view />
 
-    <div class="footer-parent">
+    <div class="footer-parent noprint">
       <page-bottom class="footer"/>
     </div>
   
@@ -55,6 +55,11 @@ router-view {
 
   /* height: 2.5rem; */
   /* margin: 10%; */
+}
+@media print{
+.noprint{
+  display: none;
+}
 }
 </style>
 
