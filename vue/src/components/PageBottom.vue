@@ -19,11 +19,10 @@
     <div class="quicklinks">
       <h2 class="header">Quick Links</h2>
       <ul>
-        <li><a href="AboutUs">About Us</a></li>
-        <li><a href="MealPlanDetails">My Meal Plans</a></li>
-        <li><a href="NewRecipeForm">New Recipe Form </a></li>
-        <li><a href="RecipeDetail">Recipe Detail</a></li>
-        <li><a href="RecipeList">Recipe List</a></li>
+        <li id="aboutUs"><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
+        <li id="mealPlans"><router-link v-bind:to="{ name: 'mealplans', params: {userId: this.$store.state.user.id}}">Meal Plans</router-link></li>
+        <li id="myRecipes"> <router-link v-bind:to="{ name: 'recipes', params: {userId: this.$store.state.user.id} }">My Recipes</router-link> </li>
+        <li id="grocery-list"><router-link v-bind:to="{ name: 'grocery-list', params: {userId: this.$store.state.user.id}}">Grocery List</router-link></li>
       </ul>
     </div>
     <div class ="contact">
@@ -62,6 +61,8 @@ export default {
     components: {
   }
 }
+
+
 </script>
 <style>
 /* div.footer{
@@ -104,7 +105,7 @@ export default {
   padding-left: 35px;
   padding-top: 30px;
 }
-.header::before {
+/* .header::before {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -114,7 +115,7 @@ export default {
   background: #FFEB3B;
   margin-left: 35px;
   
-}
+} */
 .aboutUsText {
   color: black;
   padding-left: 35px;

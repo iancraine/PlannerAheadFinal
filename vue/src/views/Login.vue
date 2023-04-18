@@ -123,7 +123,7 @@ export default {
 }
 .form-signin input:hover{
   
-  color: white;
+  color: black;
   background-color: #fcf8ee;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
