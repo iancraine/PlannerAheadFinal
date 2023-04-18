@@ -258,7 +258,7 @@ button{
 #recipe-box{
   background-color: aliceblue;
   border-radius: 25px;
-  border: solid 4px;
+  border: solid 3px;
   margin: 20px;
 }
 </style>
