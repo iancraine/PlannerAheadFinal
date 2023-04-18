@@ -10,7 +10,7 @@
       <div class="items-box">
         <div v-if="isListEmpty">
           <div
-            v-for="(list, index) in updatedList"
+            v-for="(list, index) in updatedFoodList"
             :key="index"
             class="list-items"
           >
@@ -27,9 +27,11 @@
             >
           </div>
         </div>
-              <div v-else>
-                <p class="emptyMsg"> You currently don't have any groceries in your list. </p>
-              </div>
+        <div v-else>
+          <p class="emptyMsg">
+            You currently don't have any groceries in your list.
+          </p>
+        </div>
       </div>
       <div class="delete-btns">
         <button @click="deleteSelected">Delete selected ingredients</button>
@@ -49,15 +51,16 @@ export default {
       grocerylist: [],
       addedgroceries: [],
       selectedIngredients: [],
-      updatedList: [],
-      itemIndex:'',
-      itemAmount:[]
+      updatedFoodList: [],
+      nonFoodList: [],
+      itemIndex: "",
+      itemAmount: [],
     };
   },
   computed: {
     isListEmpty() {
       return this.grocerylist.length;
-    }
+    },
   },
   created() {
     this.pageloadingmethod();
@@ -72,8 +75,8 @@ export default {
         this.$route.params.userId,
         this.addedgroceries
       );
-      this.pageloadingmethod();
-      this.addItemsTogether();
+      // this.pageloadingmethod();
+      // this.addItemsTogether();
       location.reload();
     },
     pageloadingmethod() {
@@ -81,15 +84,15 @@ export default {
         .getAllGroceryListItems(this.$route.params.userId)
         .then((response) => {
           this.grocerylist = response.data;
-          this.addItemsTogether()
+          this.addItemsTogether();
         });
     },
     deleteSelected() {
-      this.selectedIngredients.forEach((ingredient)=> {
+      this.selectedIngredients.forEach((ingredient) => {
         console.log(ingredient.list_id);
-          groceryListService.deleteSelectedLists(ingredient.list_id);
+        groceryListService.deleteSelectedLists(ingredient.list_id);
       });
-        location.reload();
+      location.reload();
     },
     deleteAll() {
       if (
@@ -99,34 +102,54 @@ export default {
       ) {
         groceryListService.clearGroceryList(this.$route.params.userId);
       }
-          location.reload();
+      location.reload();
     },
-    addItemsTogether(){
-      for(let i = 0; i < this.grocerylist.length; i++){
+    addItemsTogether() {
+      for (let i = 0; i < this.grocerylist.length; i++) {
         let currentGrocery = this.grocerylist[i];
-        if(i != 0 && currentGrocery.ingredient_name === this.grocerylist[i-1].ingredient_name){
-          // let amountI = this.grocerylist[i].quantity.split(' ');
-          // let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
-          // if(amountI[1] == )
-          this.updatedList[this.updatedList.length-1].quantity += `, ${currentGrocery.quantity}`;
-        }
+        if (currentGrocery.ingredient_name != null) { // if it's a food item
+          if (i != 0 && currentGrocery.ingredient_name ===this.grocerylist[i - 1].ingredient_name) { // if the ingredient names match
+            
+            // example case:
+            // if carrots: 2 cups,  carrots: 1 tsp,   carrots: 3 cups
+            // updatedFoodList would have carrots: 2 cups, 1 tsp.  We need to add 3 cupts to 2 cups
+          
+            
+            let amountCurr = currentGrocery.quantity.split(" ");  // [3, cups]
+            let unitCurr = amountCurr[1];
 
-        else {
-            this.updatedList.push(currentGrocery);
+              // "2 cups, 1 tsp"
+            let amountOfSameIngredient = this.updatedFoodList[this.updatedFoodList.length-1].quantity.split(", ");  // ['2 cups', '1 tsp']
+
+              let amountUpdated = false;
+
+            for (let i = 0; i < amountOfSameIngredient.length; i++) {
+              if (amountOfSameIngredient[i].includes(unitCurr)) {
+                  let amountTotal = parseInt(amountOfSameIngredient[i].substring(0, amountOfSameIngredient[i].indexOf(" "))) + parseInt(amountCurr[0]);
+                   amountOfSameIngredient[i] = amountTotal.toString() + " " + amountOfSameIngredient[i].substring(amountOfSameIngredient[i].indexOf(" ")+1);
+                   amountUpdated = true;
+
+              }
+            }
+
+            if (!amountUpdated) {
+              amountOfSameIngredient.push(currentGrocery.quantity);
+            }
+
+            this.updatedFoodList[this.updatedFoodList.length-1].quantity = amountOfSameIngredient.join(", ");
+
+          } else {
+            this.updatedFoodList.push(currentGrocery);
+          }
+
+        } else {   // store non-food groceries to nonFoodList array to handle them together
+          this.nonFoodList.push(currentGrocery);
         }
       }
-      // this.grocerylist.forEach((item) => {
-      //   console.log('the loop is entered' + item.quantity)
-      //   if (this.items.includes(item.ingredient_name)) {
-      //     console.log('the if evaluates to true')
-      //     this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
-      //     this.amount = item.quantity.split(" ");
-      //     //add the quantities together
-      //   } else {
-      //     this.items.push(item);
-      //   }
-      // });
-    }
+    
+      this.updatedFoodList = this.updatedFoodList.concat(this.nonFoodList);
+     
+    },
   },
 };
 </script>
@@ -168,7 +191,7 @@ button:focus {
 }
 button {
   margin-left: 15px;
-  background-color: #CDECCD;
+  background-color: #cdeccd;
   border: 2px solid #422800;
   border-radius: 10px;
   box-shadow: #422800 4px 4px 0 0;
@@ -187,7 +210,7 @@ button {
   max-width: 50%;
   text-align: center;
 }
-.emptyMsg{
+.emptyMsg {
   text-align: center;
   font-size: 1.5em;
 }
