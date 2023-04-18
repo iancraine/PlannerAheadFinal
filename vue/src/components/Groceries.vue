@@ -12,7 +12,7 @@
       <div class="items-box">
         <div v-if="isListEmpty">
           <div
-            v-for="(list, index) in grocerylist"
+            v-for="(list, index) in updatedList"
             :key="index"
             class="list-items"
           >
@@ -57,7 +57,7 @@ export default {
       grocerylist: [],
       addedgroceries: [],
       selectedIngredients: [],
-      items: [],
+      updatedList: [],
       itemIndex:'',
       itemAmount:[]
     };
@@ -114,10 +114,16 @@ export default {
     },
     addItemsTogether(){
       for(let i = 0; i < this.grocerylist.length; i++){
-        if(this.grocerylist[i].ingredient_name === this.grocerylist[i+1].ingredient_name){
-          let amountI = this.grocerylist[i].quantity.split(' ');
-          let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
-          if(amountI[1] == )
+        let currentGrocery = this.grocerylist[i];
+        if(i != 0 && currentGrocery.ingredient_name === this.grocerylist[i-1].ingredient_name){
+          // let amountI = this.grocerylist[i].quantity.split(' ');
+          // let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
+          // if(amountI[1] == )
+          this.updatedList[this.updatedList.length-1].amount += `, ${currentGrocery.quantity}}`;
+        }
+
+        else {
+            this.updatedList.push(currentGrocery);
         }
       }
 
