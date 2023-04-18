@@ -18,22 +18,18 @@
 
         <div id="ingredients-section">
           <h3>Ingredients</h3>
-          <ul>
-            <li v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" >
-                <input type="checkbox" v-model="ingredient.checked"/>
-                <span class="category"> {{ ingredient.ingredient_name }}: {{ ingredient.amount }}</span>
-            </li>
-        </ul>
+          
 
 
-          <!-- <div v-for="ingredient in ingredients" v-bind:key="ingredient.ingredient_id" class="ingredient-list">
-            <input type="checkbox" name="" id="list-item" v-model="itemsToAdd">
-            <label for="list-item">
-             {{ ingredient.ingredient_name }}: {{ ingredient.amount }}    Used to be h4 and p element respectively
-            </label>
+          <div v-for="(ingredient, index) in ingredients" v-bind:key="index" class="ingredient-list">
+            <input type="checkbox" v-bind:value="index" id="list-item" v-model="idsToAdd" v-on:click="addIdToSomething(index)">
+            
+             <h4 id="ingredient-name">{{ ingredient.ingredient_name }}: </h4>
+             <p id="ingredient-amount">{{ ingredient.amount }} </p>   
             
             
-          </div> -->
+            
+          </div>
           <button type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
         </div>
 
@@ -85,17 +81,18 @@ data(){
         },
         ingredients: [],
         tagsInBoxes: null,
+        idsToAdd: [],
         itemsToAdd: []
     };
 },
-computed: {
-
-},
 methods: {
-  addItemToList(name, amount){
-    this.itemsToAdd.push({itemName: name, itemAmount: amount});
+  addIdToSomething(ingredientId){
+    this.idsToAdd.push(ingredientId);
   },
   sendToGroceryDB(){
+    this.idsToAdd.forEach(id => {
+      this.itemsToAdd.push({name: this.ingredients[id].ingredient_name, quantity: this.ingredients[id].amount})
+    })
 
     GroceryListService.addGroceriesToDB(this.$store.state.user.id, this.itemsToAdd);
     this.itemsToAdd = [];
