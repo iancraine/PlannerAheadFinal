@@ -9,10 +9,12 @@
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
     
     </div> 
+    <div id="form-background">
     <new-recipe-form  id="form" v-if="showForm"/>
       <div class="recipe-container">
       <div class="recipe">
         <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
+          <div id="recipe-box">
             <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
            <div class="image">
               <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
@@ -26,8 +28,10 @@
               <h5 class="time">Prep Time:</h5>
             <p class="time">{{recipe.prep_time}}</p>
             </div>
+            </div>
         </div>
         </div>
+      </div>
       </div>
   </div>
 </template>
@@ -104,7 +108,6 @@ export default {
 @import url(https://fonts.googleapis.com/css2?family=Dosis);
 
 .page{
-  margin: 5em;
   font-family: 'Dosis', monospace, sans-serif;
   text-align: center;
   font-family: 'Dosis', monospace, sans-serif;
@@ -113,19 +116,21 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; */
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
   margin: 0px;
 }
 .title{
-  color:#0d75134b;
-  text-shadow: 2px 2px 4px #e2ebdc;
+  color: #422800;
+  /* color:#0d75134b; */
+  /* text-shadow: 2px 1px 1px black; */
   font-size: 42px;
   align-content: center;
   padding: 20px;
   grid-area: "title";
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 20px;
+  
 }
 
 div.page-title h1{
@@ -133,7 +138,7 @@ div.page-title h1{
 }
 .recipe-container{
   background-color: #f3e0a0;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 div.recipe{
   display: flex;
@@ -233,13 +238,28 @@ button{
   border-radius: 25px;
   padding: 20px;
   background-color: rgb(236, 245, 226);
+  border: solid 4px;
 }
 .foodPic {
   width: 250px;
   height: 250px;
   border-radius: 15px;
+  background-color: white;
+  /* border: solid 4px; */
   /* max-width: 80%; */
   /* height: auto; */
+}
+.page-title{
+  background-color: #f3e0a0;
+}
+#form-background{
+  background-color: #f3e0a0;
+}
+#recipe-box{
+  background-color: aliceblue;
+  border-radius: 25px;
+  border: solid 4px;
+  margin: 20px;
 }
 </style>
 
