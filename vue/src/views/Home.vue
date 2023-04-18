@@ -2,27 +2,33 @@
   <div class="home">
     <h1>Welcome Back!</h1>
     <div class="container2">
-    <h2> Current Plan</h2>
+    <h2> Current Plans</h2>
     <h2>Suggested Recipe</h2>
     </div>
     <div class="container1">
-      <section class="current-mealplan" v-if="currentPlanExists">
-        <div class="is-current">
-          <div  v-for="(meal, index) in mealPlans" v-bind:key="index" @click="moveToMealPlan">
+      <section class="current-mealplan" v-if="currentPlanPresent">
+        <div class="is-current" v-for="(meal, index) in mealPlans" v-bind:key="index">
+          <div @click="moveToMealPlan" >
             <h2 class="current-name"> {{meal[0].plan_name}}</h2>
-            <p class="date-range"> {{meal[0].for_date}} to {{meal[meal.length-1].for_date}}</p>
+            <p class="date-range"> <span >{{meal[0].for_date}} </span> to <span>{{meal[meal.length-1].for_date}}</span></p>
         </div>
         </div>
+           <div class="add-more">
+         <router-link :to="{name: 'add-meal-plan'}">Add more meal plans!</router-link>
+         </div>
       </section>
 
       <section class="no-current-mealplan" v-else> 
-          <p> You don't have any current plan. </p>
-          <router-link :to="{name: 'add-meal-plan'}">Add new meal plans!</router-link>
+           <p> You don't have any current plan. </p>
+          <div class="add-more">
+<router-link :to="{name: 'add-meal-plan'}">Add new meal plans!</router-link>
+          </div>   
+          
       </section>
 
       <section class="random-recipe" >
             <h3>{{randomRecipe.recipe_name}}</h3>
-           <div>
+           <div class="food-img">
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/>
             </div>
       </section>
@@ -143,6 +149,13 @@ export default {
   padding: 2.5rem;
   padding-bottom: 50px;
   font-family: 'Dosis', monospace, sans-serif;
+   /* background-color: #f8e9b8; */
+    background: url(../assets/veggies-left.jpg) center no-repeat ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 50px;
 }
 .container1{
      /* display: grid;
@@ -150,9 +163,8 @@ export default {
      grid-template-areas: "recipe recipe";
      justify-items: center; */
      display: flex;
-     justify-content: space-between;
+     justify-content: space-around;
       flex-wrap: wrap; 
-      margin: 0 auto;
       border-radius: 10px;
       padding: 2%;
       
@@ -166,10 +178,11 @@ export default {
  h2, h3 {
    color: black;
    text-align: center;
+   margin-bottom: 0;
  }
 
  h1 {
-   color:rgb(75, 126, 221);
+   color:rgb(11, 24, 13);
    text-align: center;
  }
 
@@ -185,24 +198,32 @@ export default {
  section{
    background-color: #ebf2ef;
    min-width: 45%;
+   border-radius: 10px;
  }
 
-img{
-  border-radius: 10%;
-}
+.food-img{
+   text-align: center;
+   padding: 5%;
+ }
+
+ img{
+   border-radius: 50px;
+ }
+ 
 
 .is-current{
     display: flex;
     border: 2px solid #333333;
-    max-width: 80%;
+    max-width: 60%;
     justify-content: center;
     margin: 0 auto;
     margin-top: 15px;
     font-size: 0.9rem;
-    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    border-radius: 10px;
     text-transform: uppercase;
     letter-spacing: 0.3ch;
     background: #ffffff;
+    margin-top: 30px;
 }
 
 .is-current:hover {
@@ -210,11 +231,35 @@ img{
   border-left: 0.5rem solid #11a56a;
 }
 
+.current-mealplan, .no-current-mealplan{
+  text-align: center;
+  font-size: 1.5em;
+  margin:0px;
+}
 
 
 p.date-range{
   text-align: center;
 }
  
+ .add-more{
+   text-align: center;
+   max-width: 100%;
+   font-size: 0.8em;
+   margin: 30;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   
+   
+ }
+
+ a{
+   text-decoration: none;
+ }
+
+ a:hover{
+   text-decoration: underline;
+ }
+
  
 </style>
