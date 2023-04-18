@@ -42,6 +42,8 @@
               <h5 class="time">Prep Time:</h5>
             <p class="time">{{recipe.prep_time}}</p>
       </div>
+
+      <button v-on:click=handlePrint()>Print Recipe</button>
     </div>
       </div>
     
@@ -102,6 +104,9 @@ methods: {
   toggleShowForm() {
     this.showForm = !this.showForm;
   },
+  handlePrint(){
+    window.print();
+  }
 },
 created() {
     recipeService.getRecipeById(this.$route.params.recipeId).then(response => {
@@ -183,6 +188,11 @@ background-color: #ebf2ef;
 @media(max-width: 1200px){
   .left{
     width: 500px;
+  }
+}
+@media print{
+  .recipe-detail{
+    display: none;
   }
 }
 
