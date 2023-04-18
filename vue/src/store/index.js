@@ -32,6 +32,26 @@ export default new Vuex.Store({
       },
       {
         id: 2,
+        name: 'Curried Lentils and Rice',
+        path: require('../assets/roasted-asparagus.jpg')
+      },
+      {
+        id: 3,
+        name: 'Mic Yorkshire Puds',
+        path: require('../assets/roasted-asparagus.jpg')
+      },
+      {
+        id: 4,
+        name: 'Old-Fashioned Oatmeal Cookies',
+        path: require('../assets/roasted-asparagus.jpg')
+      },
+      {
+        id: 5,
+        name: 'Big Night Pizza',
+        path: require('../assets/roasted-asparagus.jpg')
+      },
+      {
+        id: 6,
         name: 'Roasted Asparagus',
         path: require('../assets/roasted-asparagus.jpg')
       }

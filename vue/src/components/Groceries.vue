@@ -91,6 +91,7 @@ export default {
         .getAllGroceryListItems(this.$route.params.userId)
         .then((response) => {
           this.grocerylist = response.data;
+          this.addItemsTogether()
         });
     },
     deleteSelected() {
@@ -112,21 +113,25 @@ export default {
           location.reload();
     },
     addItemsTogether(){
-      console.log('addItemsTogether is being called')
-      this.grocerylist.forEach((item) => {
-        console.log('the loop is entered' + item.quantity)
-        // if (this.items.includes(item.ingredient_name)) {
-        //   console.log('the if evaluates to true')
-        //   this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
-        //   this.amount = item.quantity.split(" ");
-        //   //add the quantities together
-        // } else {
-        //   this.items.push({
-        //     name: item.ingredient_name,
-        //     amount: item.quantity,
-        //   });
-        // }
-      });
+      for(let i = 0; i < this.grocerylist.length; i++){
+        if(this.grocerylist[i].ingredient_name === this.grocerylist[i+1].ingredient_name){
+          let amountI = this.grocerylist[i].quantity.split(' ');
+          let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
+          if(amountI[1] == )
+        }
+      }
+
+      // this.grocerylist.forEach((item) => {
+      //   console.log('the loop is entered' + item.quantity)
+      //   if (this.items.includes(item.ingredient_name)) {
+      //     console.log('the if evaluates to true')
+      //     this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
+      //     this.amount = item.quantity.split(" ");
+      //     //add the quantities together
+      //   } else {
+      //     this.items.push(item);
+      //   }
+      // });
     }
   },
 };
