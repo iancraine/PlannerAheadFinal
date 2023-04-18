@@ -137,7 +137,7 @@ div.page-title h1{
   text-align: center;
 }
 .recipe-container{
-  background-color: #f3e0a0;
+  background-color: #f3e5bd;
   /* margin-top: 10px; */
 }
 div.recipe{
@@ -250,7 +250,7 @@ button{
   /* height: auto; */
 }
 .page-title{
-  background-color: #f3e0a0;
+  background-color: #f3e5bd;
 }
 #form-background{
   background-color: #f3e0a0;
