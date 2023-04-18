@@ -47,7 +47,6 @@ export default {
  }
 
 .nav-links li{
-  
   justify-content: flex-start;
   }
 }
@@ -63,7 +62,6 @@ export default {
   /* padding: 10px 20px; */
   width:100%;
   height: 100px;
-  padding: 5px;
   
 }
 
