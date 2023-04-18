@@ -253,7 +253,7 @@ button{
   background-color: #f3e5bd;
 }
 #form-background{
-  background-color: #f3e0a0;
+  background-color: #f3e5bd;
 }
 #recipe-box{
   background-color: aliceblue;
