@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <h3>Ingredients</h3>
-    <div v-for="ingredient in ingredients" :key="ingredient.ingredient_id" class="ingredient-list">
-      <p>{{ ingredient.ingredient_id }}</p>
-      <p id="ingredient-name">{{ ingredient.ingredient_name }}:</p>
-      <p id="ingredient-amount">{{ ingredient.amount }}</p>
-    </div>
-    <h3>Grocery List</h3>
-    <div v-for="list in grocerylist" :key="list">
-      <input type="checkbox" v-model="selectedIngredients" :value="list">
-      <label v-if="list.ingredient_name != undefined">{{ list.ingredient_name }}</label>
-      <label v-else>{{ list.non_food_option }}</label>
+  <div class="list">
+    <div class="list-container">
+      <h2 class="list-title">Grocery List</h2>
+      <div v-for="list in grocerylist" :key="list" class="list-items">
+        <input type="checkbox" v-model="selectedIngredients" :value="list">
+        <label v-if="list.ingredient_name != undefined" class="item-name">{{ list.ingredient_name }}: {{list.quantity}} </label>
+        <label v-else class="item-name">{{ list.non_food_option }}: {{list.quantity}}</label>
+          
+      </div>
     </div>
     <input type="text" id="itemName" v-model="itemName">
     <label for="itemName">Item Name</label>
@@ -29,9 +26,9 @@ export default {
     return {
       amount:'',
       itemName:'',
-      // ingredients: [],
       grocerylist: [],
-      addedgroceries: []
+      addedgroceries: [],
+      items:[]
     }
   },
   created() {
@@ -53,11 +50,57 @@ export default {
       .then(response => {
         this.grocerylist = response.data;
       });
+
+      this.grocerylist.forEach(item => {
+        if(this.items.includes(item.ingredient_name)){
+          // let itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
+          // let amount = item.quantity.split(" ");
+          //add the quantities together
+        }else{
+          this.items.push({name: item.ingredient_name, amount: item.quantity});
+        }
+      })
   }
   }
 }
 </script>
 
 <style>
+.list{
+  font-family: 'Dosis', monospace, sans-serif;
+  background: url(../assets/vecteezy_vegetables-in-grocery-bag-on-yellow-background__825.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 50px;
+  
+}
+
+button:hover{
+  transform: scale(1.05);
+}
+
+button:focus{
+  outline: 0 solid transparent;
+}
+button{
+  margin-left: 15px;
+   background-color: #cdeccd;
+  border: 2px solid #422800;
+  border-radius: 10px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 3px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Dosis', monospace, sans-serif;
+
+}
 
 </style>

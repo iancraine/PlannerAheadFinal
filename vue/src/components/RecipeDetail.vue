@@ -30,7 +30,7 @@
             
             
           </div>
-          <button class="addGroceries" type="submit" @click="sendToGroceryDB()">Add To Grocery List</button>
+          <button class="addGroceries" type="submit" v-on:click.prevent="sendToGroceryDB()">Add To Grocery List</button>
         </div>
 
         <div class="tag">
@@ -90,28 +90,18 @@ methods: {
     this.idsToAdd.push(ingredientId);
   },
   sendToGroceryDB(){
+    console.log('sendToGroceryDb is being run')
     this.idsToAdd.forEach(id => {
-      this.itemsToAdd.push({name: this.ingredients[id].ingredient_name, quantity: this.ingredients[id].amount})
+      this.itemsToAdd.push({ingredient_name: this.ingredients[id].ingredient_name, quantity: this.ingredients[id].amount})
     })
 
     GroceryListService.addGroceriesToDB(this.$store.state.user.id, this.itemsToAdd);
     this.itemsToAdd = [];
+    this.idsToAdd=[];
   },
   toggleShowForm() {
     this.showForm = !this.showForm;
   },
-  puttingTagsInBoxes(){
-    console.log('putting tags in boxes is being run');
-    if(this.recipe.tags.includes(',')){
-      console.log('tags having a coma is evalutaing to true');
-      this.tagsInBoxes = this.recipe.tags.split(",");
-      console.log('the split statement ran');
-    } else {
-      console.log('tags having comas evaulated to fasle')
-      this.tagsInBoxes = this.recipe.tags;
-      console.log('setting tagsinBoxes equal to something ran');
-    }
-  }
 },
 created() {
     recipeService.getRecipeById(this.$route.params.recipeId).then(response => {
@@ -121,8 +111,6 @@ created() {
     IngredientService.getIngredientsForRecipe(this.$route.params.recipeId).then((response) => {
       this.ingredients = response.data;
     });
-    this.puttingTagsInBoxes();
-    
   }
 }
 </script>
