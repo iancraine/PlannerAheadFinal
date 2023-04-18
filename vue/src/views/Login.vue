@@ -4,6 +4,8 @@
       <main-login class="login2"/>
      <!-- <about-us class="login2"/> -->
     </div>
+
+    <div></div>
     <div class="form">
        <img class="logo" src="..\assets\cropped-logo.png" alt="Logo">
     <form class="form-signin" @submit.prevent="login">
@@ -103,6 +105,12 @@ export default {
   width:30%;
   align-content: center;
   text-align: center;
+  background-color: white;
+  padding-top: 50px;
+  border: solid 4px;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
 }
 .form-signin {
   max-width: 330px;
@@ -118,12 +126,11 @@ export default {
   padding: 10px;
   font-size: 16px;
   align-content: center;
-  margin-left: 50px;
   text-align: center; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .form-signin input:hover{
   
-  color: white;
+  color: black;
   background-color: #fcf8ee;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

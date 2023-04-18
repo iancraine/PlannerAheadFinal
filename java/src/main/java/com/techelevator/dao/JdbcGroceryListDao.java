@@ -36,7 +36,6 @@ public class JdbcGroceryListDao implements GroceryListDao{
 
     @Override
     public List<GroceryList> addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront) {
-        List<GroceryList> newGroceryList = new ArrayList<>();
         String sql = "INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) " +
                 "VALUES (?, ?, ?, ?);";
 

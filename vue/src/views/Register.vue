@@ -1,4 +1,5 @@
 <template>
+<div class="background">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -37,6 +38,7 @@
         Create Account
       </button>
     </form>
+  </div>
   </div>
 </template>
 
@@ -106,7 +108,8 @@ export default {
   border-radius: 5px;
 font-family: 'Dosis', monospace, sans-serif;
   background-color: rgb(236, 245, 226);
-  
+  border: solid 4px;
+  border-radius: 25px;
 }
 
 router-link {
@@ -150,6 +153,20 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #2e7d32; 
+}
+
+.background {
+  font-family: "Dosis", monospace, sans-serif;
+  background: url(../assets/cropped-orange.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 50px;
+  opacity: 0.9;
+  font-size: 1.1em;
+  padding-left: 5%;
+
 }
 
 

@@ -235,10 +235,11 @@ button{
   background-color: rgb(236, 245, 226);
 }
 .foodPic {
-  width: 350px;
+  width: 250px;
+  height: 250px;
   border-radius: 15px;
-  max-width: 80%;
-  height: auto;
+  /* max-width: 80%; */
+  /* height: auto; */
 }
 </style>
 
