@@ -119,7 +119,7 @@ export default {
           // let amountI = this.grocerylist[i].quantity.split(' ');
           // let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
           // if(amountI[1] == )
-          this.updatedList[this.updatedList.length-1].amount += `, ${currentGrocery.quantity}}`;
+          this.updatedList[this.updatedList.length-1].quantity += `, ${currentGrocery.quantity}`;
         }
 
         else {
