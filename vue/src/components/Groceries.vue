@@ -69,6 +69,7 @@ export default {
   },
   created() {
     this.pageloadingmethod();
+    this.addItemsTogether();
   },
   methods: {
     addSelectedIngredients() {
@@ -82,6 +83,7 @@ export default {
         this.addedgroceries
       );
       this.pageloadingmethod();
+      this.addItemsTogether();
       location.reload();
     },
     pageloadingmethod() {
@@ -90,21 +92,6 @@ export default {
         .then((response) => {
           this.grocerylist = response.data;
         });
-
-      this.grocerylist.forEach((item) => {
-        console.log('the loop is entered')
-        if (this.items.includes(item.ingredient_name)) {
-          console.log('the if evaluates to true')
-          this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
-          this.amount = item.quantity.split(" ");
-          //add the quantities together
-        } else {
-          this.items.push({
-            name: item.ingredient_name,
-            amount: item.quantity,
-          });
-        }
-      });
     },
     deleteSelected() {
       this.selectedIngredients.forEach((ingredient)=> {
@@ -124,6 +111,24 @@ export default {
       }
           location.reload();
     },
+    addItemsTogether(){
+      console.log('addItemsTogether is being called')
+      this.grocerylist.forEach((item) => {
+        console.log(item)
+        console.log('the loop is entered')
+        if (this.items.includes(item.ingredient_name)) {
+          console.log('the if evaluates to true')
+          this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
+          this.amount = item.quantity.split(" ");
+          //add the quantities together
+        } else {
+          this.items.push({
+            name: item.ingredient_name,
+            amount: item.quantity,
+          });
+        }
+      });
+    }
   },
 };
 </script>

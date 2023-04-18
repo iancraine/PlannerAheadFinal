@@ -36,6 +36,18 @@ public class JdbcGroceryListDao implements GroceryListDao{
 
     @Override
     public List<GroceryList> addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront) {
+        List<GroceryList> oldGroceryList = getAllListItems(userId);
+        int index = -1;
+        String[] old = null;
+        String[] newOne = null;
+        for(GroceryList item : itemsFromFront){
+            if(oldGroceryList.contains(item.getIngredient_name())){
+                index = oldGroceryList.indexOf(item.getIngredient_name());
+                old = item.getQuantity().split(" ");
+                newOne = oldGroceryList.get(index).getQuantity().split(" ");
+
+            }
+        }
         List<GroceryList> newGroceryList = new ArrayList<>();
         String sql = "INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) " +
                 "VALUES (?, ?, ?, ?);";

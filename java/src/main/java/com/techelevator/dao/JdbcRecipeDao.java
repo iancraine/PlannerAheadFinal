@@ -111,9 +111,9 @@ public class JdbcRecipeDao implements RecipeDao{
 
 
 
-//        Path filePath = Paths.get("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images", image.getOriginalFilename());
-////            String filePath = "C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images" + image.getOriginalFilename();
-//            image.transferTo(filePath);
+        Path filePath = Paths.get("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images", image.getOriginalFilename());
+           // String filePath = "C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images" + image.getOriginalFilename();
+            image.transferTo(filePath);
 
 
 //        Path filePath = Paths.get("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images", image.getOriginalFilename());
