@@ -197,6 +197,7 @@ background-color: #ebf2ef;
   font-size: 18px;
   margin-right: 40px;
   margin-left: 40px;
+  background-color: #ebf2ef;
 }
 .recipe-container{
    background-color: #ebf2ef;
@@ -275,6 +276,16 @@ button{
 }
 .addGroceries{
   margin-bottom: 20px;
+}
+.left-container{
+  display: flex;
+   
+}
+img{
+  max-width: 85%;
+  justify-content: center;
+  align-self: center;
+ 
 }
 
 

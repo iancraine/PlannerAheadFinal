@@ -69,7 +69,7 @@ export default {
   },
   created() {
     this.pageloadingmethod();
-    this.addItemsTogether();
+    
   },
   methods: {
     addSelectedIngredients() {
@@ -114,19 +114,18 @@ export default {
     addItemsTogether(){
       console.log('addItemsTogether is being called')
       this.grocerylist.forEach((item) => {
-        console.log(item)
-        console.log('the loop is entered')
-        if (this.items.includes(item.ingredient_name)) {
-          console.log('the if evaluates to true')
-          this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
-          this.amount = item.quantity.split(" ");
-          //add the quantities together
-        } else {
-          this.items.push({
-            name: item.ingredient_name,
-            amount: item.quantity,
-          });
-        }
+        console.log('the loop is entered' + item.quantity)
+        // if (this.items.includes(item.ingredient_name)) {
+        //   console.log('the if evaluates to true')
+        //   this.itemIndex = this.items.findIndex(x => x.ingredient_name === item.ingredient_name);
+        //   this.amount = item.quantity.split(" ");
+        //   //add the quantities together
+        // } else {
+        //   this.items.push({
+        //     name: item.ingredient_name,
+        //     amount: item.quantity,
+        //   });
+        // }
       });
     }
   },
