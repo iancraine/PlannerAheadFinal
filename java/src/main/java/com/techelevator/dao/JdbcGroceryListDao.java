@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GroceryList;
+import com.techelevator.model.Ingredient;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -50,6 +51,7 @@ public class JdbcGroceryListDao implements GroceryListDao{
         }
         return getAllListItems(userId);
     }
+
 
     @Override
     public void clearGroceryList(int userId) {

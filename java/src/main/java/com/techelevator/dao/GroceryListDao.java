@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.GroceryList;
+import com.techelevator.model.Ingredient;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface GroceryListDao {
     List<GroceryList> addItemsToGroceryList(int userId, List<GroceryList> itemsFromFront);
 
     void clearGroceryList(int userId);
+
 }
