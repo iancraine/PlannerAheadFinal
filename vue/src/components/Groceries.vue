@@ -2,21 +2,18 @@
   <div class="list">
     <div class="list-container">
       <h2 class="list-title">Grocery List</h2>
-
       <label for="itemName">Item Name: </label>
       <input type="text" id="itemName" v-model="itemName" />
       <label for="amount">Amount:</label>
       <input type="text" id="amount" v-model="amount" />
       <button @click="addSelectedIngredients">Add to Grocery List</button>
-
       <div class="items-box">
         <div v-if="isListEmpty">
           <div
-            v-for="(list, index) in grocerylist"
+            v-for="(list, index) in updatedList"
             :key="index"
             class="list-items"
           >
-
             <input
               type="checkbox"
               v-model="selectedIngredients"
@@ -33,10 +30,7 @@
               <div v-else>
                 <p class="emptyMsg"> You currently don't have any groceries in your list. </p>
               </div>
-
       </div>
-
-
       <div class="delete-btns">
         <button @click="deleteSelected">Delete selected ingredients</button>
         <button @click="deleteAll">Delete All</button>
@@ -44,10 +38,8 @@
     </div>
   </div>
 </template>
-
 <script>
 import groceryListService from "../services/GroceryListService.js";
-
 export default {
   name: "grocery-list",
   data() {
@@ -57,7 +49,7 @@ export default {
       grocerylist: [],
       addedgroceries: [],
       selectedIngredients: [],
-      items: [],
+      updatedList: [],
       itemIndex:'',
       itemAmount:[]
     };
@@ -69,7 +61,6 @@ export default {
   },
   created() {
     this.pageloadingmethod();
-    
   },
   methods: {
     addSelectedIngredients() {
@@ -77,7 +68,6 @@ export default {
         quantity: this.amount,
         non_food_option: this.itemName,
       });
-
       groceryListService.addGroceriesToDB(
         this.$route.params.userId,
         this.addedgroceries
@@ -99,7 +89,6 @@ export default {
         console.log(ingredient.list_id);
           groceryListService.deleteSelectedLists(ingredient.list_id);
       });
-
         location.reload();
     },
     deleteAll() {
@@ -114,13 +103,17 @@ export default {
     },
     addItemsTogether(){
       for(let i = 0; i < this.grocerylist.length; i++){
-        if(this.grocerylist[i].ingredient_name === this.grocerylist[i+1].ingredient_name){
-          let amountI = this.grocerylist[i].quantity.split(' ');
-          let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
-          if(amountI[1] == )
+        let currentGrocery = this.grocerylist[i];
+        if(i != 0 && currentGrocery.ingredient_name === this.grocerylist[i-1].ingredient_name){
+          // let amountI = this.grocerylist[i].quantity.split(' ');
+          // let amountIPlus = this.grocerylist[i+1].quantity.split(' ');
+          // if(amountI[1] == )
+          this.updatedList[this.updatedList.length-1].amount += `, ${currentGrocery.quantity}}`;
+        }
+        else {
+            this.updatedList.push(currentGrocery);
         }
       }
-
       // this.grocerylist.forEach((item) => {
       //   console.log('the loop is entered' + item.quantity)
       //   if (this.items.includes(item.ingredient_name)) {
@@ -136,7 +129,6 @@ export default {
   },
 };
 </script>
-
 <style>
 .list {
   font-family: "Dosis", monospace, sans-serif;
@@ -151,11 +143,9 @@ export default {
   padding-left: 5%;
   /* filter: brightness(95%); */
 }
-
 h2 {
   text-align: center;
 }
-
 .list-items {
   margin: 5px;
   text-align: center;
@@ -169,17 +159,15 @@ h2 {
   padding-bottom: 10px;
   margin: 25px;
 }
-
 button:hover {
   transform: scale(1.05);
 }
-
 button:focus {
   outline: 0 solid transparent;
 }
 button {
   margin-left: 15px;
-  background-color: #cdeccd;
+  background-color: #CDECCD;
   border: 2px solid #422800;
   border-radius: 10px;
   box-shadow: #422800 4px 4px 0 0;
@@ -194,17 +182,14 @@ button {
   text-decoration: none;
   font-family: "Dosis", monospace, sans-serif;
 }
-
 .delete-btns {
   max-width: 50%;
   text-align: center;
 }
-
 .emptyMsg{
   text-align: center;
   font-size: 1.5em;
 }
-
 #itemName,
 #amount {
   margin: 10px;
