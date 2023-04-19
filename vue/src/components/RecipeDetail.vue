@@ -50,8 +50,13 @@
       
     </div>
     <div class="left-container">
+
+              <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
+              <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
+             <img :src="getRecipeId(recipe.recipeId)"  alt="first imag" class="foodPic"/>
+            
        
-        <img class="left" src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" />
+        <!-- <img class="left" src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
             
     </div>
  
@@ -88,6 +93,13 @@ data(){
     };
 },
 methods: {
+  getRecipeId(recipeId){
+            let matchingImage = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId);           
+             if (matchingImage != undefined) {return matchingImage.path;}
+             else {return this.randomItem(this.images);}
+
+      },
+    
   addIdToSomething(ingredientId){
     this.idsToAdd.push(ingredientId);
   },
