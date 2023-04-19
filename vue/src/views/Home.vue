@@ -27,7 +27,7 @@
       </section>
 
       <section class="random-recipe" >
-            <h3>{{randomRecipe.recipe_name}}</h3>
+            <router-link :to="{name: 'recipesId', params: {recipeId: randomRecipe.recipe_id}}"><h3>{{randomRecipe.recipe_name}}</h3></router-link>
            <div class="food-img">
               <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/>
             </div>

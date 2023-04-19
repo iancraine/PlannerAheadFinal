@@ -36,6 +36,7 @@
       <div class="delete-btns">
         <button @click="deleteSelected">Delete selected ingredients</button>
         <button @click="deleteAll">Delete All</button>
+         <button v-on:click=handlePrint()>Print Grocery List</button>
       </div>
     </div>
   </div>
@@ -66,6 +67,9 @@ export default {
     this.pageloadingmethod();
   },
   methods: {
+    handlePrint(){
+    window.print();
+  },
     addSelectedIngredients() {
       this.addedgroceries.push({
         quantity: this.amount,
@@ -217,5 +221,10 @@ button {
 #itemName,
 #amount {
   margin: 10px;
+}
+@media print{
+  .list-container{
+    display: none;
+  }
 }
 </style>
