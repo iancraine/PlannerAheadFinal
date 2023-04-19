@@ -36,7 +36,7 @@
       <div class="delete-btns">
         <button @click="deleteSelected">Delete selected ingredients</button>
         <button @click="deleteAll">Delete All</button>
-         <button v-on:click=handlePrint()>Print Grocery List</button>
+         <button v-on:click="handlePrint()">Print Grocery List</button>
       </div>
     </div>
   </div>
@@ -224,7 +224,7 @@ button {
   margin: 10px;
 }
 @media print{
-  .list-container{
+  button{
     display: none;
   }
 }

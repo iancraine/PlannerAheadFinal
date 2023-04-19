@@ -307,7 +307,7 @@ img{
   max-width: 85%;
   justify-content: center;
   align-self: center;
- 
+  border-radius: 20px;
 }
 
 
