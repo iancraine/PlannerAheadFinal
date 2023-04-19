@@ -12,7 +12,7 @@
           </div>
 
         <div id="direction-section">
-          <h3>Directions:</h3>
+          <h3>Directions</h3>
           <p align="justify" class="directions">{{recipe.directions}}</p>
         </div>
 
@@ -40,17 +40,17 @@
       <br/>
       <div class="time">
               <h5 class="time">Prep Time:</h5>
-            <p class="time">{{recipe.prep_time}}</p>
+            <p class="time">{{recipe.prep_time}} min</p>
       </div>
+        <br>
+        <button v-on:click=handlePrint() class="print-btn">Print Recipe</button>
 
-      <button class="noprint" v-on:click=handlePrint()>Print Recipe</button>
     </div>
       </div>
     
       
     </div>
     <div class="left-container">
-
               <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
               <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
              <img :src="getRecipeId(recipe.recipeId)"  alt="first imag" class="foodPic"/>
@@ -308,9 +308,20 @@ img{
   max-width: 85%;
   justify-content: center;
   align-self: center;
-  border-radius: 20px;
+  border-radius: 5%;
+  margin-left: 20px;
+ 
 }
 
+/* .print-btn {
+  display: block;
+  position: absolute;
+  right:10%;
+  
+} */
 
+h5{
+  font-size: 0.9em;
+}
 
 </style>
