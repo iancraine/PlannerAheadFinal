@@ -92,8 +92,9 @@
             </div>
             <div class="review">
                <p>
-                As a busy graduate student, using the Planner Ahead meal planner
-                has saved me so much time so that I can focus on cooking
+                I had all these recipes writed down that my Mom and Grandma used to make.  I was always spilling food on them and ruining them.
+                Now, I input all my family recipes in one location where they'll never get splashed with pasta sauce again! Plus, the grocery list 
+                feature saves me time!
               </p>  
                <span>
                 <img
