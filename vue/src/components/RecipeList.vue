@@ -260,6 +260,12 @@ button{
   border-radius: 25px;
   border: solid 3px;
   margin: 20px;
+
+}
+#recipe-box:hover {
+    border: 1px solid #4a7545;
+    border-radius: 9px;
+    box-shadow: 0 0 4px 1px rgba(25, 247, 121, 0.925);
 }
 </style>
 
