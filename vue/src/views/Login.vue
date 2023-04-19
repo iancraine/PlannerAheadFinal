@@ -1,4 +1,5 @@
 <template>
+
   <div id="login" class="text-center">
     <div class="login1">
       <main-login class="login2"/>
@@ -44,6 +45,7 @@
     </form>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -97,7 +99,11 @@ export default {
   background-color: rgb(234, 250, 176);
   font-family: 'Dosis', monospace, sans-serif;
   padding: 30px;
+   background: url(../assets/2.png) no-repeat center center fixed;
+   background-position:bottom;
+   
 }
+
 .login1{
   width:70%
 }

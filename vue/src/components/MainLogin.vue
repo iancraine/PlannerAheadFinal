@@ -2,6 +2,7 @@
   <div class="image-container">
       
           <p calss="para zoom">More Time Eating!</p>
+          <p class="para">"Effortlessly plan, cook, and enjoy deliciously healthy meals<br> with Meal Planner - your one-stop solution for mealtime bliss!"</p>
           <!-- <img class="logo" src="..\assets\cropped-logo.png" alt="Logo"> -->
          <div class="img">
     <img src="..\assets\1M.png" alt="Pot Roast" class="two">
@@ -43,6 +44,9 @@ div p{
       text-shadow: #FC0 1px 0 10px;
       
 }
+.para{
+    font-size: 16px;
+}
 /* p .logo{
     display: inline-block;
 } */
@@ -57,6 +61,7 @@ div p{
 .img{
     max-width:200px;
     max-height:400px;
+    margin-left: 135px;
 }
 .two{
     max-width:600px
