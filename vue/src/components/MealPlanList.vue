@@ -2,7 +2,7 @@
   <div class="mealPlans">
     <h1>My Meal Plans</h1>
 
-    <h2>Current Plans</h2>
+    <h2 class="plan-time">Current Plans</h2>
     <div
       class="current-plans"
       v-for="mealplan in currentMealPlans"
@@ -40,7 +40,7 @@
         ></meal-plan-details>
       </div>
 
-      <h2>Future Plans</h2>
+      <h2 class="plan-time">Future Plans</h2>
       <div
         class="future-plans"
         v-for="mealplan in futureMealPlans"
@@ -80,7 +80,7 @@
         ></meal-plan-details>
       </div>
 
-      <h2>Previous Plans</h2>
+      <h2 class="plan-time">Previous Plans</h2>
       <div
         class="previous-plans"
         v-for="mealplan in previousMealPlans"
@@ -118,50 +118,29 @@
           v-bind:meal-plan="mealplan"
         ></meal-plan-details>
       </div>
-      
-      <!-- <meal-plan-details v-if="viewDetailSection[mealplan[0].meal_plan_id]" v-bind:meal-plan="mealplan"></meal-plan-details> -->
 
-      <!-- <table v-if="viewDetailSection[index]">   -->
-      <!-- <div class="tableStyle">
-         <table v-show="viewDetailSection[mealplan[0].meal_plan_id]">
-        <thead>
-          <tr>
-            <th class="tdata">Date</th>
-            <th class="tdata">Meal</th>
-            <th class="tdata">Recipe</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(day, index) in mealplan" v-bind:key="index">
-            <td class="tdata">{{day.for_date}}</td>
-            <td class="tdata">{{convertMealTypeToWord(day.meal_type)}}</td>
-            <td class="tdata">{{getRecipeName(day.recipe_id)}}</td>
-            
-          </tr>
-        </tbody>
-      </table>  
-      </div> -->
-
-    <div @click="scrollToTop()" class="scroll-btn">
-      <button
-        class="topBtn show-details"
+      <div class="side-btn">
+<button
+        class="show-details"
         v-on:click="showMealPlan = !showMealPlan"
       >
         {{ showMealPlan ? "Hide" : "Show" }} Details
       </button>
-      <button class="topBtn add-meal">
+      <button class="add-meal">
         <router-link :to="{ name: 'add-meal-plan' }">
           Add Meal Plan
         </router-link>
       </button>
+      </div>
+
+    <!-- <div @click="scrollToTop()" class="scroll-btn">  
       <img
         class="move-to-top"
-        src="../assets/move-to-top-button.png"
+        src="../assets/simple-scroll-up-button.png"
         height="50"
         width="50"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -215,20 +194,6 @@ export default {
       );
       return recipeObj.recipe_name;
     },
-
-    //   response.data.forEach((plan) => {
-    //       let toDate = new Date(plan[plan.length-1].for_date);
-    //       let fromDate = new Date(plan[0].for_date);
-    //       let currentDate = new Date();
-    //        if (toDate.getTime() >=  currentDate.getTime() && fromDate.getTime() <= currentDate.getTime()) {
-    //          this.mealPlans.push(plan);
-    //        }
-    //     });
-
-    //     this.currentPlanExists = this.currentPlanPresent();
-    // });
-
-    // this.dateRanges.push()
 
     populateMealplanList() {
       mealPlanService
@@ -303,13 +268,20 @@ h1 {
   text-shadow: 5px 2px 5px hsl(99, 18%, 85%);
   font-size: 2.8em;
   align-content: center;
-  padding: 20px;
+  padding-top: 20px;
+  margin: 0;
   grid-area: "title";
   text-align: center;
+
 }
 
 h2 {
   color: cadetblue;
+}
+
+h2.plan-time{
+  color: black;
+  padding-top: 20px;
 }
 
 a {
@@ -327,7 +299,7 @@ p {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   padding-top: 5px;
 }
 
@@ -374,8 +346,16 @@ button {
   font-family: "Dosis", monospace, sans-serif;
 }
 
-.topBtn {
-  margin-right: 15px;
+button:hover {
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: 0 solid transparent;
+}
+
+.show-details, .add-meal {
+    margin-right: 15px;
   background: #fff;
   backface-visibility: hidden;
   border-radius: 0.375rem;
@@ -390,31 +370,22 @@ button {
   position: relative;
   text-align: left;
   margin-bottom: 15px;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-button:focus {
-  outline: 0 solid transparent;
-}
-
-.scroll-btn {
-  position: fixed;
-  left: 10%;
-  bottom: 5%;
-}
-
-.show-details {
   display: block;
+ 
 }
 
-.add-meal {
+.side-btn{
+ position: fixed;
+ display: block;
+  left: 10%;
+  bottom: 25%;
 }
 
 .move-to-top {
   border-radius: 50%;
+  position: fixed;
+  right: 10%;
+  bottom: 25%;
 }
 </style>
 

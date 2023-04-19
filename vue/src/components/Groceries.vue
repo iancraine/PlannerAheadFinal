@@ -157,7 +157,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .list {
   font-family: "Dosis", monospace, sans-serif;
   background: url(../assets/cropped-orange.jpg) no-repeat center center fixed;
@@ -173,6 +173,7 @@ export default {
 }
 h2 {
   text-align: center;
+  font-size: 2em;
 }
 .list-items {
   margin: 5px;

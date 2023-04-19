@@ -243,6 +243,7 @@ export default {
   width: 50%;
   border-radius: 25px;
   margin-left: 25vw;
+  
   border: solid 4px ;
   
 }
@@ -258,6 +259,7 @@ export default {
   -o-background-size: cover;
   background-size: cover;
   padding-bottom: 50px;
+  padding-top: 50px;
 }
 .addBtn,
 .modifyBtn, 
