@@ -2,35 +2,53 @@
     <div>
         <button v-on:click="toggleShowForm()" class="edit-recipe-btn">Edit Recipe</button>
         <form action="#" v-on:submit.prevent="" class="recipe-form" v-show="showForm">
-            <label for="recipe-name">Recipe Name: </label>
+
+
+            <section>
+                <label for="recipe-name">Recipe Name: </label>
             <input type="text" class="recipe-name" id="recipe-name" v-model="recipe.recipe_name" />
             <label for="prep-time" class="prep-time">Prep time: </label>
             <input type="number" class="prep-time" id="prep-time" size="5" v-model="recipe.prep_time"/>
             mins
-            <br>
+            </section>
+            
+            <section>
 
-            <label for="directions">Directions: </label>
+                <label for="directions">Directions: </label>
             <br>
-            <textarea name="directions" id="" cols="80" rows="10" v-model="recipe.directions"></textarea>
-            <br>
-            <div> 
+            <textarea class="directions" name="directions" id="" cols="80" rows="10" v-model="recipe.directions"></textarea>
+            </section>
+            
+            
+            <section>
+                <div> 
                 <label for="editTag">Tags: </label>
                 <br>
-                <textarea name="editTag" id="editTag" cols="30" rows="2" v-model="recipe.tags"></textarea>
+                <textarea class="editTag" name="editTag" id="editTag" cols="30" rows="2" v-model="recipe.tags"></textarea>
             </div>
+            </section>
             
-            <div  class="ingredients-content">
+
+            <section>
+                 <div  class="ingredients-content">
+                 <label for="ingredients">Ingredients </label>
                 <ul>
                     <li v-for="(ingredient, index) in ingredients" v-bind:key="index">
-                        <input type="text" classs="ingredient-field" v-model="ingredients[index].ingredient_name">
+                        <input type="text" class="ingredient-field" v-model="ingredients[index].ingredient_name">
                         <input type="text" class="amount-field" v-model="ingredients[index].amount">
                     </li>
                 </ul>
             </div>
-              <div  class="ingredients-content">
-                <label for="userInput">Add Ingredients: </label>
+            </section>
+            
+           
+           <section>
+               <div  class="ingredients-content">
+                   <div id="add-ingredients-line">
+                         <label for="userInput">Add Ingredients: </label>
                 <input type="text" id="userInput" v-model="inputIngredient.ingredient_name">
-                <label for="amount">Amount: </label>
+                   </div>
+                <label for="amount" class="amount-input">Amount: </label>
                 <input type="text" id="amount" v-model="inputIngredient.amount">
                 <label for="unit">Unit: </label>
                 <select name="units" id="units" v-model="unit">
@@ -47,9 +65,15 @@
                 </select>
                 <button class="addIngredient" @click.prevent="concatIngredient()">Add</button>
             </div>
+           </section>
+              
 
-            <label for="food-pic">Upload a picture: </label>
+
+            <section>
+                <label for="food-pic">Upload a picture: </label>
             <input type="file" id="food-pic" >
+            </section>
+            
         
             <br>
 
@@ -57,6 +81,7 @@
                 <input class="submitBtn" type="submit" v-on:click="editRecipe()" value="Submit">
                 <button class="cancelBtn" @click.prevent="clear()"> Clear</button>
             </div>
+            <br>
         </form>
     </div>
 </template>
@@ -153,15 +178,26 @@ export default {
 <style scoped>
 form {
     margin-top: 15px;
-    background-color: rgb(227, 247, 205);
+    background-color: rgb(230, 245, 215);
+    padding-left: 20px;
+    padding-top: 20px;
+    border-radius: 5%;
 }
 .addIngredient {
     background-color: #e2f3e2;
     color: #180d04;
+    margin-left: 15px;
 }
 
 li {
     list-style-type: none;
+    
+}
+
+ul {
+    padding-left: 0;
+    margin-top: 5px;
+
 }
 .ingredients-content > input{
     margin-right: 25px;
@@ -187,6 +223,8 @@ form.recipeForm{
     justify-content: center;
 
 }
+
+
 .edit-recipe-btn{
     background: #cdeccd;
   border-radius: 900px;
@@ -242,6 +280,7 @@ button{
   text-align: center;
   text-decoration: none;
   font-family: 'Dosis', monospace, sans-serif;
+  margin-right: 20px;
 
 }
 
@@ -250,8 +289,31 @@ button{
     cursor: pointer;
 }
 
-.ingredient-field, .amount-field {
+
+
+.ingredient-field, .amount-field{
+    width: 22%;
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 5px;
 
 }
 
+.amount-input{
+    width: 10%;
+}
+
+textarea.directions {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 95%;
+    
+}
+
+
+section {
+    margin-bottom: 10px;
+}
 </style>
