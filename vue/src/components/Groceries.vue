@@ -2,9 +2,9 @@
   <div class="list">
     <div class="list-container">
       <h2 class="list-title">Grocery List</h2>
-      <label for="itemName">Item Name: </label>
+      <label class="input-label" for="itemName">Item Name: </label>
       <input type="text" id="itemName" v-model="itemName" />
-      <label for="amount">Amount:</label>
+      <label class="input-label" for="amount">Amount:</label>
       <input type="text" id="amount" v-model="amount" />
       <button @click="addSelectedIngredients">Add to Grocery List</button>
       <div class="items-box">
@@ -227,5 +227,15 @@ button {
   button{
     display: none;
   }
+  #itemName{
+    display: none;
+  }
+  #amount{
+    display: none;
+  }
+  .input-label{
+    display: none;
+  }
+  
 }
 </style>
