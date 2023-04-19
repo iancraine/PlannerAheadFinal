@@ -176,7 +176,11 @@ export default {
       padding: 2%;
       
  }
-
+section:hover{
+   border: 1px solid #4a7545;
+    border-radius: 9px;
+    box-shadow: 0 0 4px 1px rgba(25, 247, 121, 0.925);
+}
  .container2{
    display: flex;
    justify-content: space-around;
@@ -206,6 +210,7 @@ export default {
    background-color: #ebf2ef;
    min-width: 45%;
    border-radius: 10px;
+   border: dotted 2px ;
  }
 
 .food-img{
