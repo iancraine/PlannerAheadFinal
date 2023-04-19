@@ -32,29 +32,45 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        name: 'Curried Lentils and Rice',
+        name: 'Roasted Asparagus',
         path: require('../assets/roasted-asparagus.jpg')
       },
       {
         id: 3,
-        name: 'Mic Yorkshire Puds',
-        path: require('../assets/roasted-asparagus.jpg')
+        name: 'Curried Lentils and Rice',
+        path: require('../assets/Lentil-Curry-4-SQUARE.jpg')
       },
       {
         id: 4,
-        name: 'Old-Fashioned Oatmeal Cookies',
-        path: require('../assets/roasted-asparagus.jpg')
+        name: 'Big Night Pizza',
+        path: require('../assets/k_Photo_Recipe Ramp Up_2021-07-Chicken-Alfredo-Pizza_Chicken-Alfredo-Pizza-KitchnKitchn2970-1_01.jpg')
       },
       {
         id: 5,
-        name: 'Big Night Pizza',
-        path: require('../assets/roasted-asparagus.jpg')
+        name: 'Mic Yorkshire Puds',
+        path: require('../assets/recipe-image-legacy-id-740564_11-b52d07b.jpg')
       },
       {
         id: 6,
-        name: 'Roasted Asparagus',
-        path: require('../assets/roasted-asparagus.jpg')
+        name: 'Old-Fashioned Oatmeal Cookies',
+        path: require('../assets/download.jpg')
+      },
+      {
+        id: 7,
+        name: 'French Fries',
+        path: require('../assets/french-fries.jpg')
+      },
+      {
+        id: 8,
+        name: 'Duck Confit',
+        path: require('../assets/duck-confit.jpg') 
+      },
+      {
+        id: 8,
+        name: 'Chicken Pot Pie',
+        path: require('../assets/chicken-pot-pie.jpg')  
       }
+
     ]
 
 
