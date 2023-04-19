@@ -216,6 +216,8 @@ export default {
       this.listOfPlans=[];
       this.clear();
       this.mealPlanName= "";
+      this.$router.push({name: 'mealplans', params: {userId: this.$store.state.user.id }});
+
     }
   },
 };
