@@ -43,7 +43,7 @@
             <p class="time">{{recipe.prep_time}} min</p>
       </div>
         <br>
-        <button v-on:click=handlePrint() class="print-btn">Print Recipe</button>
+        <button v-on:click=handlePrint() class="print-btn noprint">Print Recipe</button>
 
     </div>
       </div>
