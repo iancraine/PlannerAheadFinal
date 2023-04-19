@@ -217,8 +217,7 @@ background-color: #ebf2ef;
   grid-template-areas: "lefty righty";
   padding: 20px;
   font-size: 18px;
-  margin-right: 40px;
-  margin-left: 40px;
+
   background-color: #ebf2ef;
 }
 .recipe-container{
@@ -304,23 +303,18 @@ button{
    
 }
 img{
-  max-width: 85%;
+  max-width: 90%;
   justify-content: center;
   align-self: center;
   border-radius: 5%;
-  margin-left: 20px;
+  margin-left: 25px;
  
 }
 
-/* .print-btn {
-  display: block;
-  position: absolute;
-  right:10%;
-  
-} */
 
 h5{
   font-size: 0.9em;
 }
+
 
 </style>
