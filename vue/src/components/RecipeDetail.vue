@@ -3,12 +3,12 @@
     
     
     <div class="right">
-      <img id="myrecipesbtn" class="back-arrow" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
+      <img id="myrecipesbtn" class="back-arrow noprint" src="../assets/backArrow.png" alt="Back Arrow" @click="$router.go(-1)">
       <div class="recipe-container">
         <h2 id="recipe-name">{{recipe.recipe_name}}</h2>
         <div class="details">
-          <div id="edit-button">
-          <edit-recipe-form v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
+          <div id="edit-button noprint">
+          <edit-recipe-form class="noprint" v-bind:recipe-from="recipe" v-bind:list-ingredients="ingredients"/>
           </div>
 
         <div id="direction-section">
@@ -30,7 +30,7 @@
             
             
           </div>
-          <button class="addGroceries" type="submit" v-on:click.prevent="sendToGroceryDB()">Add To Grocery List</button>
+          <button class="addGroceries noprint" type="submit" v-on:click.prevent="sendToGroceryDB()">Add To Grocery List</button>
         </div>
 
         <div class="tag">
@@ -43,7 +43,7 @@
             <p class="time">{{recipe.prep_time}}</p>
       </div>
 
-      <button v-on:click=handlePrint()>Print Recipe</button>
+      <button class="noprint" v-on:click=handlePrint()>Print Recipe</button>
     </div>
       </div>
     
@@ -203,9 +203,10 @@ background-color: #ebf2ef;
   }
 }
 @media print{
-  .recipe-detail{
-    display: none;
-  }
+ .noprint{
+   display: none;
+ }
+  
 }
 
 .back-arrow{
