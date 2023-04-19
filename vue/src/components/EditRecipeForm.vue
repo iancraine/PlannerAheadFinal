@@ -11,17 +11,19 @@
 
             <label for="directions">Directions: </label>
             <br>
-            <textarea name="directions" id="" cols="100" rows="10" v-model="recipe.directions"></textarea>
+            <textarea name="directions" id="" cols="80" rows="10" v-model="recipe.directions"></textarea>
             <br>
-            <div>
+            <div> 
+                <label for="editTag">Tags: </label>
+                <br>
                 <textarea name="editTag" id="editTag" cols="30" rows="2" v-model="recipe.tags"></textarea>
             </div>
             
             <div  class="ingredients-content">
                 <ul>
                     <li v-for="(ingredient, index) in ingredients" v-bind:key="index">
-                        <input type="text" v-model="ingredients[index].ingredient_name">
-                        <input type="text" v-model="ingredients[index].amount">
+                        <input type="text" classs="ingredient-field" v-model="ingredients[index].ingredient_name">
+                        <input type="text" class="amount-field" v-model="ingredients[index].amount">
                     </li>
                 </ul>
             </div>
@@ -150,10 +152,11 @@ export default {
 
 <style scoped>
 form {
-    background-color: rgb(212, 245, 174);
+    margin-top: 15px;
+    background-color: rgb(227, 247, 205);
 }
 .addIngredient {
-    background-color: #AFE1AF;
+    background-color: #e2f3e2;
     color: #180d04;
 }
 
@@ -175,7 +178,7 @@ input.prep-time{
     width: 5em;
 }
 form.recipeForm{
-    background-color: #aff8bb;
+    background-color: #6d8672;
     font-family: system-ui, sans-serif;
 }
 
@@ -245,6 +248,10 @@ button{
 .submitBtn:hover, .cancelBtn:hover{
     font-weight: 2em;
     cursor: pointer;
+}
+
+.ingredient-field, .amount-field {
+
 }
 
 </style>
