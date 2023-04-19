@@ -27,9 +27,10 @@
       </section>
 
       <section class="random-recipe" >
-            <h3>{{randomRecipe.recipe_name}}</h3>
+            <router-link :to="{name: 'recipesId', params: {recipeId: randomRecipe.recipeId}}"><h3>{{randomRecipe.recipe_name}}</h3></router-link>
            <div class="food-img">
-              <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/>
+             <img :src="getRecipeId(randomRecipe.recipeId)"  alt="first imag" class="foodPic"/>
+              <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/> -->
             </div>
       </section>
     </div>
@@ -108,7 +109,13 @@ export default {
     },
     moveToMealPlan() {
       this.$router.push({name: 'mealplans', params:{userId: this.$store.state.user.id}});
-    }
+    },
+    getRecipeId(recipeId){
+            let matchingImage = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId);           
+             if (matchingImage != undefined) {return matchingImage.path;}
+             else {return this.randomItem(this.images);}
+
+      }
     // closestMealPlanToNow(){
     //   console.log(this.dateRanges);
     //   this.dateRanges.forEach(x => {
@@ -208,6 +215,8 @@ export default {
 
  img{
    border-radius: 50px;
+   max-width: 300px;
+   max-height: 250px;
  }
  
 
