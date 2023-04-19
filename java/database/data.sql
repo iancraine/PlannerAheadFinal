@@ -18,52 +18,6 @@ They should be tender when pierced with the tip of a knife.
 The tips of the spears will get very brown but watch them to prevent burning.
 They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal.','Healthy',20,null,true,2);
 
--- INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,1);
--- INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,2);
-
--- INSERT INTO ingredients (ingredient_name) VALUES ('Flour');
--- INSERT INTO ingredients  (ingredient_name) VALUES ('Sugar');
--- INSERT INTO ingredients  (ingredient_name)  VALUES ('Eggs');
--- INSERT INTO ingredients  (ingredient_name)  VALUES ('Carrots');
--- INSERT INTO ingredients  (ingredient_name)  VALUES ('Potato');
--- INSERT INTO ingredients  (ingredient_name)  VALUES ('Paprika');
--- INSERT INTO ingredients  (ingredient_name)  VALUES ('Chicken Broth');
-
--- INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2 cups');
--- INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
--- INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
-
--- INSERT INTO meal_plan (plan_name) VALUES ('Beach Weekend!');
--- INSERT INTO meal_plan (plan_name) VALUES ('Turkey Day!');
--- INSERT INTO meal_plan (plan_name) VALUES ('Christmas Meals');
--- INSERT INTO meal_plan (plan_name) VALUES ('My One Healthy Week a Year');
--- INSERT INTO meal_plan (plan_name) VALUES ('Todays Plan');
-
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 2, '08/10/2023', 2);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 1, '08/11/2023', 1);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (2, 2, '11/16/2023', 3);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 2, '12/25/2023', 3);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 1, '12/24/2023', 5);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (3, 1, '12/23/2023', 1);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (4, 1, '1/3/2023', 2);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (4, 2, '1/4/2023', 3);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 2, '04/16/2023', 2);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 1, '04/17/2023', 3);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 2, '04/18/2023', 1);
--- INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 1, '04/19/2023', 2);
-
--- INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (1, 1);
--- INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (2, 1);
--- INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (3, 1);
--- INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (4, 2);
--- INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (5, 1);
-
--- INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 2, NULL, '3 lbs');
--- INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, NULL, 'Toilet Paper', NULL);
--- INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 4, NULL, '1 can');
--- INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 5, NULL, '3 bushels');
-
-
 INSERT INTO recipes(recipe_name,directions,tags,prep_time,food_pic,is_public,created_by)
 VALUES('Curried Lentils and Rice','Bring broth to a low boil.'
 	  'Add curry powder and salt.'
@@ -102,7 +56,8 @@ VALUES ('Old-Fashioned Oatmeal Cookies','Simmer raisins and water over medium he
 	   'Blend in remaining ingredients.'
 	   'Drop dough by rounded teaspoonfuls about 2 inches apart onto ungreased baking sheet.'
 	   'Bake 8 to 10 minutes or until light brown.'
-	   'About 6 1/2 dozen cookies.','Dessert',20,null,true,1);	 
+	   'About 6 1/2 dozen cookies.','Dessert',20,null,true,1);
+	   
 INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,1);
 INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,2);
 INSERT INTO users_recipes (user_id, recipe_id) VALUES (1,3);
@@ -121,6 +76,7 @@ INSERT INTO ingredients  (ingredient_name)  VALUES ('Salt');
 INSERT INTO ingredients  (ingredient_name)  VALUES ('Butter');
 INSERT INTO ingredients  (ingredient_name)  VALUES ('Baking Powder');
 INSERT INTO ingredients  (ingredient_name)  VALUES ('Milk');
+
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1,1,'2 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 4, '3 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (1, 6, '1 tbsp');
@@ -144,11 +100,14 @@ INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (3,4,'2
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (3, 1, '3 cups');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (3, 3, '1 tbsp');
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (3, 11, '1 tbsp');
+
 INSERT INTO meal_plan (plan_name) VALUES ('Beach Weekend!');
 INSERT INTO meal_plan (plan_name) VALUES ('Turkey Day!');
 INSERT INTO meal_plan (plan_name) VALUES ('Christmas Meals');
 INSERT INTO meal_plan (plan_name) VALUES ('My One Healthy Week a Year');
 INSERT INTO meal_plan (plan_name) VALUES ('Todays Plan');
+INSERT INTO meal_plan (plan_name) VALUES ('Family Reunion Week');
+
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 2, '08/10/2023', 2);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 1, '08/11/2023', 1);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (1, 5, '11/16/2023', 3);
@@ -161,11 +120,17 @@ INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VAL
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 4, '04/17/2023', 3);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 2, '04/18/2023', 1);
 INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (5, 1, '04/21/2023', 2);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (6, 2, '02/5/2023', 3);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (6, 6, '02/6/2023', 1);
+INSERT INTO meal_plan_recipes (meal_plan_id, recipe_id, for_date, meal_type) VALUES (6, 5, '02/5/2023', 2);
+
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (1, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (2, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (3, 1);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (4, 2);
 INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (5, 1);
+INSERT INTO users_meal_plan (meal_plan_id, user_id) VALUES (6, 1);
+
 INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 2, NULL, '3 lbs');
 INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, NULL, 'Toilet Paper', NULL);
 INSERT INTO grocery_list (user_id, ingredient_id, non_food_option, quantity) VALUES (1, 4, NULL, '1 can');

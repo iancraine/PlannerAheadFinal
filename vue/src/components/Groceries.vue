@@ -236,6 +236,6 @@ button {
   .input-label{
     display: none;
   }
-  
+
 }
 </style>
