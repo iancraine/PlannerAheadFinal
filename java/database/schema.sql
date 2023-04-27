@@ -31,7 +31,7 @@ CREATE TABLE recipes(
 	directions varchar(1500) NOT NULL,
 	tags varchar(300),
 	prep_time int,
-	food_pic varchar(100),
+	food_pic varchar(10000000),
 	is_public boolean,
 	created_by int, 
 	

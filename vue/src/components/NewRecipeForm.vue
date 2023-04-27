@@ -75,9 +75,10 @@
         <label for="food-pic">Upload a picture: </label>
         <input
           type="file"
+          accept="image/*"
           id="food-pic"
           ref="uploadImage"
-          @change="onImageUpload()"
+          @change="onFileChange"
         />
       </div>
 
@@ -121,6 +122,16 @@ export default {
     };
   },
   methods: {
+    onFileChange(event){
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          this.recipe.food_pic = event.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    },
     onImageUpload() {
       let file = this.$refs.uploadImage.files[0];
       this.formData = new FormData();

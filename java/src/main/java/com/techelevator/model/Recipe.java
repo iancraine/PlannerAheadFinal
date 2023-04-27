@@ -10,6 +10,7 @@ public class Recipe {
     private String tags;
     @JsonProperty("prep_time")
     private int prepTime;
+    @JsonProperty("food_pic")
     private String foodPic;
     private boolean isPublic;
     private int createBy;
