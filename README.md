@@ -1,5 +1,2 @@
-# Final Capstone
-​
-This directory contains all of the starter projects for the final capstone.
-​
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+Full stack meal planning Web Application, in which a registered user can build and save recipes into meal plans of any size.
+Implemented Java, Vue.Js, a PostgreSQL database, SpringBoot, and JSON.
