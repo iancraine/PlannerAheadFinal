@@ -105,26 +105,6 @@ public class JdbcRecipeDao implements RecipeDao{
         return changedRecipe;
     }
 
-    @Override
-    public void addImageToFile(int recipeId, MultipartFile image)  throws IOException {
-
-
-
-
-        Path filePath = Paths.get("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images", image.getOriginalFilename());
-           // String filePath = "C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images" + image.getOriginalFilename();
-            image.transferTo(filePath);
-
-
-//        Path filePath = Paths.get("C:\\Users\\Student\\workspace\\final-capstone-team-2\\java\\images", image.getOriginalFilename());
-//        try (OutputStream os = Files.newOutputStream(filePath)) {
-//            os.write(image.getBytes());
-//
-//            String sql = ("UPDATE recipes SET food_pic = ? WHERE recipe_id = ?;");
-//            jdbcTemplate.update(sql, filePath, recipeId);
-//        }
-    }
-
     public Recipe mapRowsetToRecipe(SqlRowSet row){
         Recipe recipe = new Recipe();
 

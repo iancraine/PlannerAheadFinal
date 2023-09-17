@@ -1,6 +1,6 @@
 <template>
   <div>
-      <modify-meal-form> </modify-meal-form>
+      <modify-meal-form></modify-meal-form>
   </div>
 </template>
 

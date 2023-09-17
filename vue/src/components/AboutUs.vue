@@ -2,9 +2,6 @@
   <div>
     <div class="container">
       <div class="title">
-        <!-- <div>
-			<img src="../assets/healthy-food.jpg"/>
-			</div> -->
         <h1 class="plannerTitle">
           Welcome to <br /><span class="aboutUs"> PLANNER AHEAD</span><br />
           Meal Planner

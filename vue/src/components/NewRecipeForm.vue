@@ -77,8 +77,7 @@
           type="file"
           accept="image/*"
           id="food-pic"
-          ref="uploadImage"
-          @change="onFileChange"
+          @change="onFileChange($event)"
         />
       </div>
 
@@ -97,11 +96,9 @@
 <script>
 import RecipeService from "../services/RecipeService";
 import IngredientService from "../services/IngredientService";
-import axios from "axios";
 export default {
   data() {
     return {
-      formData: null,
       inputTag: "",
       inputIngredient: {
         ingredient_name: "",
@@ -131,22 +128,6 @@ export default {
         }
         reader.readAsDataURL(file);
       }
-    },
-    onImageUpload() {
-      let file = this.$refs.uploadImage.files[0];
-      this.formData = new FormData();
-      this.formData.append("file", file);
-    },
-    submitFile() {
-      axios({
-        url: `http://localhost:9000/recipes/images/${this.recipe_id}`,
-        method: "POST",
-        data: this.formData,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-      });
     },
     clear() {
       this.inputTag = "";
@@ -189,7 +170,6 @@ export default {
         .then((response) => {
           this.recipe_id = response.data.recipeId;
           this.addIngredientToDatabase();
-          this.submitFile();
         })
         .catch(error => {
                this.handleError(error)
@@ -227,7 +207,7 @@ export default {
     handleError(error) {
       if (error.response) {
         this.errorMsg =
-          "Error submitting new recipe. Response recived was '" +
+          "Error submitting new recipe. Response received was '" +
           error.response.statusText +
           "'";
       } else if (error.request) {

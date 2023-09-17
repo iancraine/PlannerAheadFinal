@@ -35,7 +35,6 @@ export default {
   grid-template-areas: "nav"
                         "view"
                         "footer";
-  /* position: relative; */
   /* height: 100vh; */
   gap: 10px;
 }
@@ -50,11 +49,7 @@ router-view {
 }
 .footer {
   grid-area: footer;
-  /* position: absolute; */
   bottom: 0;
-
-  /* height: 2.5rem; */
-  /* margin: 10%; */
 }
 @media print{
 .noprint{

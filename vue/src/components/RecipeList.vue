@@ -7,32 +7,36 @@
           <button type="submit"><i class="fa fa-search"></i></button>
         </form> -->
       <button class="addNewRecipe" v-on:click="toggleShowForm()">Add New Recipe</button>
-    
     </div> 
+
     <div id="form-background">
     <new-recipe-form  id="form" v-if="showForm"/>
       <div class="recipe-container">
-      <div class="recipe">
-        <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
-          <div id="recipe-box">
-            <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
-           <div class="image">
-              <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
-              <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
-             <img :src="getRecipeId(recipe.recipeId)"  alt="first imag" class="foodPic"/>
+        <div class="recipe">
+          <div v-for="recipe in recipes" v-bind:key="recipe.recipeId" class="recipe-card"> 
+            <div id="recipe-box">
+              <h1><router-link class="h1" v-bind:to="{ name:'recipesId', params:{recipeId:recipe.recipeId}}">{{recipe.recipe_name}}</router-link></h1>
+            
+            <div class="image">
+                <img v-if="(recipe.food_pic) != null" :src="recipe.food_pic"  alt="food image" class="foodPic"/>
+
+                <img v-if="recipe.food_pic == null" src='../assets/meal-sample2.png'  alt="food image" class="foodPic"/>
+              </div>
+
+              <div class="tag"><h5 class="tag">Tag:</h5>
+                <p class="tag">{{recipe.tags}}</p>
+              </div>
+
+              <div class="time">
+                <h5 class="time">Prep Time:</h5>
+                <p class="time">{{recipe.prep_time}}</p>
+              </div>
+
             </div>
-            <div class="tag"><h5 class="tag">Tag:</h5>
-            <p class="tag">{{recipe.tags}}</p>
-            </div>
-            <div class="time">
-              <h5 class="time">Prep Time:</h5>
-            <p class="time">{{recipe.prep_time}}</p>
-            </div>
-            </div>
-        </div>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -66,14 +70,6 @@ export default {
     toggleShowForm() {
       this.showForm = !this.showForm;
     },
-      // randomItem(items, name) {
-      //   if (name === 'Crock Pot Roast') return require('../assets/Old-Fashioned-Pot-Roast.png');
-      //   else if(name === 'Roasted Asparagus') return  require('../assets/roasted-asparagus.jpg');
-      //   else {
-      //      return items[Math.floor(Math.random()*items.length)];
-      //   }
-       
-      // },
 
       randomItem(items) {
            return items[Math.floor(Math.random()*items.length)];
@@ -103,12 +99,6 @@ export default {
     });
     
   },
-// computed: {
-//     recipe() {
-    
-//       return this.$store.state.recipesimg.find(recipesimg => recipesimg.id === this.$route.params.recipe.recipe.Id)
-//     }
-//   }
 
 }
 </script>
@@ -119,18 +109,11 @@ export default {
   font-family: 'Dosis', monospace, sans-serif;
   text-align: center;
   font-family: 'Dosis', monospace, sans-serif;
-  /* background: url(../assets/white-background.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-  /* padding-bottom: 50px; */
+
   margin: 0px;
 }
 .title{
   color: #422800;
-  /* color:#0d75134b; */
-  /* text-shadow: 2px 1px 1px black; */
   font-size: 42px;
   align-content: center;
   padding: 20px;
@@ -146,7 +129,6 @@ div.page-title h1{
 }
 .recipe-container{
   background-color: #f3e5bd;
-  /* margin-top: 10px; */
 }
 div.recipe{
   display: flex;
@@ -159,14 +141,6 @@ div.recipe{
 .recipe-card{
   width: calc(100% * (1/4) - 10px - 1px);
   border-radius: 10px;
-}
-
-.recipe{
-  grid-area: card;
-  /* display: flex; */
-  /* flex-wrap: wrap;
-  justify-content: space-around; */
-  
 }
 .h1{
   color: rgb(20, 73, 187);
@@ -196,21 +170,6 @@ margin-right: 15px;
   position: relative;
   text-align: left;
   margin-bottom: 15px;
-
-  /* background: #cdeccd;
-  border-radius: 900px;
-  box-shadow: #bdbdfa 0 10px 20px -10px;
-  color: #180d04;
-  cursor: pointer;
-  font-family: Inter, Helvetica;
-  font-weight: 700;
-  line-height: 24px;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
-  border: 0;
-  margin: 0 auto;
-  display: flex;
-  font-family: 'Dosis', monospace, sans-serif; */
 }
 button:hover{
   transform: scale(1.05);
@@ -234,7 +193,6 @@ button{
   text-align: center;
   text-decoration: none;
   font-family: 'Dosis', monospace, sans-serif;
-
 }
 
 
@@ -253,9 +211,6 @@ button{
   height: 250px;
   border-radius: 15px;
   background-color: white;
-  /* border: solid 4px; */
-  /* max-width: 80%; */
-  /* height: auto; */
 }
 .page-title{
   background-color: #f3e5bd;

@@ -81,11 +81,11 @@
       </div>
 
       <h2 class="plan-time">Previous Plans</h2>
-      <div
-        class="previous-plans"
-        v-for="mealplan in previousMealPlans"
-        v-bind:key="mealplan[0].meal_plan_id"
-      >
+      <div 
+      class="previous-plans"
+      v-for="mealplan in previousMealPlans"
+      v-bind:key="mealplan[0].meal_plan_id">
+
         <div class="planTitle">
           <h2>{{ mealplan[0].plan_name }}</h2>
           <!-- <h3> <router-link v-bind:to="{name: 'mealplandetails', params: {mealPlanId: mealplan[0].meal_plan_id}}" >View Details</router-link> </h3> -->
@@ -119,32 +119,23 @@
         ></meal-plan-details>
       </div>
 
-      <div class="side-btn">
-<button
-        class="show-details"
-        v-on:click="showMealPlan = !showMealPlan"
+    <div class="side-btn">
+      <button
+      class="show-details"
+      v-on:click="showMealPlan = !showMealPlan"
       >
-        {{ showMealPlan ? "Hide" : "Show" }} Details
+      {{ showMealPlan ? "Hide" : "Show" }} Details
       </button>
       <button class="add-meal">
         <router-link :to="{ name: 'add-meal-plan' }">
           Add Meal Plan
         </router-link>
       </button>
-      </div>
+    </div>
 
-    <!-- <div @click="scrollToTop()" class="scroll-btn">  
-      <img
-        class="move-to-top"
-        src="../assets/simple-scroll-up-button.png"
-        height="50"
-        width="50"
-      />
-    </div> -->
   </div>
 </template>
 <script>
-// import { computed } from 'vue';
 import mealPlanService from "../services/MealPlanService.js";
 import recipeService from "../services/RecipeService.js";
 import MealPlanDetails from "./MealPlanDetails.vue";
@@ -232,9 +223,6 @@ export default {
               this.previousMealPlans.push(mealPlan);
             }
           });
-          console.log(this.currentMealPlans);
-          console.log(this.futureMealPlans);
-          console.log(this.previousMealPlans);
         });
     },
     convertMealTypeToWord(mealType) {

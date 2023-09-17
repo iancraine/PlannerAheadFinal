@@ -21,6 +21,4 @@ public interface RecipeDao {
 
     Recipe modifyRecipe(Recipe modifiedRecipe, int recipeId);
 
-    void addImageToFile(int recipeId, MultipartFile image) throws IOException;
-
 }

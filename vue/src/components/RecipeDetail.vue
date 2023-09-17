@@ -51,13 +51,9 @@
       
     </div>
     <div class="left-container">
-              <!-- <img src="../assets/1M.png" alt="Pot Roast" /> -->
-              <!-- <img :src="randomItem(images, recipe.recipe_name)" class="foodPic" /> -->
-             <img :src="getRecipeId(recipe.recipeId)"  alt="first imag" class="foodPic"/>
-            
-       
-        <!-- <img class="left" src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" /> -->
-            
+      <img v-if="recipe.food_pic != null" :src="recipe.food_pic"  alt="first image" class="foodPic"/>
+
+      <img v-if="recipe.food_pic == null" src='../assets/meal-sample2.png'  alt="food image" class="foodPic"/>
     </div>
  
   </div>

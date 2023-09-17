@@ -1,22 +1,5 @@
 <template>
  <div>
-     <!-- <table>
-        <thead>
-          <th>
-            <tr >
-              <div class="container">
-                <td> <img src="../assets/calendar-planner.jpg" class="calendarImg" height=100 width=100></td>
-                  <td>Monday</td>
-                <td> Tuesday </td>
-                <td>Wednesday</td>
-                <td>Thursday</td>
-                <td>Friday</td>
-                <td>Saturday</td>
-                <td>Sunday </td>
-              </div>
-            </tr>
-          </th>
-        </thead> -->
 <div class="tableStyle">
          <table>
         <thead>

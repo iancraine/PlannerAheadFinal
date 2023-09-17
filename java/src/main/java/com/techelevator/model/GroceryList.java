@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
-public class GroceryList {
+public class
+GroceryList {
     private int list_id;
     private String ingredient_name;
     private String non_food_option;

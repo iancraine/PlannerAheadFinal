@@ -17,7 +17,6 @@
 
       <div class="addedTitleDisplay" v-if="planNameAdded">
         <h1 @click="modifyName">{{ mealPlanName }}</h1>
-        <!-- <button class="modifyBtn" @click.prevent="modifyName">Edit Name</button> -->
       </div>
     </div>
 
@@ -133,24 +132,6 @@ export default {
   },
 
   computed: {
-    // mealTypeName() {
-    //   if (this.mealPlan.meal_type === "1") {
-    //     return "Breakfast";
-    //   }
-    //   else if (this.mealPlan.meal_type === "2") {
-    //     return "Lunch";
-    //   }
-    //   else if(this.mealPlan.meal_type === "3") {
-    //     return "Dinner";
-    //   }
-    //   else if(this.mealPlan.meal_type === "4") {
-    //     return "Snack";
-    //   }
-    //   else {
-    //     return "Appetizer"
-    //   }
-    // },
-
     currentRecipeId() {
       let recipeObj =  this.$store.state.recipes.find((recipe) => 
          recipe.recipe_name === this.currentSelectedRecipe
@@ -158,10 +139,7 @@ export default {
       return recipeObj.recipeId;
     }
   },
-
-// List<MealPlan>
-// each MealPlan object should have: plan_name, recipe_id, for_date, meal_type int 
-
+  
   methods: {
     clear() {
        this.mealPlan =  {

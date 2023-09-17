@@ -50,11 +50,7 @@ public class RecipeController {
     public Recipe modifyRecipe(@PathVariable int recipeId, @RequestBody Recipe recipe) {
         return recipeDao.modifyRecipe(recipe, recipeId);
     }
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RequestMapping(path="/images/{recipeId}", method = RequestMethod.POST)
-    public void addImage(@PathVariable int recipeId, @RequestParam("file") MultipartFile image) throws IOException {
-        recipeDao.addImageToFile(recipeId, image);
-    }
+
 
 
 }

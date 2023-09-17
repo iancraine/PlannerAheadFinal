@@ -1,6 +1,4 @@
 <template>
-  <!-- <div class="footer"> -->
-  <!-- <div class="container1"> -->
 <div class ="container1">
 <div class="footer">
   <div class="container2">
@@ -51,13 +49,12 @@
     <div class="copyright">
     <p>Copyright © 2023 Planner Ahead</p>
   </div>
-  <!-- </div> -->
 </div>
 </div>
 </template>
 <script>
 export default {
-    name: 'footer',
+    name: 'pageBottom',
     components: {
   }
 }
@@ -65,17 +62,13 @@ export default {
 
 </script>
 <style>
-/* div.footer{
-    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
-    *
-    */
-   div.footer {
+div.footer {
   font-family: 'Dosis', monospace, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
- .container1 {
+.container1 {
   display: grid;
   justify-content: end;
   align-content: end;

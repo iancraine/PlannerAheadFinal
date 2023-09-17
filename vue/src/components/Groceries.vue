@@ -79,8 +79,6 @@ export default {
         this.$route.params.userId,
         this.addedgroceries
       );
-      // this.pageloadingmethod();
-      // this.addItemsTogether();
       location.reload();
     },
     pageloadingmethod() {

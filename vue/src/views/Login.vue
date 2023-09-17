@@ -49,10 +49,8 @@
 </template>
 
 <script>
-// import AboutUs from '../components/AboutUs.vue';
 import MainLogin from '../components/MainLogin.vue';
 import authService from "../services/AuthService";
-// import MainLogin from "../components/MainLogin.vue"
 
 export default {
   name: "login",
@@ -75,7 +73,6 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            // this.$store.commit("SET_USER_ID", response.data.user.userId)//set user id
             this.$router.push("/");
           }
         })
@@ -126,7 +123,6 @@ export default {
 }
 
 .form-signin .form-control {
-  /* position: relative; */
   box-sizing: border-box;
   height: auto;
   padding: 10px;

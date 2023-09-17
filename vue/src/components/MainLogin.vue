@@ -3,14 +3,12 @@
       
           <p calss="para zoom">More Time Eating!</p>
           <p class="para">"Effortlessly plan, cook, and enjoy deliciously healthy meals<br> with Meal Planner - your one-stop solution for mealtime bliss!"</p>
-          <!-- <img class="logo" src="..\assets\cropped-logo.png" alt="Logo"> -->
          <div class="img">
     <img src="..\assets\1M.png" alt="Pot Roast" class="two">
       </div>
     <div class="last">
         <img class= "lastimg img1" src="..\assets\M4.png" alt="meals" />
          <img  class="roast img1" src="..\assets\M9.png" alt="meals" />
-        <!-- <img class="img1 lastimg" src="..\assets\M2.jpg" alt="meals" /> -->
         <img class="img1 lastimg" src="..\assets\M6.png" alt="meals" />
        
        

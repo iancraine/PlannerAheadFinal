@@ -29,8 +29,9 @@
       <section class="random-recipe" >
             <router-link :to="{name: 'recipesId', params: {recipeId: randomRecipe.recipeId}}"><h3>{{randomRecipe.recipe_name}}</h3></router-link>
            <div class="food-img">
-             <img :src="getRecipeId(randomRecipe.recipeId)"  alt="first imag" class="foodPic"/>
-              <!-- <img src="../assets\Old-Fashioned-Pot-Roast.png" alt="Pot Roast" height=200, width=350/> -->
+             <img v-if="randomRecipe.food_pic != null" :src="randomRecipe.food_pic"  alt="food image" class="foodPic"/>
+
+            <img v-if="randomRecipe.food_pic == null" src=''  alt="food image" class="foodPic"/>
             </div>
       </section>
     </div>
@@ -52,8 +53,6 @@ export default {
         dateRanges: [],
         currentMealPlan: [],
         isHappeningNow: true,
-        // thePlan: null,
-        // dates: [],
         currentPlanExists: false
       }
     },
@@ -63,18 +62,6 @@ export default {
       this.recipe = response.data;
       this.randomized();
     });
-    // MealPlanService.listAllMealPlans(this.$store.state.user.id).then((response) => {
-    //   this.mealPlans = response.data;
-    //   this.mealPlans.forEach((plan) => {
-    //     this.dateRanges.push({
-    //       fromDate: plan[0].for_date, 
-    //       toDate: plan[plan.length-1].for_date, 
-    //       planName: plan[0].plan_name,
-    //       planId: plan[0].meal_plan_id
-    //     });
-    //   });
-    // });
-
     MealPlanService.listAllMealPlans(this.$store.state.user.id).then((response) => {
         response.data.forEach((plan) => {
           let toDate = new Date(plan[plan.length-1].for_date);
@@ -89,16 +76,7 @@ export default {
     });
 
     this.dateRanges.push()
-
-    // this.closestMealPlanToNow();
   },
-
-  // computed: {
-  //   mealPlanNameAndDatesArray() {
-  //     let mealPlans = this.getCurrentMealPlan();
-  //     mealPlans.forEach(())
-  //   }
-  // }
   methods: {
     randomized () {
       const chosenNumber = Math.floor(Math.random() * this.recipe.length);
@@ -110,40 +88,10 @@ export default {
     moveToMealPlan() {
       this.$router.push({name: 'mealplans', params:{userId: this.$store.state.user.id}});
     },
-    getRecipeId(recipeId){
+    getRecipeImgPath(recipeId){
             let matchingImage = this.$store.state.images.find(recipesimg => recipesimg.id === recipeId);           
              if (matchingImage != undefined) {return matchingImage.path;}
-             else {return this.randomItem(this.images);}
-
       }
-    // closestMealPlanToNow(){
-    //   console.log(this.dateRanges);
-    //   this.dateRanges.forEach(x => {
-    //     this.dates.push({to: new Date(x.toDate), from: new Date(x.fromDate), id: x.planId});
-    //   })
-    //   this.dateRanges.filter((item) => {
-    //     return item.toDate >= Date.now().toString() && item.fromDate <= Date.now().toString()
-    //   })
-    //   this.currentMealPlan = this.dates.filter(x =>{
-    //     return x.to >= Date.now() && x.from <= Date.now(); 
-    //   })
-
-    //   this.currentMealPlan = this.dateRanges.filter((item) => {
-    //       let toDate = new Date(item.toDate);
-    //       let fromDate = new Date(item.fromDate);
-    //       let currentDate = new Date();
-    //       console.log(toDate);
-    //       console.log(fromDate);
-    //        return toDate.getTime() >=  currentDate.getTime() && fromDate.getTime() <= currentDate.getTime();
-    //   })
- 
-    // },
-    // getCurrentMealPlan(){
-    //   MealPlanService.getMealPlanById(this.currentMealPlan.planId).then((response) => {
-    //     this.thePlan = response.data;
-    //   })
-    // }
-    
   }
 
   

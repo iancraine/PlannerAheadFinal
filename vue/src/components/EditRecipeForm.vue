@@ -165,8 +165,6 @@ export default {
                 this.ingredients = response.data;
                 this.showForm = false;
             })
-           
-
     }
 
 

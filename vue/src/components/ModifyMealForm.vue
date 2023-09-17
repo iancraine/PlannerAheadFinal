@@ -2,7 +2,6 @@
   <div class="background">
     <div class="wrapper">
       <div class="weekly-plan-name">
-        <!-- <label for="meal-plan-name"> <h2>Meal Plan Name:</h2> </label> -->
         <div class="title-add-section" v-if="planNameAdded">
           <input
             type="text"
@@ -16,7 +15,6 @@
 
         <div class="addedTitleDisplay" v-if="!planNameAdded">
           <h1 @click="modifyName">{{ mealPlanName }}</h1>
-          <!-- <button class="modifyBtn" @click.prevent="modifyName">Edit Name</button> -->
           <img
             src="../assets/pencil-edit-icon.jpg"
             @click="modifyName"
@@ -222,15 +220,6 @@ export default {
         return "Appetizer";
       }
     },
-    // addMealCombo() {
-    //   this.mealPlan.meal_type = parseInt(this.mealPlan.meal_type);
-    //   this.mealPlan.plan_name = this.mealPlanName;
-    //   this.mealPlan.recipe_id = this.currentRecipeId;
-
-    //   this.listOfPlans.push(this.mealPlan);
-
-    //   this.clear();
-    // },
     addMealToDB() {
       this.listOfPlans.forEach((plan) => {
         plan.plan_name = this.mealPlanName;

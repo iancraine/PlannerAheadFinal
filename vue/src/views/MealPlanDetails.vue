@@ -1,7 +1,6 @@
 <template>
   <div>
       <meal-plan-details/>
-
   </div>
 </template>
 
