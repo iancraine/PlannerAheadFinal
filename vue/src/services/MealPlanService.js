@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: "http://localhost:9000"
+    baseURL: "https://plannerahead-eeec72fe62b2.herokuapp.com"
 })
 
 export default {
