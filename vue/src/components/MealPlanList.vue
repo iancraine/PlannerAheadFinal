@@ -177,7 +177,6 @@ export default {
   methods: {
     showDetailTable(mealPlanId) {
       this.viewDetails[mealPlanId] = !this.viewDetails[mealPlanId];
-      console.log(this.viewDetails[mealPlanId]);
     },
     getRecipeName(currentRecipeId) {
       let recipeObj = this.$store.state.recipes.find(

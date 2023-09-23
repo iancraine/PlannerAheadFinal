@@ -91,7 +91,6 @@ export default {
     },
     deleteSelected() {
       this.selectedIngredients.forEach((ingredient) => {
-        console.log(ingredient.list_id);
         groceryListService.deleteSelectedLists(ingredient.list_id);
       });
       location.reload();

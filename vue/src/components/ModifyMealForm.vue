@@ -225,8 +225,6 @@ export default {
         plan.plan_name = this.mealPlanName;
       })
 
-      console.log(this.listOfPlans);
-      console.log(this.listOfNewlyAddedPlans);
       mealPlanService.updateMealPlan(this.$route.params.mealPlanId, this.listOfPlans);
       mealPlanService.addMoreMealsToExistingPlan(this.listOfNewlyAddedPlans, this.$store.state.user.id);
       this.clear();
@@ -236,7 +234,6 @@ export default {
     },
 
     editAndDisplay(index) {
-      console.log(index);
         this.currentIdx = index;
         this.showOptions = !this.showOptions;
         

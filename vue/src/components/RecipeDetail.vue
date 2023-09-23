@@ -100,7 +100,6 @@ methods: {
     this.idsToAdd.push(ingredientId);
   },
   sendToGroceryDB(){
-    console.log('sendToGroceryDb is being run')
     this.idsToAdd.forEach(id => {
       this.itemsToAdd.push({ingredient_name: this.ingredients[id].ingredient_name, quantity: this.ingredients[id].amount})
     })
