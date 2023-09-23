@@ -2,8 +2,8 @@
   <div class="home">
     <h1>Welcome Back!</h1>
     <div class="container2">
-    <h2> Current Plans</h2>
-    <h2>Suggested Recipe</h2>
+      <h2> Current Plans</h2>
+      <h2>Suggested Recipe</h2>
     </div>
     <div class="container1">
       <section class="current-mealplan" v-if="currentPlanPresent">
